@@ -15,7 +15,7 @@
   .form-group
     = f.label :answer_type, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.text_field :answer_type, :class => 'form-control'
+      = f.collection_select :answer_type, Question::ANSWER_TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
   .form-group
     = f.label :marks, :class => 'col-sm-2 control-label'
     .col-sm-10
