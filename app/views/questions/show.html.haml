@@ -1,0 +1,18 @@
+.page-header
+  = link_to questions_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_question_path(@question), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show question
+
+%dl.dl-horizontal
+  %dt Description:
+  %dd= @question.description
+  %dt Answer type:
+  %dd= @question.answer_type
+  %dt Marks:
+  %dd= @question.marks
+  %dt Correct answer:
+  %dd= @question.correct_answer
