@@ -13,7 +13,7 @@ Question.create!(
     <br>
     Please provide your answer in terms of $$A$$, $$d$$, mathematical constants such as $$\pi$$ (entered as <code>pi</code>) or $$e$$ (entered as <code>e</code>).
     (<b>Assume that A is real</b>)
-  },
+  }.squish,
   answer_type: "Math Formula",
   marks: 1,
   correct_answer: "`A^2+d+pi-e`"

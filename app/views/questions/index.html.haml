@@ -19,7 +19,7 @@
     %tbody
       - @questions.each do |question|
         %tr
-          %td= question.description
+          %td.question-text= question.description.html_safe
           %td= question.answer_type
           %td= question.marks
           %td= question.correct_answer
