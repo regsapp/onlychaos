@@ -1,0 +1,24 @@
+= form_for @answer, :html => { :class => "form-horizontal" } do |f|
+  -if @answer.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@answer.errors.count, "error")} prohibited this answer from being saved:"
+
+      %ul
+        - @answer.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :question, :class => 'col-sm-2 control-label'
+    .col-sm-10.question-text
+      = @answer.question
+      %br
+      %em= "For #{pluralize(@answer.max_marks.to_s, 'point')}"
+  .form-group
+    = f.label :your_answer, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_area :description, :class => 'form-control'
+  
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.hidden_field :question_id
+      = f.submit :class => 'btn btn-primary'

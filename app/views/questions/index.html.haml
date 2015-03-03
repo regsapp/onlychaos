@@ -9,9 +9,9 @@
     %thead
       %tr
         %th Description
-        %th Answer type
+        %th.answer-type Answer type
         %th Marks
-        %th Correct answer
+        %th
         %th
         %th
         %th
@@ -20,9 +20,9 @@
       - @questions.each do |question|
         %tr
           %td.question-text= question.description.html_safe
-          %td= question.answer_type
+          %td.answer-type= question.answer_type
           %td= question.marks
-          %td= question.correct_answer
+          %td= link_to 'Answer', new_answer_path(question_id: question.id)
           %td= link_to 'Show', question
           %td= link_to 'Edit', edit_question_path(question)
           %td= link_to 'Destroy', question, :data => { confirm: 'Are you sure?' }, :method => :delete

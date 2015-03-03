@@ -26,12 +26,10 @@
           = link_to "Onlychaos", "#", :class => "navbar-brand"
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "#"} Home
-            %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
+            %li{ class: "#{'active' if current_page?(questions_path)}" }
+              =link_to "Questions", questions_path
+            %li{ class: "#{'active' if current_page?(answers_path)}" }
+              =link_to "Answers", answers_path
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do
