@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "questions/new", :type => :view do
   before(:each) do
     assign(:question, Question.new(
-      :description => "MyText",
-      :answer_type => "MyString",
+      :description => "MyDescription",
+      :answer_type => "Text",
       :marks => 1,
-      :correct_answer => "MyText"
+      :correct_answer => "MyAnswer"
     ))
   end
 
@@ -17,7 +17,7 @@ RSpec.describe "questions/new", :type => :view do
 
       assert_select "textarea#question_description[name=?]", "question[description]"
 
-      assert_select "input#question_answer_type[name=?]", "question[answer_type]"
+      assert_select "select#question_answer_type[name=?]", "question[answer_type]"
 
       assert_select "input#question_marks[name=?]", "question[marks]"
 
