@@ -3,7 +3,8 @@
     function makePreview(inputSelector, previewSelector) {
       input = $(inputSelector).val();
       $(previewSelector).html(input);
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub,"preview"]);
+      previewId =  previewSelector.replace('#', '');
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
     }
 
     $('body').keyup(function(){makePreview('#answer_description', '#answer_preview')});
