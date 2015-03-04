@@ -11,4 +11,12 @@ class Question < ActiveRecord::Base
   def to_s
     description.to_s.html_safe
   end
+
+  def mark(answer)
+    if answer == correct_answer
+      marks
+    else
+      0
+    end
+  end
 end
