@@ -17,8 +17,8 @@
       - @answers.each do |answer|
         %tr
           %td= answer.question_id
-          %td= answer.description
-          %td= answer.correct_answer
+          %td= answer.content
+          %td= answer.correct_answer.content
           %td= "#{answer.marks.to_i} on #{pluralize(answer.max_marks, 'point')}"
           %td= link_to 'Show', answer
           %td= link_to 'Edit', edit_answer_path(answer)

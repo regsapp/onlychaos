@@ -10,9 +10,9 @@
 %dl.dl-horizontal
   %dt.question-text Description:
   %dd.question-text=@question.description.html_safe
-  %dt Answer type:
-  %dd= @question.answer_type
   %dt Marks:
   %dd= @question.marks
+  %dt Answer type:
+  %dd= @question.answer_type
   %dt Correct answer:
-  %dd= @question.correct_answer.strip
+  %dd= @question.correct_answer.content

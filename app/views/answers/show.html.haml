@@ -11,6 +11,6 @@
   %dt.question-text Question:
   %dd.question-text=@answer.question
   %dt Answer:
-  %dd= @answer.description
+  %dd= @answer.content
   %dt Marks:
   %dd= "#{@answer.marks} on #{pluralize(@answer.max_marks.to_i, 'point')}"

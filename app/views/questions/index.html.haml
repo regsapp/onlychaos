@@ -9,7 +9,7 @@
     %thead
       %tr
         %th Description
-        %th.answer-type Answer type
+        / %th.answer-type Answer type
         %th Marks
         %th
         %th
@@ -20,7 +20,7 @@
       - @questions.each do |question|
         %tr
           %td.question-text= question.description.html_safe
-          %td.answer-type= question.answer_type
+          / %td.answer-type= question.answer_type
           %td= question.marks
           %td= link_to 'Answer', new_answer_path(question_id: question.id)
           %td= link_to 'Show', question

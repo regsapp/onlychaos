@@ -1,20 +1,20 @@
-:javascript
-  $(function() {
-    function makePreview(inputSelector, previewSelector) {
-      input = $(inputSelector).val();
-      $(previewSelector).html(input);
-      previewId =  previewSelector.replace('#', '');
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
-    }
+/ :javascript
+/   $(function() {
+/     function makePreview(inputSelector, previewSelector) {
+/       input = $(inputSelector).val();
+/       $(previewSelector).html(input);
+/       previewId =  previewSelector.replace('#', '');
+/       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
+/     }
 
-    $('body').keyup(function(){makePreview('#question_description', '#question_preview')});
-    $('body').bind('updated',function(){makePreview('#question_description', '#question_preview')});
-    makePreview('#question_description', '#question_preview');
+/     $('body').keyup(function(){makePreview('#question_description', '#question_preview')});
+/     $('body').bind('updated',function(){makePreview('#question_description', '#question_preview')});
+/     makePreview('#question_description', '#question_preview');
 
-    $('body').keyup(function(){makePreview('#question_correct_answer', '#answer_preview')});
-    $('body').bind('updated',function(){makePreview('#question_correct_answer', '#answer_preview')});
-    makePreview('#question_correct_answer', '#answer_preview');
-  });
+/     $('body').keyup(function(){makePreview('#question_correct_answer', '#answer_preview')});
+/     $('body').bind('updated',function(){makePreview('#question_correct_answer', '#answer_preview')});
+/     makePreview('#question_correct_answer', '#answer_preview');
+/   });
 
 = form_for @question, :html => { :class => "form-horizontal" } do |f|
   -if @question.errors.any?
@@ -34,20 +34,21 @@
       %h5 Preview
       #question_preview
   .form-group
-    = f.label :answer_type, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :answer_type, Question::ANSWER_TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
-  .form-group
     = f.label :marks, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.number_field :marks, :class => 'form-control'
+      = f.number_field :marks, :class => 'form-control', :min => 1
   .form-group
-    = f.label :correct_answer, :class => 'col-sm-2 control-label'
+    = f.label :answer_type, :class => 'col-sm-2 control-label'
     .col-sm-10
-      %h5 Raw (text, ASCIImath)
-      = f.text_area :correct_answer, :class => 'form-control'
-      %h5 Preview
-      #answer_preview
+      = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
+  = f.fields_for :correct_answer, @question.correct_answer do |builder|
+    .form-group
+      = builder.label :correct_answer, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        %h5 Raw (text, ASCIImath)
+        = builder.text_area :content, :class => 'form-control'
+        %h5 Preview
+        #answer_preview
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'

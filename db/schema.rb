@@ -15,21 +15,21 @@ ActiveRecord::Schema.define(version: 20150303135334) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
-    t.text     "description"
+    t.text     "content"
     t.integer  "marks"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "reference",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "questions", force: :cascade do |t|
     t.text     "description"
+    t.integer  "marks",       default: 1
     t.string   "answer_type"
-    t.integer  "marks"
-    t.text     "correct_answer"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

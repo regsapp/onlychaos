@@ -1,16 +1,16 @@
-:javascript
-  $(function() {
-    function makePreview(inputSelector, previewSelector) {
-      input = $(inputSelector).val();
-      $(previewSelector).html(input);
-      previewId =  previewSelector.replace('#', '');
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
-    }
+/ :javascript
+/   $(function() {
+/     function makePreview(inputSelector, previewSelector) {
+/       input = $(inputSelector).val();
+/       $(previewSelector).html(input);
+/       previewId =  previewSelector.replace('#', '');
+/       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
+/     }
 
-    $('body').keyup(function(){makePreview('#answer_description', '#answer_preview')});
-    $('body').bind('updated',function(){makePreview('#answer_description', '#answer_preview')});
-    makePreview('#answer_description', '#answer_preview');
-  });
+/     $('body').keyup(function(){makePreview('#answer_description', '#answer_preview')});
+/     $('body').bind('updated',function(){makePreview('#answer_description', '#answer_preview')});
+/     makePreview('#answer_description', '#answer_preview');
+/   });
 
 = form_for @answer, :html => { :class => "form-horizontal" } do |f|
   -if @answer.errors.any?
@@ -31,7 +31,7 @@
     = f.label :your_answer, :class => 'col-sm-2 control-label'
     .col-sm-10
       %h5 Raw (text, ASCIImath)
-      = f.text_area :description, :class => 'form-control'
+      = f.text_area :content, :class => 'form-control'
       %h5 Preview
       #answer_preview
   
