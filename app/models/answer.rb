@@ -26,13 +26,13 @@ class Answer < ActiveRecord::Base
 
       case type
       when "integer", "text", "float", "formula"
-        self.marks = max_marks if to_type == correct_answer.to_type
+        set_max_marks! if to_type == correct_answer.to_type
       when "multiple any"
-        self.marks = max_marks if correct_answer.to_type.any?{ |s| s.in? to_type }
+        set_max_marks! if correct_answer.to_type.any?{ |s| s.in? to_type }
       when "multiple all"
-        self.marks = max_marks if correct_answer.to_type.all?{ |s| s.in? to_type }
+        set_max_marks! if correct_answer.to_type.all?{ |s| s.in? to_type }
       when "multiple bool"
-        self.marks = max_marks if instance_eval(boolean_expression)
+        set_max_marks! if instance_eval(boolean_expression)
       end
 
       marks
@@ -52,7 +52,7 @@ class Answer < ActiveRecord::Base
     end
   end
 
-  #private
+  private
 
     def boolean_expression
       correct_answer
@@ -73,5 +73,9 @@ class Answer < ActiveRecord::Base
         end
       end
       .join(" ")
+    end
+
+    def set_max_marks!
+      self.marks = max_marks
     end
 end
