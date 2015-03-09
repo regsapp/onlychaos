@@ -1,5 +1,8 @@
 require 'factory_girl_rails'
-FactoryGirl.define do  factory :user do
+FactoryGirl.define do  factory :school do
+    name "MyString"
+  end
+  factory :user do
     
   end
 
