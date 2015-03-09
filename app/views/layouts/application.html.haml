@@ -31,7 +31,7 @@
                 =link_to "Questions", questions_path
               %li{ class: "#{'active' if current_page?(answers_path)}" }
                 =link_to "Answers", answers_path
-              %li{ class: "#{'active' if current_page?(answers_path)}" }
+              %li{ class: "#{'active' if current_page?(schools_path)}" }
                 =link_to "Schools", schools_path
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
               %li

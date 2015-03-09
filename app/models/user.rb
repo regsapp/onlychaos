@@ -4,5 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :school
+  def admin?
+    type == 'Admin'
+  end
+
+  def student?
+    type == 'Student'
+  end
+
+  def teacher?
+    type == 'Teacher'
+  end
 end

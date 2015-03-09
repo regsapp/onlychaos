@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :answers_params
 
   # GET /answers
   # GET /answers.json

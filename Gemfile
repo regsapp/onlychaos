@@ -28,6 +28,7 @@ gem 'bootstrap-generators', :git => 'https://github.com/kuroneko/bootstrap-gener
 gem 'haml-rails', '~> 0.7.0'
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'cancancan'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
