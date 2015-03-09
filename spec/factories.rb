@@ -1,9 +1,16 @@
 require 'factory_girl_rails'
-FactoryGirl.define do  factory :school do
-    name "MyString"
+FactoryGirl.define do  
+  factory :school do
+    name "MIT"
   end
+
   factory :user do
-    
+    first_name             "John"
+    last_name              "Doe"
+    type                   "Student"
+    email                  "user@example.com"
+    password               "password"
+    school
   end
 
 

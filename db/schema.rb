@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309124741) do
+ActiveRecord::Schema.define(version: 20150309125646) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -51,9 +51,15 @@ ActiveRecord::Schema.define(version: 20150309124741) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birthdate"
+    t.integer  "school_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["school_id"], name: "index_users_on_school_id"
 
 end

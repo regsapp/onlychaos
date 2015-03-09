@@ -5,7 +5,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.order(:name)
+    @schools = School.all
   end
 
   # GET /schools/1
