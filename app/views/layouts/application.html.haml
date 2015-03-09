@@ -30,9 +30,14 @@
               =link_to "Questions", questions_path
             %li{ class: "#{'active' if current_page?(answers_path)}" }
               =link_to "Answers", answers_path
+          - if current_user
+            %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
+              %li
+                = link_to t(".sign_out"), destroy_user_session_path, :method => :delete
     .container
-      - flash.each do |name, msg|
-        = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do
-          %button.close{:type => "button", :data => {:dismiss => "alert"}, :aria => {:hidden => "true"} } &times;
-          = msg
+      - flash.each do |type, msg|
+        - if msg.is_a? String
+          %div{ class: "alert #{bootstrap_class_for type}" }
+            %button.close{ type: 'button', :'data-dismiss' => 'alert', :'aria-hidden' => 'true' } &times;
+            = content_tag :div, msg, id: "flash_#{type}"
       = yield

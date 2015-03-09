@@ -1,5 +1,8 @@
 require 'factory_girl_rails'
-FactoryGirl.define do
+FactoryGirl.define do  factory :user do
+    
+  end
+
 
   factory :question do
     description 'What is ...'

@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'bootstrap-generators', :git => 'https://github.com/kuroneko/bootstrap-generators.git'
 gem 'haml-rails', '~> 0.7.0'
+gem 'devise'
+gem 'devise-bootstrap-views'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
