@@ -22,7 +22,7 @@
         - @answer.errors.full_messages.each do |msg|
           %li= msg
   .question
-    .col-sm-8.question-text
+    .col-sm-8.question-description
       = @answer.question
     .col-sm-4.question-mark
       %p= "#{pluralize(@answer.max_marks.to_s, 'mark')}"

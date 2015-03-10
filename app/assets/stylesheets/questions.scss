@@ -1,7 +1,7 @@
 // SHOWING TABLES //
 
-.tbody {
-  background-color: blue;
+tbody {
+  background-color: transparent;
 }
 
 th {
@@ -14,10 +14,18 @@ td {
   color: black;
 }
 
+tr.question-table {
+  background-color: transparent;
+}
+
 // SHOWING QUESTION //
 
 .question {
   position: relative;
+}
+
+.question-description {
+  color: white;
 }
 
 .question-mark {
@@ -32,10 +40,6 @@ td {
 
 h1.question-progress {
   text-align: center;
-}
-
-.question-text {
-  color: white;
 }
 
 div.col-sm-10.answer-box {

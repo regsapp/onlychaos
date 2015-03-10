@@ -20,7 +20,7 @@
 
     %tbody
       - @questions.each do |question|
-        %tr
+        %tr.question-table
           %td= question.year_group.name
           %td= question.category.name
           %td.question-text= question.description.html_safe
