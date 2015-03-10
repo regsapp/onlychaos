@@ -15,3 +15,35 @@ td {
 }
 
 // SHOWING QUESTION //
+
+.question {
+  position: relative;
+}
+
+.question-mark {
+  text-align: right;
+  // vertical-align: middle;
+  // margin-top: 50%;
+  // float: right;
+  p {
+    margin-top: 20%;
+  }
+}
+
+h1.question-progress {
+  text-align: center;
+}
+
+.question-text {
+  color: white;
+}
+
+div.col-sm-10.answer-box {
+  float: right;
+  width: 38%;
+  padding-top: 20%;
+}
+
+.col-sm-offset-8.col-sm-10 {
+  padding-top: 4%;
+}

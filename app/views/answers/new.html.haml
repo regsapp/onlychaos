@@ -1,7 +1,9 @@
 .page-header
-  = link_to answers_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  %h1 New answer
+  %br
+  %h1.question-progress= "Question #{@answer.question_id}"
 
 = render 'form'
+
+= link_to answers_path, :class => 'login button' do
+  %span.glyphicon.glyphicon-list-alt
+  Back

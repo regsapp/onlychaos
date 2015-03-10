@@ -21,21 +21,18 @@
       %ul
         - @answer.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :question, :class => 'col-sm-2 control-label'
-    .col-sm-10.question-text
+  .question
+    .col-sm-8.question-text
       = @answer.question
-      %br
-      %em= "For #{pluralize(@answer.max_marks.to_s, 'point')}"
-  .form-group
-    = f.label :your_answer, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      %h5 Raw (text, ASCIImath)
-      = f.text_area :content, :class => 'form-control'
-      %h5 Preview
+    .col-sm-4.question-mark
+      %p= "#{pluralize(@answer.max_marks.to_s, 'mark')}"
+
+  .form-object
+    .col-sm-10.answer-box
+      = f.text_field :content, placeholder: 'Enter answer here'
       #answer_preview
-  
-  .form-group
-    .col-sm-offset-2.col-sm-10
+  %br
+  .form-object
+    .col-sm-offset-8.col-sm-10
       = f.hidden_field :question_id
-      = f.submit :class => 'btn btn-primary'
+      = f.submit :class => 'login button'

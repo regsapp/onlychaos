@@ -12,6 +12,7 @@ body {
   /*text-align: center;*/
   margin-left: auto;
   margin-right: auto;
+  padding-top: 0%;
 }
 
 /*// HEADER //*/
@@ -35,7 +36,11 @@ header {
 }
 
 .page-header {
-  margin-top: 12%;
+  margin-top: 5%;
+}
+
+.nav.right h3 {
+  font-size: 1.5em;
 }
 
 /*// TEXT //*/
