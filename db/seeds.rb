@@ -3,6 +3,12 @@ Admin.create!(email: "admin@example.com", password: "password")
 as = YearGroup.create!(name: "AS")
 a2 = YearGroup.create!(name: "A2")
 
+astrophysics = Category.create!(name: "Astrophysics")
+mechanics = Category.create!(name: "Mechanics")
+electricity = Category.create!(name: "Electricity")
+particles = Category.create!(name: "Particles")
+waves = Category.create!(name: "Waves")
+
 school = School.create(name: "Hogwarts")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date)
 
@@ -16,7 +22,9 @@ question = Question.create!(
   }.squish,
   answer_type: "formula",
   marks: 1,
+  category_id: astrophysics.id,
+  year_group_id: as.id,
   correct_answer_attributes: {
     content: "`A^2+d+pi-e`"
-  }
+  },
 )

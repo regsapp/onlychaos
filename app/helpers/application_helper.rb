@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def resource_menu_item(model)
+  def model_menu_item(model)
     if can? :read, model
       resources = model.to_s.underscore.pluralize
       path = send(resources + '_path')

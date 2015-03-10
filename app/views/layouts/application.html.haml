@@ -27,10 +27,11 @@
         - if current_user
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              = resource_menu_item(Question)
-              = resource_menu_item(Answer)
-              = resource_menu_item(School)
-              = resource_menu_item(YearGroup)
+              = model_menu_item(Question)
+              = model_menu_item(Answer)
+              = model_menu_item(School)
+              = model_menu_item(YearGroup)
+              = model_menu_item(Category)
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
               %li
                 = link_to t(".sign_out"), destroy_user_session_path, :method => :delete

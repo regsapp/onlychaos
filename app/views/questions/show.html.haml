@@ -8,6 +8,10 @@
   %h1 Show question
 
 %dl.dl-horizontal
+  %dt Year group:
+  %dd= @question.year_group.name
+  %dt Category:
+  %dd= @question.category.name
   %dt.question-text Description:
   %dd.question-text=@question.description.html_safe
   %dt Marks:

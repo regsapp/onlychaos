@@ -1,5 +1,8 @@
 require 'factory_girl_rails'
-FactoryGirl.define do  factory :year_group do
+FactoryGirl.define do  factory :category do
+    name "MyString"
+  end
+  factory :year_group do
     name "MyString"
   end
   
