@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :categories
+
+  resources :year_groups
+
   resources :schools
 
   devise_for :users, :controllers => { registrations: 'registrations' }

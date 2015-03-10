@@ -8,8 +8,10 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
+        %th Year group
+        %th Category
         %th Description
-        / %th.answer-type Answer type
+        %th.answer-type Answer type
         %th Marks
         %th
         %th
@@ -19,8 +21,10 @@
     %tbody
       - @questions.each do |question|
         %tr
+          %td= question.year_group.name
+          %td= question.category.name
           %td.question-text= question.description.html_safe
-          / %td.answer-type= question.answer_type
+          %td.answer-type= question.answer_type
           %td= question.marks
           %td= link_to 'Answer', new_answer_path(question_id: question.id)
           %td= link_to 'Show', question
