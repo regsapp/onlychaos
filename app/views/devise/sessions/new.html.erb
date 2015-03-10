@@ -1,26 +1,18 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4><%= t('.sign_in', :default => "Sign in") %></h4>
-  </div>
-  <div class="panel-body">
+<section class="form">
+  <h2>Improve your physics AS/A2 grades</h2>
+  <p>Self marking revision past papers</p>
+
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      <div class="form object">
+        <%= f.email_field :email, autofocus: true, placeholder: 'school/college email' %>
       </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+
+      <div class="form object">
+        <%= f.password_field :password, autocomplete: "off", placeholder: 'password' %>
       </div>
-      <% if devise_mapping.rememberable? %>
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-        </div>
-        <% end %>
-      <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary" %>
+
+      <%= f.submit "LOGIN", class: 'login button' %>
     <% end %>
-  </div>
-</div>
-<%= render "devise/shared/links" %>
+
+    <h4>Don't have an account?  <%= link_to 'Request one here', new_user_registration_path %></h4>
+</section>

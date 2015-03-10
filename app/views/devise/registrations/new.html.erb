@@ -1,41 +1,34 @@
 <%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Improve your physics AS/A2 grades</h4>
-    <h6>Self marking revision past papers</h6>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
-      <div class="form-group">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :last_name, "Family name" %>
-        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :birthday, "Date of birth" %>
-        <%= f.date_select :birthday, {}, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :school, "School / College" %>
-        <%= f.collection_select :school_id, School.all, :id, :name, { prompt: true }, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :email, "School / College email" %>
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-      <%= f.submit "REQUEST INVITE", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
-<%= render "devise/shared/links" %>
+<section class='form signup'>
+  <h2>Improve your physics AS/A2 grades</h2>
+  <p>Self marking revision past papers</p>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
+    <div class="form object">
+      <%= f.text_field :first_name, autofocus: true, placeholder: 'first name' %>
+    </div>
+    <div class="form object">
+      <%= f.text_field :last_name, autofocus: true, placeholder: 'family name' %>
+    </div>
+    <div class="form object">
+      <%= f.label :birthday, "Date of birth" %>
+      <%= f.date_select :birthday, {}, autofocus: true %>
+    </div>
+    <div class="form object">
+      <!-- <%= f.label :school, "School / College" %> -->
+      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: true }, autofocus: true, placeholder: 'school/college' %>
+    </div>
+    <div class="form object">
+      <%= f.email_field :email, autofocus: true, placeholder: 'school/college email' %>
+    </div>
+    <div class="form object">
+      <%= f.password_field :password, placeholder: 'password' %>
+    </div>
+    <div class="form object">
+      <%= f.password_field :password_confirmation, placeholder: 'password confirmation' %>
+    </div>
+    <%= f.submit "REQUEST INVITE", class: "login button" %>
+  <% end %>
+
+  <h4>Already have an account?  <%= link_to 'Login here', new_user_session_path %></h4>
+</section>

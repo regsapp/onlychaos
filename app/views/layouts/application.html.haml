@@ -13,33 +13,24 @@
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %link{:href => "http://fonts.googleapis.com/css?family=Lato:100,300,400,700", :rel => "stylesheet", :type => "text/css"}
     = csrf_meta_tags
   %body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-          %button.navbar-toggle{:type => "button", :data => {:toggle => "collapse", :target => ".navbar-collapse"} }
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          = link_to "Onlychaos", "#", :class => "navbar-brand"
-        - if current_user
-          .collapse.navbar-collapse
-            %ul.nav.navbar-nav
-              %li{ class: "#{'active' if current_page?(questions_path)}" }
-                =link_to "Questions", questions_path
-              %li{ class: "#{'active' if current_page?(answers_path)}" }
-                =link_to "Answers", answers_path
-              %li{ class: "#{'active' if current_page?(schools_path)}" }
-                =link_to "Schools", schools_path
-            %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
-              %li
-                = link_to t(".sign_out"), destroy_user_session_path, :method => :delete
-    .container
+    %header
+    .nav.left
+      %h2.logo OnlyChaos
+    .nav.right
+      %h3
+        Account &#124;
+        - if user_signed_in?
+          = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav"
+        - else
+          = link_to "Log in", new_user_session_path, class: "nav"
+    .alerts
       - flash.each do |type, msg|
         - if msg.is_a? String
           %div{ class: "alert #{bootstrap_class_for type}" }
             %button.close{ type: 'button', :'data-dismiss' => 'alert', :'aria-hidden' => 'true' } &times;
             = content_tag :div, msg, id: "flash_#{type}"
-      = yield
+
+    = yield
