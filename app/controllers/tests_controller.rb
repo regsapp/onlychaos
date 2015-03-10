@@ -1,11 +1,12 @@
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   load_and_authorize_resource param_method: :tests_params
 
   # GET /tests
   # GET /tests.json
   def index
-    @tests = Test.all
+    @tests = current_user.admin? ? Test.all : current_user.tests
   end
 
   # GET /tests/1
@@ -71,6 +72,6 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:year_group_id, :duration, :user_id, :category_ids => [])
+      params.require(:test).permit(:year_group_id, :duration, :category_ids => [])
     end
 end
