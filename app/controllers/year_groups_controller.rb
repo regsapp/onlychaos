@@ -1,5 +1,6 @@
 class YearGroupsController < ApplicationController
   before_action :set_year_group, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource param_method: :year_groups_params
 
   # GET /year_groups
   # GET /year_groups.json

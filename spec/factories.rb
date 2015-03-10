@@ -1,5 +1,10 @@
 require 'factory_girl_rails'
-FactoryGirl.define do  factory :category do
+FactoryGirl.define do  factory :test do
+    year_group nil
+duration 1
+user nil
+  end
+  factory :category do
     name "MyString"
   end
   factory :year_group do

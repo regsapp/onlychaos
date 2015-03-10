@@ -32,6 +32,7 @@
               = model_menu_item(School)
               = model_menu_item(YearGroup)
               = model_menu_item(Category)
+              = model_menu_item(Test)
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
               %li
                 = link_to t(".sign_out"), destroy_user_session_path, :method => :delete

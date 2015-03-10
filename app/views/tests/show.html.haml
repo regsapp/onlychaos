@@ -1,0 +1,18 @@
+.page-header
+  = link_to tests_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_test_path(@test), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show test
+
+%dl.dl-horizontal
+  %dt Year group:
+  %dd= @test.year_group.name
+  %dt Categories:
+  %dd= @test.category_names
+  %dt Duration:
+  %dd= @test.duration
+  %dt User:
+  %dd= @test.user.email

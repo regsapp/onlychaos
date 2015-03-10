@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_test_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Test
+  %h1 Listing tests
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Year group
+        %th Categories
+        %th Duration
+        %th User
+        %th
+        %th
+        %th
+
+    %tbody
+      - @tests.each do |test|
+        %tr
+          %td= test.year_group.name
+          %td= test.category_names
+          %td= test.duration
+          %td= test.user.email
+          %td= link_to 'Show', test
+          %td= link_to 'Edit', edit_test_path(test)
+          %td= link_to 'Destroy', test, :data => { confirm: 'Are you sure?' }, :method => :delete
