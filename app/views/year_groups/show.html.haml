@@ -1,0 +1,12 @@
+.page-header
+  = link_to year_groups_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_year_group_path(@year_group), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show year_group
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @year_group.name

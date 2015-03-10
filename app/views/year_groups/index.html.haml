@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_year_group_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Year group
+  %h1 Listing year_groups
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @year_groups.each do |year_group|
+        %tr
+          %td= year_group.name
+          %td= link_to 'Show', year_group
+          %td= link_to 'Edit', edit_year_group_path(year_group)
+          %td= link_to 'Destroy', year_group, :data => { confirm: 'Are you sure?' }, :method => :delete

@@ -27,12 +27,10 @@
         - if current_user
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li{ class: "#{'active' if current_page?(questions_path)}" }
-                =link_to "Questions", questions_path
-              %li{ class: "#{'active' if current_page?(answers_path)}" }
-                =link_to "Answers", answers_path
-              %li{ class: "#{'active' if current_page?(schools_path)}" }
-                =link_to "Schools", schools_path
+              = resource_menu_item(Question)
+              = resource_menu_item(Answer)
+              = resource_menu_item(School)
+              = resource_menu_item(YearGroup)
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
               %li
                 = link_to t(".sign_out"), destroy_user_session_path, :method => :delete
