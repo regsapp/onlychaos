@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
+  belongs_to :test
   #has_one :correct_answer, through: :question
 
   TYPES = ["integer", "text", "float", "formula", "multiple any", "multiple all", "multiple bool"]
@@ -50,6 +51,18 @@ class Answer < ActiveRecord::Base
     when "multiple any", "multiple all", "multiple bool"
       content.squish.split(/\W+/)
     end
+  end
+
+  def number
+    test.question_number(question) if test
+  end
+
+  def test_questions_count
+    test.questions_count if test
+  end
+
+  def last?
+    number == test_questions_count if test
   end
 
   private

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :tests
 
+  get 'tests/:test_id/questions/:question_id/answers/new' => 'answers#new', as: :new_test_answer
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

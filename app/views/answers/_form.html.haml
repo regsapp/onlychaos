@@ -38,4 +38,6 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.hidden_field :question_id
-      = f.submit :class => 'btn btn-primary'
+      = f.submit "Next Question", :class => 'btn btn-primary' if @answer.test && !@answer.last?
+      = f.submit "Check Results", :class => 'btn btn-primary' if @answer.test && @answer.last?
+      = f.submit :class => 'btn btn-primary'                  unless @answer.test

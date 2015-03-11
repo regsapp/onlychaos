@@ -18,6 +18,7 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @answer.question = Question.find(params[:question_id]) if params[:question_id].present?
+    @answer.test = Test.find(params[:test_id]) if params[:test_id].present?
   end
 
   # GET /answers/1/edit
