@@ -23,6 +23,10 @@ section.form-signup {
   margin-top: 8%;
 }
 
+.form-label {
+  display: inline-block;
+}
+
 
 // INPUT //
 
@@ -45,9 +49,55 @@ input[type=email], [type=password], [type=text] {
   text-align: center;
 }
 
-.form-object {
-  margin: 8%;
+.year-group {
+  // padding-left: 0 !important;
+  color: black;
 }
+
+.radio label {
+  padding-left: 50px !important;
+}
+
+.radio-toolbar {
+  width: 85%;
+  margin: 0 auto;
+}
+
+
+
+.radio-toolbar input[type="radio"] {
+  display: none;
+  // opacity: 0;
+  margin: 10px;
+
+  // text-align: center;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: white;
+  padding: 8px 60px;
+  color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+  background-color: white;
+  color: gray;
+}
+
+
+
+.form-object {
+  margin-top: 8%;
+}
+
+// BUTTON //
 
 .login.button {
   // -webkit-border-radius: 8;

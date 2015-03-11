@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   load_and_authorize_resource param_method: :schools_params
 
   # GET /schools

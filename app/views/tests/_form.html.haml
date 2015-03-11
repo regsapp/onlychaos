@@ -1,0 +1,37 @@
+.section.form
+  = form_for @test do |f|
+    -if @test.errors.any?
+      .alert.alert-danger.alert-dismissable
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+        %h4= "#{pluralize(@test.errors.count, "error")} prohibited this test from being saved:"
+
+        %ul
+          - @test.errors.full_messages.each do |msg|
+            %li= msg
+    / .form-group
+    /   = f.label :year_group, :class => 'col-sm-2 control-label'
+    /   .col-sm-10
+    /     = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
+    .form-object.radio
+      .col-sm-10.radio-toolbar
+        - YearGroup.all.each do |year_group|
+          = f.radio_button(:year_group_id, year_group.id)
+          = label_tag dom_id(year_group), year_group.name
+      = f.label :year_group, :class => "year-group"
+
+    .form-object
+      = f.label :duration, 'TEST DURATION', :class => 'form-label'
+      .col-sm-10
+        = f.number_field :duration, :class => 'form-control', in: 1...100
+    %br
+    .form-object
+      .col-sm-10
+        = hidden_field_tag "test[category_ids][]", nil
+        - Category.all.each do |category|
+          = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+          = label_tag dom_id(category), category.name
+          %br
+
+    .form-object
+      .col-sm-offset-2.col-sm-10
+        = f.submit :class => 'btn btn-primary'
