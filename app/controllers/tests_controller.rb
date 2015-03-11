@@ -31,7 +31,7 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        format.html { redirect_to new_test_answer_path(question_id: @test.questions.first.id, test_id: @test.id), notice: 'Test has started. Good luck.' }
+        format.html { redirect_to new_test_answer_path(question_id: @test.next_question.id, test_id: @test.id), notice: 'Test has started. Good luck.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }

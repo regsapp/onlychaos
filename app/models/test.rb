@@ -20,6 +20,10 @@ class Test < ActiveRecord::Base
     duration.to_i
   end
 
+  def next_question
+    questions.find{ |q| q.answers.where(test_id: id).none? }
+  end
+
   def questions_count
     questions.count
   end

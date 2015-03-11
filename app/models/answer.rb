@@ -21,6 +21,10 @@ class Answer < ActiveRecord::Base
     question.answer_type
   end
 
+  def next_question
+    test.next_question if test
+  end
+
   def mark!
     unless reference?
       self.marks = 0
