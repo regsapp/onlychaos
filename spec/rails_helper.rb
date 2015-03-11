@@ -28,7 +28,13 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controllers
+
+  #see: https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29
   config.extend ControllerMacros, :type => :controller
+
+  # see: http://stackoverflow.com/questions/23859653/rails-devise-rspec-undefined-method-sign-in
+  config.infer_spec_type_from_file_location!
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
