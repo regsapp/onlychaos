@@ -24,9 +24,12 @@
             %span.icon-bar
             %span.icon-bar
           = link_to "Onlychaos", "#", :class => "navbar-brand"
-        - if current_user
-          .collapse.navbar-collapse
+        .collapse.navbar-collapse
+          - if current_user
             %ul.nav.navbar-nav
+              - if current_user.student?
+                %li
+                  = link_to "Dashboard", dashboard_path
               = model_menu_item(Question)
               = model_menu_item(Answer)
               = model_menu_item(School)
@@ -36,6 +39,12 @@
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
               %li
                 = link_to t(".sign_out"), destroy_user_session_path, :method => :delete
+          - else
+            %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
+              %li
+                = link_to t(".sign_up"), new_user_registration_path
+              %li
+                = link_to t(".sign_in"), new_user_session_path
     .container
       - flash.each do |type, msg|
         - if msg.is_a? String
