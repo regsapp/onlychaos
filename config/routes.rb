@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get 'home/index'
 
   get 'dashboard' => 'dashboard#index'
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  mount Ckeditor::Engine => '/ckeditor'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
