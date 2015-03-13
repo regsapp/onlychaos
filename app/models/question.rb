@@ -26,4 +26,8 @@ class Question < ActiveRecord::Base
   def to_s
     description.to_s.html_safe
   end
+
+  def category_name
+    category.name
+  end
 end

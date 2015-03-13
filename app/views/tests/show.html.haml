@@ -5,7 +5,7 @@
   = link_to edit_test_path(@test), :class => 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
     Edit
-  %h1 Show test
+  %h1 Test results
 
 %dl.dl-horizontal
   %dt Year group:
@@ -16,3 +16,38 @@
   %dd= @test.duration
   %dt User:
   %dd= @test.user.email
+
+%hr
+
+%dl.dl-horizontal
+  %dt Correct:
+  %dd= @test.correct_answers_count
+  %dt Incorrect:
+  %dd= @test.incorrect_answers_count
+  %dt Percentage:
+  %dd= number_to_percentage @test.percentage, precision: 0
+  %dt Grade:
+  %dd= @test.grade
+
+%hr
+
+%dl.dl-horizontal
+  - (@test.stats.keys - [:all]).each do |aggregation|
+    %dt= aggregation
+    %dd= number_to_percentage @test.percentage(aggregation), precision: 0
+
+- @test.answers.each do |answer|
+  %hr
+  %dl.dl-horizontal
+  %dt.question-text= "Question #{answer.number}:"
+  %dd.question-text=answer.question
+  %dt Your answer:
+  %dd
+    = answer.content
+    %br
+    = answer.correct? ? "Was correct!" : "Was incorrect!"
+  - unless answer.correct?
+    %dt Correct answer:
+    %dd= answer.correct_answer.content
+  %dt Marks:
+  %dd= "#{answer.marks} on #{pluralize(answer.max_marks.to_i, 'point')}"

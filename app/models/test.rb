@@ -33,6 +33,37 @@ class Test < ActiveRecord::Base
     index + 1 if index
   end
 
+  def stats
+    stats = {}
+    answers.each do |answer|
+      [:all, answer.category_name].each do |aggregation|
+        stats[aggregation] ||= Hash.new(0)
+        stats[aggregation][:correct_answers_count] += answer.correct? ? 1 : 0
+        stats[aggregation][:questions_count] += 1
+        stats[aggregation][:marks] += answer.marks
+        stats[aggregation][:max_marks] += answer.max_marks
+      end
+    end
+    stats
+  end
+
+  def correct_answers_count(aggregation=:all)
+    stats[aggregation][:correct_answers_count]
+  end
+
+  def incorrect_answers_count(aggregation=:all)
+    stats[aggregation][:questions_count] - stats[aggregation][:correct_answers_count]
+  end
+
+  def percentage(aggregation=:all)
+    stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count]
+  end
+
+  def grade
+    #TO DO
+    "TBD"
+  end
+
   private
 
   def question_selection

@@ -25,6 +25,10 @@ class Answer < ActiveRecord::Base
     test.next_question if test
   end
 
+  def category_name
+    question.category_name
+  end
+
   def mark!
     unless reference?
       self.marks = 0
@@ -42,6 +46,10 @@ class Answer < ActiveRecord::Base
 
       marks
     end
+  end
+
+  def correct?
+    marks == max_marks
   end
 
   def to_type
