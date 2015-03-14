@@ -7,7 +7,7 @@
       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
     }
 
-    $('body').keyup(function(){makePreview('#answer_description', '#answer_preview')});
+    $('#answer_preview_update').click(function(event){event.preventDefault(); makePreview('#answer_description', '#answer_preview')});
     $('body').bind('updated',function(){makePreview('#answer_description', '#answer_preview')});
     makePreview('#answer_description', '#answer_preview');
   });
@@ -31,8 +31,11 @@
     = f.label :your_answer, :class => 'col-sm-2 control-label'
     .col-sm-10
       %h5 Raw (text, ASCIImath)
+      %pre ex: `A^2+d+pi-e` because `pi` is bla bla :)
       = f.text_area :description, :class => 'form-control'
       %h5 Preview
+      %p
+        %button#answer_preview_update.btn Update Preview
       #answer_preview
   
   .form-group
