@@ -26,5 +26,25 @@ question = Question.create!(
   year_group_id: as.id,
   correct_answer_attributes: {
     content: "`A^2+d+pi-e`"
-  },
+  }
 )
+
+year_groups = YearGroup.all.to_a
+categories = Category.all.to_a
+
+20.times do ||
+  Question.create!(
+    description: %{
+      Lorem `#{rand(1000)}/#{rand(1000)}` ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+    }.squish,
+    answer_type: "text",
+    marks: rand(1..5),
+    category_id: categories.sample.id,
+    year_group_id: year_groups.sample.id,
+    correct_answer_attributes: {
+      content: "ipsum dolor"
+    }
+  )
+end

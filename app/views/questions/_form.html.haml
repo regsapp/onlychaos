@@ -7,10 +7,6 @@
 /       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
 /     }
 
-/     $('body').keyup(function(){makePreview('#question_description', '#question_preview')});
-/     $('body').bind('updated',function(){makePreview('#question_description', '#question_preview')});
-/     makePreview('#question_description', '#question_preview');
-
 /     $('body').keyup(function(){makePreview('#question_correct_answer', '#answer_preview')});
 /     $('body').bind('updated',function(){makePreview('#question_correct_answer', '#answer_preview')});
 /     makePreview('#question_correct_answer', '#answer_preview');
@@ -34,12 +30,9 @@
     .col-sm-10
       = f.collection_select :category_id, Category.all, :id, :name, { prompt: true }, :class => 'form-control'
   .form-group
-    = f.label :description, :class => 'col-sm-2 control-label', :id => 'input'
+    = f.label :description, :class => 'col-sm-2 control-label'
     .col-sm-10
-      %h5 Raw (text, HTML, TeX and ASCIImath)
-      = f.text_area :description, :class => 'form-control', rows: 5
-      %h5 Preview
-      #question_preview
+      = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
   .form-group
     = f.label :marks, :class => 'col-sm-2 control-label'
     .col-sm-10
@@ -59,3 +52,4 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'
+

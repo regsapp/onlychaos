@@ -18,6 +18,7 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @answer.question = Question.find(params[:question_id]) if params[:question_id].present?
+    @answer.test = Test.find(params[:test_id]) if params[:test_id].present?
   end
 
   # GET /answers/1/edit
@@ -31,7 +32,11 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+        if @answer.next_question
+          format.html { redirect_to new_test_answer_path(question_id: @answer.next_question.id, test_id: @answer.test.id), notice: 'Test has started. Good luck.' }
+        else
+          format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
@@ -72,6 +77,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:question_id, :content)
+      params.require(:answer).permit(:question_id, :test_id, :content)
     end
 end

@@ -1,6 +1,9 @@
 .page-header
-  %br
-  %h1.question-progress= "Question #{@answer.question_id}"
+  %h1
+    - if @answer.test
+      = "Question #{@answer.number} of #{@answer.test_questions_count}"
+    - else
+      New Answer
 
 = render 'form'
 

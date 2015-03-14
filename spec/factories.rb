@@ -1,34 +1,49 @@
 require 'factory_girl_rails'
-FactoryGirl.define do  factory :test do
-    year_group nil
-duration 1
-user nil
+FactoryGirl.define do
+
+  factory :test do
+    year_group
+    duration 30
+    user
   end
+
   factory :category do
-    name "MyString"
+    sequence(:name){|n| "name#{n}" }
   end
+
   factory :year_group do
-    name "MyString"
+    sequence(:name){|n| "name#{n}" }
   end
   
   factory :school do
-    name "MIT"
+    sequence(:name){|n| "name#{n}" }
   end
 
   factory :user do
-    first_name             "John"
-    last_name              "Doe"
-    type                   "Student"
-    email                  "user@example.com"
+    sequence(:email){|n| "user#{n}@example.com" }
     password               "password"
-    school
   end
 
+  factory :admin do
+    sequence(:email){|n| "admin#{n}@example.com" }
+    password               "password"
+  end
+
+  factory :student do
+    sequence(:email){|n| "student#{n}@example.com" }
+    password               "password"
+    first_name             "John"
+    last_name              "Doe"
+    birthday               16.years.ago
+    school
+  end
 
   factory :question do
     description 'What is ...'
     answer_type  'text'
     marks 1
+    category
+    year_group
 
     factory :integer_question do
       answer_type  'integer'

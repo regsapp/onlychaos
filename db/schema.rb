@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310150603) do
+ActiveRecord::Schema.define(version: 20150313144151) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20150310150603) do
     t.boolean  "reference",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "test_id"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["test_id"], name: "index_answers_on_test_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +36,22 @@ ActiveRecord::Schema.define(version: 20150310150603) do
     t.integer "category_id", null: false
     t.integer "test_id",     null: false
   end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "questions", force: :cascade do |t|
     t.text     "description"
@@ -47,6 +65,11 @@ ActiveRecord::Schema.define(version: 20150310150603) do
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"
   add_index "questions", ["year_group_id"], name: "index_questions_on_year_group_id"
+
+  create_table "questions_tests", id: false, force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "test_id",     null: false
+  end
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"

@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
+  belongs_to :test
   #has_one :correct_answer, through: :question
 
   TYPES = ["integer", "text", "float", "formula", "multiple any", "multiple all", "multiple bool"]
@@ -18,6 +19,14 @@ class Answer < ActiveRecord::Base
 
   def type
     question.answer_type
+  end
+
+  def next_question
+    test.next_question if test
+  end
+
+  def category_name
+    question.category_name
   end
 
   def mark!
@@ -39,6 +48,10 @@ class Answer < ActiveRecord::Base
     end
   end
 
+  def correct?
+    marks == max_marks
+  end
+
   def to_type
     case type
     when "integer"
@@ -50,6 +63,18 @@ class Answer < ActiveRecord::Base
     when "multiple any", "multiple all", "multiple bool"
       content.squish.split(/\W+/)
     end
+  end
+
+  def number
+    test.question_number(question) if test
+  end
+
+  def test_questions_count
+    test.questions_count if test
+  end
+
+  def last?
+    number == test_questions_count if test
   end
 
   private
