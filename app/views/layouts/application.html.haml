@@ -14,6 +14,14 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
+    %script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full")
+    :javascript
+      MathJax.Hub.Config({
+        showProcessingMessages: false,
+        tex2jax: { inlineMath: [['$$','$$'],['`','`']] }
+      });
+
   %body
     .navbar.navbar-inverse.navbar-fixed-top
       .container
