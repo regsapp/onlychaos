@@ -12,27 +12,25 @@
     /   = f.label :year_group, :class => 'col-sm-2 control-label'
     /   .col-sm-10
     /     = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
-    .form-object.radio
-      .col-sm-10.radio-toolbar
-        - YearGroup.all.each do |year_group|
-          = f.radio_button(:year_group_id, year_group.id)
-          = label_tag dom_id(year_group), year_group.name
-      = f.label :year_group, :class => "year-group"
-
     .form-object
-      .col-sm-10
-        = f.range_field :duration, :class => 'slider', in: 1...100
       = f.label :duration, 'TEST DURATION', :class => 'form-label'
+      .col-sm-10
+        = f.range_field :duration, :class => 'slider', in: 1...100, "data_show_value" => "true"}
+        %span#time 60
 
-    %br
     .form-object
       .col-sm-10
         = hidden_field_tag "test[category_ids][]", nil
         - Category.all.each do |category|
           = label_tag dom_id(category), category.name
           = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
-          %br
 
     .form-object
       .col-sm-offset-2.col-sm-10
-        = f.submit :class => 'btn btn-primary'
+        = f.submit :class => "login button"
+
+
+:javascript
+  function showValue(newValue) {
+    document.getElementById('time').innerHTML = newValue;
+  }

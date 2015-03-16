@@ -17,3 +17,25 @@
 //= require bootstrap
 //= require ckeditor/init
 // require_tree .
+
+$(document).ready(function() {
+
+	$('.A2').hide();
+
+	$('.AS-link').click(function(e) {
+		e.preventDefault();
+		$('.AS').show();
+		$('.A2').hide();
+		$('.tab-AS').addClass('active');
+		$('.tab-A2').removeClass('active');
+	});
+
+	$('.A2-link').click(function(e) {
+		e.preventDefault();
+		$('.A2').show();
+		$('.AS').hide();
+		$('.tab-A2').addClass('active');
+		$('.tab-AS').removeClass('active');
+	});
+
+});

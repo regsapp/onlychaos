@@ -5,9 +5,9 @@ class Test < ActiveRecord::Base
   has_and_belongs_to_many :questions
   has_many :answers
 
-  validates :year_group_id, presence: true
+  # validates :year_group_id, presence: true
   validates :duration, :inclusion => { :in => 1..60 }
-  
+
   validate :must_have_questions, on: :create
 
   before_create :append_questions

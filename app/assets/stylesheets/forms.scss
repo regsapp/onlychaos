@@ -54,22 +54,27 @@ input[type=email], [type=password], [type=text] {
   color: black;
 }
 
+label {
+  color: white;
+  font-size: 1em;
+  font-weight: normal !important;
+}
+
 .radio label {
   padding-left: 50px !important;
+  // margin-bottom: 50px;
 }
 
-.radio-toolbar {
-  width: 85%;
-  margin: 0 auto;
+.category {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
 }
-
-
 
 .radio-toolbar input[type="radio"] {
   display: none;
   // opacity: 0;
   margin: 10px;
-
   // text-align: center;
 }
 
@@ -84,6 +89,7 @@ input[type=email], [type=password], [type=text] {
   color: white;
   margin-left: 20px;
   margin-right: 20px;
+  // margin-bottom: 50px;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {
@@ -91,7 +97,15 @@ input[type=email], [type=password], [type=text] {
   color: gray;
 }
 
-
+input[type="range"] {
+  position: relative;
+  height: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  // background: #ebedef;
+  border-radius: 32px;
+  box-shadow: none;
+}
 
 .form-object {
   margin-top: 8%;

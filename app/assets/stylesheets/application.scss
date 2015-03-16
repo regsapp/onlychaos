@@ -1,5 +1,6 @@
 @import 'forms';
 @import 'questions';
+@import 'tests';
 @import 'bootstrap-sprockets';
 @import 'onlychaos';
 @import 'bootstrap';
@@ -24,6 +25,7 @@ header {
 
 .nav.right{
   float: right;
+  // width: 200px;
   /*text-align: right;*/
   /*display: inline-block;*/
 }

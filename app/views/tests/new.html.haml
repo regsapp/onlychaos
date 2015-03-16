@@ -1,4 +1,73 @@
 .page-header
   %h1 Test Options
 
-= render 'form'
+%ul.tabs
+  %li.tab-AS.active
+    %a.AS-link{"data-toggle" => "tab", :href => "#"} AS
+  %li.tab-A2
+    %a.A2-link{"data-toggle" => "tab", :href => "#"} A2
+
+.AS
+  .section.form
+    = form_for @test do |f|
+      -if @test.errors.any?
+        .alert.alert-danger.alert-dismissable
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+          %h4= "#{pluralize(@test.errors.count, "error")} prohibited this test from being saved:"
+
+          %ul
+            - @test.errors.full_messages.each do |msg|
+              %li= msg
+      .form-object
+        .col-sm-10
+          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
+        = f.label :duration, 'TEST DURATION', :class => 'form-label'
+        = succeed ' minutes' do
+          %span#time 60
+
+      .form-object
+        .col-sm-10.category
+          = hidden_field_tag "test[category_ids][]", nil
+          - Category.all.each do |category|
+            -if category.year == "AS"
+              .category-label
+                = label_tag dom_id(category), category.name
+                = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+
+      .form-object
+        = f.submit :class => 'login button'
+
+.A2
+  .section.form
+    = form_for @test do |f|
+      -if @test.errors.any?
+        .alert.alert-danger.alert-dismissable
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+          %h4= "#{pluralize(@test.errors.count, "error")} prohibited this test from being saved:"
+
+          %ul
+            - @test.errors.full_messages.each do |msg|
+              %li= msg
+      .form-object
+        .col-sm-10
+          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
+        = f.label :duration, 'TEST DURATION', :class => 'form-label'
+        = succeed ' minutes' do
+          %span#time 60
+
+      .form-object
+        .col-sm-10.category
+          = hidden_field_tag "test[category_ids][]", nil
+          - Category.all.each do |category|
+            -if category.year == "A2"
+              .category-label
+                = label_tag dom_id(category), category.name
+                = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+
+      .form-object
+        = f.submit :class => 'login button'
+
+:javascript
+  function showValue(newValue) {
+    document.getElementById('time').innerHTML = newValue;
+  }
