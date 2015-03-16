@@ -13,5 +13,9 @@
     .col-sm-10
       = f.text_field :name, :class => 'form-control'
   .form-group
+    = f.label :exam_board, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
+  .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'

@@ -1,5 +1,9 @@
 require 'factory_girl_rails'
-FactoryGirl.define do
+FactoryGirl.define do 
+
+  factory :exam_board do
+    sequence(:name){|n| "name#{n}" }
+  end
 
   factory :test do
     year_group
@@ -17,6 +21,7 @@ FactoryGirl.define do
   
   factory :school do
     sequence(:name){|n| "name#{n}" }
+    exam_board
   end
 
   factory :user do
@@ -44,6 +49,7 @@ FactoryGirl.define do
     marks 1
     category
     year_group
+    exam_boards {[FactoryGirl.create(:exam_board)]}
 
     factory :integer_question do
       answer_type  'integer'

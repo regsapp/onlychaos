@@ -10,6 +10,7 @@
       %tr
         %th Year group
         %th Category
+        %th Exam boards
         %th Description
         %th.answer-type Answer type
         %th Marks
@@ -23,6 +24,7 @@
         %tr.question-table
           %td= question.year_group.name
           %td= question.category.name
+          %td= question.exam_board_names
           %td.question-text= question.description.html_safe
           %td.answer-type= question.answer_type
           %td= question.marks

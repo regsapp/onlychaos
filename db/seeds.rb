@@ -9,7 +9,10 @@ electricity = Category.create!(name: "Electricity", year: "A2")
 particles = Category.create!(name: "Particles", year: "A2")
 waves = Category.create!(name: "Waves", year: "AS")
 
-school = School.create(name: "Hogwarts")
+ox  = ExamBoard.create!(name: 'University of Oxford Delegacy of Local Examinations')
+cam = ExamBoard.create!(name: 'University of Cambridge Local Examinations Syndicate')
+
+school = ox.schools.create(name: "Hogwarts")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date)
 
 question = Question.create!(
@@ -26,7 +29,8 @@ question = Question.create!(
   year_group_id: as.id,
   correct_answer_attributes: {
     content: "`A^2+d+pi-e`"
-  }
+  },
+  exam_board_ids: [ox.id]
 )
 
 year_groups = YearGroup.all.to_a
@@ -45,6 +49,7 @@ categories = Category.all.to_a
     year_group_id: year_groups.sample.id,
     correct_answer_attributes: {
       content: "ipsum dolor"
-    }
+    },
+    exam_board_ids: [ox.id, cam.id].sample(rand(1..2))
   )
 end

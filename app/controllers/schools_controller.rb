@@ -1,7 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  load_and_authorize_resource param_method: :schools_params
+  load_and_authorize_resource param_method: :school_params
 
   # GET /schools
   # GET /schools.json
@@ -71,6 +71,6 @@ class SchoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
-      params.require(:school).permit(:name)
+      params.require(:school).permit(:name, :exam_board_id)
     end
 end

@@ -1,16 +1,16 @@
-/ :javascript
-/   $(function() {
-/     function makePreview(inputSelector, previewSelector) {
-/       input = $(inputSelector).val();
-/       $(previewSelector).html(input);
-/       previewId =  previewSelector.replace('#', '');
-/       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
-/     }
+:javascript
+  $(function() {
+    function makePreview(inputSelector, previewSelector) {
+      input = $(inputSelector).val();
+      $(previewSelector).html(input);
+      previewId =  previewSelector.replace('#', '');
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
+    }
+    $('#answer_preview_update').click(function(event){event.preventDefault(); makePreview('#answer_content', '#answer_preview')});
+    $('body').bind('updated',function(){makePreview('#answer_content', '#answer_preview')});
+    makePreview('#answer_content', '#answer_preview');
+  });
 
-/     $('body').keyup(function(){makePreview('#answer_description', '#answer_preview')});
-/     $('body').bind('updated',function(){makePreview('#answer_description', '#answer_preview')});
-/     makePreview('#answer_description', '#answer_preview');
-/   });
 
 = form_for @answer, :html => { :class => "form-horizontal" } do |f|
   -if @answer.errors.any?
@@ -24,12 +24,18 @@
   .question
     .col-sm-8.question-description
       = @answer.question
-    .col-sm-4.question-mark
-      %p= "#{pluralize(@answer.max_marks.to_s, 'mark')}"
+      %br
+      %em= "For #{pluralize(@answer.max_marks.to_s, 'point')}"
+  .form-group
+    = f.label :your_answer, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      %h5 Raw (text, ASCIImath)
+      %pre ex: `A^2+d+pi-e` because `pi` is bla bla :)
+      = f.text_area :content, :class => 'form-control'
+      %h5 Preview
+      %p
+        %button#answer_preview_update.btn Update Preview
 
-  .form-object
-    .col-sm-10.answer-box
-      = f.text_field :content, placeholder: 'Enter answer here'
       #answer_preview
   %br
   .form-object
