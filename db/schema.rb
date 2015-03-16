@@ -11,8 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150316111508) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -24,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.integer  "test_id"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
-  add_index "answers", ["test_id"], name: "index_answers_on_test_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["test_id"], name: "index_answers_on_test_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -52,8 +54,8 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "exam_boards", force: :cascade do |t|
     t.string   "name"
@@ -61,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "exam_boards", ["name"], name: "index_exam_boards_on_name"
+  add_index "exam_boards", ["name"], name: "index_exam_boards_on_name", using: :btree
 
   create_table "exam_boards_questions", id: false, force: :cascade do |t|
     t.integer "exam_board_id", null: false
@@ -78,8 +80,8 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.integer  "category_id"
   end
 
-  add_index "questions", ["category_id"], name: "index_questions_on_category_id"
-  add_index "questions", ["year_group_id"], name: "index_questions_on_year_group_id"
+  add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
+  add_index "questions", ["year_group_id"], name: "index_questions_on_year_group_id", using: :btree
 
   create_table "questions_tests", id: false, force: :cascade do |t|
     t.integer "question_id", null: false
@@ -93,8 +95,8 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.integer  "exam_board_id"
   end
 
-  add_index "schools", ["exam_board_id"], name: "index_schools_on_exam_board_id"
-  add_index "schools", ["name"], name: "index_schools_on_name"
+  add_index "schools", ["exam_board_id"], name: "index_schools_on_exam_board_id", using: :btree
+  add_index "schools", ["name"], name: "index_schools_on_name", using: :btree
 
   create_table "tests", force: :cascade do |t|
     t.integer  "year_group_id"
@@ -104,8 +106,8 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "tests", ["user_id"], name: "index_tests_on_user_id"
-  add_index "tests", ["year_group_id"], name: "index_tests_on_year_group_id"
+  add_index "tests", ["user_id"], name: "index_tests_on_user_id", using: :btree
+  add_index "tests", ["year_group_id"], name: "index_tests_on_year_group_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",        null: false
@@ -127,9 +129,9 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.integer  "school_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["school_id"], name: "index_users_on_school_id"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
   create_table "year_groups", force: :cascade do |t|
     t.string   "name"
@@ -137,4 +139,12 @@ ActiveRecord::Schema.define(version: 20150316111508) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "tests"
+  add_foreign_key "questions", "categories"
+  add_foreign_key "questions", "year_groups"
+  add_foreign_key "schools", "exam_boards"
+  add_foreign_key "tests", "users"
+  add_foreign_key "tests", "year_groups"
+  add_foreign_key "users", "schools"
 end
