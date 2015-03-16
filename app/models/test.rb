@@ -6,7 +6,7 @@ class Test < ActiveRecord::Base
   has_many :answers
 
   # validates :year_group_id, presence: true
-  validates :duration, :inclusion => { :in => 1..60 }
+  validates :duration, :inclusion => { :in => 1..100 }
 
   validate :must_have_questions, on: :create
 

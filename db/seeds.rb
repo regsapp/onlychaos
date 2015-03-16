@@ -46,7 +46,7 @@ categories = Category.all.to_a
     answer_type: "text",
     marks: rand(1..5),
     category_id: categories.sample.id,
-    year_group_id: year_groups.sample.id,
+    # year_group_id: year_groups.sample.id,
     correct_answer_attributes: {
       content: "ipsum dolor"
     },
