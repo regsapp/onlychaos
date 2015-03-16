@@ -22,26 +22,25 @@
         - @answer.errors.full_messages.each do |msg|
           %li= msg
   .question
-    .col-sm-8.question-description
+    .col-sm-12.question-description
       = @answer.question
       %br
-      %em= "For #{pluralize(@answer.max_marks.to_s, 'point')}"
+      %em= "For #{pluralize(@answer.max_marks.to_s, 'mark')}"
   .form-group
-    = f.label :your_answer, :class => 'col-sm-2 control-label'
-    .col-sm-10
+    -# = f.label :your_answer, :class => 'col-sm-2 control-label'
+    .col-sm-12
       %h5 Raw (text, ASCIImath)
       %pre ex: `A^2+d+pi-e` because `pi` is bla bla :)
       = f.text_area :content, :class => 'form-control'
-      %h5 Preview
-      %p
+      %p.update
         %button#answer_preview_update.btn Update Preview
-
+      %h5 Preview
       #answer_preview
   %br
   .form-object
     .col-sm-offset-8.col-sm-10
       = f.hidden_field :question_id
       = f.hidden_field :test_id
-      = f.submit "Next Question", :class => 'btn btn-primary' if @answer.test && !@answer.last?
-      = f.submit "Check Results", :class => 'btn btn-primary' if @answer.test && @answer.last?
-      = f.submit :class => 'btn btn-primary'                  unless @answer.test
+      = f.submit "Next Question", :class => 'login button' if @answer.test && !@answer.last?
+      = f.submit "Check Results", :class => 'login button' if @answer.test && @answer.last?
+      = f.submit :class => 'login button'                  unless @answer.test
