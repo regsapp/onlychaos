@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @question.build_correct_answer
+    @question.question_parts.build.build_correct_answer
   end
 
   # GET /questions/1/edit
@@ -74,6 +74,21 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:description, :marks, :answer_type, :category_id, :year_group_id, correct_answer_attributes: [:id, :content], exam_board_ids: [])
+      params.require(:question).permit(
+        :description, 
+        :category_id, 
+        :year_group_id,
+        exam_board_ids: [],
+        question_parts_attributes: [
+          :id, 
+          :description, 
+          :marks, 
+          :answer_type, 
+          correct_answer_attributes: [
+            :id,
+            :content
+          ]
+        ]
+      )
     end
 end

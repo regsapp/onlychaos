@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  belongs_to :question
+  belongs_to :question_part
   belongs_to :test
   #has_one :correct_answer, through: :question
 
@@ -10,15 +10,15 @@ class Answer < ActiveRecord::Base
   default_scope { where(reference: false) } 
 
   def max_marks
-    question.try(:marks)
+    question_part.try(:marks)
   end
 
   def correct_answer
-    question.try(:correct_answer)
+    question_part.try(:correct_answer)
   end
 
   def type
-    question.answer_type
+    question_part.answer_type
   end
 
   def next_question
@@ -26,7 +26,7 @@ class Answer < ActiveRecord::Base
   end
 
   def category_name
-    question.category_name
+    question_part.category_name
   end
 
   def mark!
@@ -66,7 +66,7 @@ class Answer < ActiveRecord::Base
   end
 
   def number
-    test.question_number(question) if test
+    test.question_number(question_part) if test
   end
 
   def test_questions_count

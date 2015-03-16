@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316102741) do
+ActiveRecord::Schema.define(version: 20150316153019) do
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "question_id"
     t.text     "content"
     t.integer  "marks"
-    t.boolean  "reference",   default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "reference",        default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "test_id"
+    t.integer  "question_part_id"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["question_part_id"], name: "index_answers_on_question_part_id"
   add_index "answers", ["test_id"], name: "index_answers_on_test_id"
 
   create_table "categories", force: :cascade do |t|
@@ -66,10 +66,21 @@ ActiveRecord::Schema.define(version: 20150316102741) do
     t.integer "question_id",   null: false
   end
 
+  create_table "question_parts", force: :cascade do |t|
+    t.integer  "number"
+    t.text     "description"
+    t.integer  "marks",       default: 1
+    t.string   "answer_type"
+    t.integer  "question_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "question_parts", ["question_id"], name: "index_question_parts_on_question_id"
+
   create_table "questions", force: :cascade do |t|
     t.text     "description"
     t.integer  "marks",         default: 1
-    t.string   "answer_type"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "year_group_id"

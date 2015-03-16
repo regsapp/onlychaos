@@ -16,9 +16,12 @@
   %dd= @question.exam_board_names
   %dt.question-text Description:
   %dd.question-text=@question.description.html_safe
-  %dt Marks:
-  %dd= @question.marks
-  %dt Answer type:
-  %dd= @question.answer_type
-  %dt Correct answer:
-  %dd= @question.correct_answer.content
+  - @question.question_parts.each do |question_part|
+    %dt.question-text= "Part #{question_part.number}:"
+    %dd.question-text=question_part.description.html_safe
+    %dt Marks:
+    %dd= question_part.marks
+    %dt Answer type:
+    %dd= question_part.answer_type
+    %dt Correct answer:
+    %dd= question_part.correct_answer.content

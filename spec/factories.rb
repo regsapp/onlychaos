@@ -1,5 +1,12 @@
 require 'factory_girl_rails'
-FactoryGirl.define do 
+FactoryGirl.define do  factory :question_part do
+    number 1
+description "MyText"
+marks 1
+answer_type "MyString"
+question nil
+  end
+ 
 
   factory :exam_board do
     sequence(:name){|n| "name#{n}" }

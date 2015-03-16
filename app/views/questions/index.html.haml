@@ -12,7 +12,7 @@
         %th Category
         %th Exam boards
         %th Description
-        %th.answer-type Answer type
+        %th Parts
         %th Marks
         %th
         %th
@@ -26,7 +26,7 @@
           %td= question.category.name
           %td= question.exam_board_names
           %td.question-text= question.description.html_safe
-          %td.answer-type= question.answer_type
+          %td= question.question_parts.count
           %td= question.marks
           %td= link_to 'Answer', new_answer_path(question_id: question.id)
           %td= link_to 'Show', question

@@ -1,20 +1,18 @@
 class Question < ActiveRecord::Base
-  has_many :answers, dependent: :destroy
-  has_one  :correct_answer, -> { where(reference: true) }, class_name: "Answer", dependent: :destroy
+  has_many :question_parts, dependent: :destroy
   belongs_to :category
   belongs_to :year_group
   has_and_belongs_to_many :tests
   has_and_belongs_to_many :exam_boards
 
-  accepts_nested_attributes_for :correct_answer
+  accepts_nested_attributes_for :question_parts
 
-  validates :description, presence: true
-  validates :marks, presence: true, numericality: { gt: 0 }
-  validates :answer_type, presence: true, :inclusion => { :in => Answer::TYPES }
   validates :category_id, presence: true
   validates :year_group_id, presence: true
 
   validate :must_have_exam_boards
+
+  before_save :set_marks
 
   def self.selection_for(test)
     selection = where(year_group_id: test.year_group_id, category_id: test.category_ids).shuffle
@@ -42,5 +40,9 @@ class Question < ActiveRecord::Base
 
   def must_have_exam_boards
     errors.add(:exam_boards, 'must have at least one selected') if exam_boards.none?
+  end
+
+  def set_marks
+    self.marks = question_parts.map(&:marks).sum
   end
 end
