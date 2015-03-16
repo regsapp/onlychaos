@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_exam_board_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Exam board
+  %h1 Listing exam_boards
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @exam_boards.each do |exam_board|
+        %tr
+          %td= exam_board.name
+          %td= link_to 'Show', exam_board
+          %td= link_to 'Edit', edit_exam_board_path(exam_board)
+          %td= link_to 'Destroy', exam_board, :data => { confirm: 'Are you sure?' }, :method => :delete

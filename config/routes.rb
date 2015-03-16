@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :exam_boards
+
   get 'home/index' => 'home#index'
 
   get 'dashboard' => 'dashboard#index'

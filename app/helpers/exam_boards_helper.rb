@@ -1,0 +1,2 @@
+module ExamBoardsHelper
+end

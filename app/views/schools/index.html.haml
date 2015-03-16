@@ -9,6 +9,7 @@
     %thead
       %tr
         %th Name
+        %th Exam board
         %th
         %th
         %th
@@ -17,6 +18,7 @@
       - @schools.each do |school|
         %tr
           %td= school.name
+          %td= school.exam_board.name
           %td= link_to 'Show', school
           %td= link_to 'Edit', edit_school_path(school)
           %td= link_to 'Destroy', school, :data => { confirm: 'Are you sure?' }, :method => :delete

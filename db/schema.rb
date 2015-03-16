@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313144151) do
+ActiveRecord::Schema.define(version: 20150316102741) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -53,6 +53,19 @@ ActiveRecord::Schema.define(version: 20150313144151) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
+  create_table "exam_boards", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "exam_boards", ["name"], name: "index_exam_boards_on_name"
+
+  create_table "exam_boards_questions", id: false, force: :cascade do |t|
+    t.integer "exam_board_id", null: false
+    t.integer "question_id",   null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text     "description"
     t.integer  "marks",         default: 1
@@ -73,10 +86,12 @@ ActiveRecord::Schema.define(version: 20150313144151) do
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "exam_board_id"
   end
 
+  add_index "schools", ["exam_board_id"], name: "index_schools_on_exam_board_id"
   add_index "schools", ["name"], name: "index_schools_on_name"
 
   create_table "tests", force: :cascade do |t|

@@ -1,0 +1,17 @@
+= form_for @exam_board, :html => { :class => "form-horizontal" } do |f|
+  -if @exam_board.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@exam_board.errors.count, "error")} prohibited this exam_board from being saved:"
+
+      %ul
+        - @exam_board.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, :class => 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => 'btn btn-primary'

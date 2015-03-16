@@ -3,13 +3,16 @@ Admin.create!(email: "admin@example.com", password: "password")
 as = YearGroup.create!(name: "AS")
 a2 = YearGroup.create!(name: "A2")
 
+ox  = ExamBoard.create!(name: 'University of Oxford Delegacy of Local Examinations')
+cam = ExamBoard.create!(name: 'University of Cambridge Local Examinations Syndicate')
+
 astrophysics = Category.create!(name: "Astrophysics")
 mechanics = Category.create!(name: "Mechanics")
 electricity = Category.create!(name: "Electricity")
 particles = Category.create!(name: "Particles")
 waves = Category.create!(name: "Waves")
 
-school = School.create(name: "Hogwarts")
+school = ox.schools.create(name: "Hogwarts")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date)
 
 question = Question.create!(
@@ -26,7 +29,8 @@ question = Question.create!(
   year_group_id: as.id,
   correct_answer_attributes: {
     content: "`A^2+d+pi-e`"
-  }
+  },
+  exam_board_ids: [ox.id]
 )
 
 year_groups = YearGroup.all.to_a
@@ -45,6 +49,7 @@ categories = Category.all.to_a
     year_group_id: year_groups.sample.id,
     correct_answer_attributes: {
       content: "ipsum dolor"
-    }
+    },
+    exam_board_ids: [ox.id, cam.id].sample(rand(1..2))
   )
 end

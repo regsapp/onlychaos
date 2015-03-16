@@ -1,0 +1,12 @@
+.page-header
+  = link_to exam_boards_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_exam_board_path(@exam_board), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show exam_board
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @exam_board.name
