@@ -36,18 +36,21 @@
     %dt= aggregation
     %dd= number_to_percentage @test.percentage(aggregation), precision: 0
 
-- @test.answers.each do |answer|
+- @test.test_questions.each do |test_question|
   %hr
   %dl.dl-horizontal
-  %dt.question-text= "Question #{answer.number}:"
-  %dd.question-text=answer.question
-  %dt Your answer:
-  %dd
-    = answer.content
-    %br
-    = answer.correct? ? "Was correct!" : "Was incorrect!"
-  - unless answer.correct?
-    %dt Correct answer:
-    %dd= answer.correct_answer.content
-  %dt Marks:
-  %dd= "#{answer.marks} on #{pluralize(answer.max_marks.to_i, 'point')}"
+  %dt.question-text= "Question #{test_question.number}:"
+  %dd.question-text=test_question.question.description.html_safe
+  - test_question.answers.each do |answer|
+    %dt=answer.question_part.number
+    %dd=answer.question_part.description
+    %dt Your answer:
+    %dd
+      = answer.content
+      %br
+      = answer.correct? ? "Was correct!" : "Was incorrect!"
+    - unless answer.correct?
+      %dt Correct answer:
+      %dd= answer.correct_answer.content
+    %dt Marks:
+    %dd= "#{answer.marks} on #{pluralize(answer.max_marks.to_i, 'point')}"

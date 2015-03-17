@@ -16,4 +16,8 @@ class QuestionPart < ActiveRecord::Base
   def answered?(test)
     answer(test).present?
   end
+
+  def category_name
+    question.category_name
+  end
 end

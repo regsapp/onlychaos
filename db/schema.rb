@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316153019) do
+ActiveRecord::Schema.define(version: 20150317115022) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -90,11 +90,6 @@ ActiveRecord::Schema.define(version: 20150316153019) do
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"
   add_index "questions", ["year_group_id"], name: "index_questions_on_year_group_id"
 
-  create_table "questions_tests", id: false, force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.integer "test_id",     null: false
-  end
-
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",    null: false
@@ -104,6 +99,18 @@ ActiveRecord::Schema.define(version: 20150316153019) do
 
   add_index "schools", ["exam_board_id"], name: "index_schools_on_exam_board_id"
   add_index "schools", ["name"], name: "index_schools_on_name"
+
+  create_table "test_questions", force: :cascade do |t|
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.integer  "number"
+    t.integer  "marks"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "test_questions", ["question_id"], name: "index_test_questions_on_question_id"
+  add_index "test_questions", ["test_id"], name: "index_test_questions_on_test_id"
 
   create_table "tests", force: :cascade do |t|
     t.integer  "year_group_id"

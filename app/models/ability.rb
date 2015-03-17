@@ -14,6 +14,7 @@ class Ability
       can :create, Test
       can :read, Test, user_id: user.id
       can :destroy, Test, user_id: user.id
+      can :edit, TestQuestion
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :category
   belongs_to :year_group
   has_and_belongs_to_many :tests
+  has_many :test_questions, dependent: :destroy
+  has_many :tests, through: :test_questions
   has_and_belongs_to_many :exam_boards
 
   accepts_nested_attributes_for :question_parts
@@ -34,10 +36,6 @@ class Question < ActiveRecord::Base
 
   def exam_board_names
     exam_boards.map(&:name).join(", ")
-  end
-
-  def answered?(test)
-    question_parts.all?{ |question_part| question_part.answered?(test) }
   end
 
   private

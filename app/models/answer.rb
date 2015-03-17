@@ -21,10 +21,6 @@ class Answer < ActiveRecord::Base
     question_part.answer_type
   end
 
-  def next_question
-    test.next_question if test
-  end
-
   def category_name
     question_part.category_name
   end
@@ -52,29 +48,22 @@ class Answer < ActiveRecord::Base
     marks == max_marks
   end
 
+  def answered?
+    return nil if reference?
+    updated_at > created_at if persisted?
+  end
+
   def to_type
     case type
     when "integer"
       content.to_i
     when "text", "formula"
-      content.squish
+      content.to_s.squish
     when "float"
       content.to_f
     when "multiple any", "multiple all", "multiple bool"
-      content.squish.split(/\W+/)
+      content.to_s.squish.split(/\W+/)
     end
-  end
-
-  def number
-    test.question_number(question_part) if test
-  end
-
-  def test_questions_count
-    test.questions_count if test
-  end
-
-  def last?
-    number == test_questions_count if test
   end
 
   private
@@ -94,7 +83,7 @@ class Answer < ActiveRecord::Base
         when "(", ")"
           s
         else
-          "content.include?('#{s}')"
+          "content.to_s.include?('#{s}')"
         end
       end
       .join(" ")
