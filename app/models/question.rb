@@ -36,6 +36,10 @@ class Question < ActiveRecord::Base
     exam_boards.map(&:name).join(", ")
   end
 
+  def answered?(test)
+    question_parts.all?{ |question_part| question_part.answered?(test) }
+  end
+
   private
 
   def must_have_exam_boards

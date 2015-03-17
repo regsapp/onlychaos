@@ -8,4 +8,12 @@ class QuestionPart < ActiveRecord::Base
   validates :description, presence: true
   validates :marks, presence: true, numericality: { gt: 0 }
   validates :answer_type, presence: true, :inclusion => { :in => Answer::TYPES }
+
+  def answer(test)
+    answers.find_by(test_id: test.id)
+  end
+
+  def answered?(test)
+    answer(test).present?
+  end
 end

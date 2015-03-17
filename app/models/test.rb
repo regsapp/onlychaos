@@ -21,7 +21,7 @@ class Test < ActiveRecord::Base
   end
 
   def next_question
-    questions.find{ |q| q.answers.where(test_id: id).none? }
+    questions.find{ |question| !question.answered?(self) }
   end
 
   def questions_count
