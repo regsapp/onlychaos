@@ -17,7 +17,6 @@
         %th
         %th
         %th
-        %th
 
     %tbody
       - @questions.each do |question|
@@ -28,7 +27,6 @@
           %td.question-text= question.description.html_safe
           %td= question.question_parts.count
           %td= question.marks
-          %td= link_to 'Answer', new_answer_path(question_id: question.id)
           %td= link_to 'Show', question
           %td= link_to 'Edit', edit_question_path(question)
           %td= link_to 'Destroy', question, :data => { confirm: 'Are you sure?' }, :method => :delete

@@ -55,6 +55,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2'
 
   gem "factory_girl_rails", "~> 4.0"
+
+  # Generates UML diagrams
+  gem 'railroady'
 end
 
 ruby '2.2.0'
