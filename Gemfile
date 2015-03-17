@@ -31,7 +31,7 @@ gem 'devise-bootstrap-views'
 gem 'cancancan'
 gem 'ckeditor'
 gem 'paperclip'
-gem 'fog'
+gem 'fog', '~> 1.28.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
