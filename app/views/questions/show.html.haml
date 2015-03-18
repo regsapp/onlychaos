@@ -16,6 +16,8 @@
   %dd= @question.exam_board_names
   %dt.question-text Description:
   %dd.question-text=@question.description.html_safe
+  %dt.question-text Hint:
+  %dd.question-text=@question.hint.html_safe
   - @question.question_parts.each do |question_part|
     %dt.question-text= "Part #{question_part.number}:"
     %dd.question-text=question_part.description.html_safe

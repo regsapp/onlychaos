@@ -41,6 +41,10 @@
     = f.label :description, :class => 'col-sm-2 control-label'
     .col-sm-10
       = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
+  .form-group
+    = f.label :hint, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.cktext_area :hint, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
   = f.fields_for :question_parts, @question.question_parts do |builder|
     = render 'question_part_fields', f: builder
   .form-group

@@ -76,6 +76,7 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(
         :description, 
+        :hint, 
         :category_id, 
         :year_group_id,
         exam_board_ids: [],

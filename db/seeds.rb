@@ -22,6 +22,9 @@ question = Question.create!(
   description: %q{
     Suppose we have a particle in 1-dimension, with wavefunction $$Ae^{-\frac{|x|}{2d}}$$.
   }.squish,
+  hint: %q{
+    Remember $$Ae^{-\frac{|x|}{2d}}$$, bla bla bla.
+  }.squish,
   question_parts_attributes: [
     {
       description: %q{
@@ -50,6 +53,7 @@ exam_boards = ExamBoard.all.to_a
     category_id: categories.sample.id,
     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
     description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
+    hint: "bla bla bla",
     question_parts_attributes: [
       {
         description: "has zero charge,",

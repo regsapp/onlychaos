@@ -16,6 +16,10 @@ class TestQuestion < ActiveRecord::Base
     test.next_test_question
   end
 
+  def last?
+    next_test_question.nil?
+  end
+
   private
 
   def create_answers

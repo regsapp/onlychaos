@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317115022) do
+ActiveRecord::Schema.define(version: 20150318133417) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150317115022) do
     t.datetime "updated_at",                null: false
     t.integer  "year_group_id"
     t.integer  "category_id"
+    t.text     "hint"
   end
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"

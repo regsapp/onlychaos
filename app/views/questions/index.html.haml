@@ -12,6 +12,7 @@
         %th Category
         %th Exam boards
         %th Description
+        %th Hint
         %th Parts
         %th Marks
         %th
@@ -25,6 +26,7 @@
           %td= question.category.name
           %td= question.exam_board_names
           %td.question-text= question.description.html_safe
+          %td.question-text= question.hint.html_safe
           %td= question.question_parts.count
           %td= question.marks
           %td= link_to 'Show', question
