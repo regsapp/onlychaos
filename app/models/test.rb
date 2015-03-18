@@ -59,7 +59,7 @@ class Test < ActiveRecord::Base
   end
 
   def percentage(aggregation=:all)
-    stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count]
+    stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count] * 100
   end
 
   def grade

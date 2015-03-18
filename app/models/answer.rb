@@ -45,6 +45,7 @@ class Answer < ActiveRecord::Base
   end
 
   def correct?
+    return nil if reference?
     marks == max_marks
   end
 

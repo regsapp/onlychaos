@@ -2,9 +2,6 @@
   = link_to tests_path, :class => 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     Back
-  = link_to edit_test_path(@test), :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
   %h1 Test results
 
 %dl.dl-horizontal
@@ -42,7 +39,7 @@
   %dt.question-text= "Question #{test_question.number}:"
   %dd.question-text=test_question.question.description.html_safe
   - test_question.answers.each do |answer|
-    %dt=answer.question_part.number
+    %dt= "#{answer.question_part.number})"
     %dd=answer.question_part.description
     %dt Your answer:
     %dd

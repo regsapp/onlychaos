@@ -32,6 +32,12 @@
 
   %p.question-text
     =@test_question.question.description.html_safe
+
+  - if @test_question.attempts > 0
+    %h5 Hint
+    %p.question-text
+      =@test_question.question.hint.html_safe
+
   - count = 0
   = f.fields_for :answers do |answer_fields|
     - answer = answer_fields.object

@@ -12,12 +12,24 @@ class TestQuestion < ActiveRecord::Base
     answers.all?{ |answer| answer.answered? }
   end
 
+  def correct?
+    answers.all?{ |answer| answer.correct? }
+  end
+
   def next_test_question
-    test.next_test_question
+    if !correct? && next_chance?
+      self
+    else
+      test.next_test_question
+    end
   end
 
   def last?
     next_test_question.nil?
+  end
+
+  def next_chance?
+    attempts < 2
   end
 
   private

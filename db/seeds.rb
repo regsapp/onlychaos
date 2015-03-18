@@ -85,3 +85,38 @@ exam_boards = ExamBoard.all.to_a
     ]
   )
 end
+
+math = Category.create!(name: "Super simple math")
+
+20.times do ||
+  a = (1..10).to_a.sample(4)
+  Question.create!(
+    year_group_id: year_groups.sample.id,
+    category_id: math.id,
+    exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
+    description: "(UID:#{rand(1000)}) Simple math question",
+    hint: "bla bla bla",
+    question_parts_attributes: [
+      {
+        description: "#{a[0]} + #{a[1]}",
+        marks: 1,
+        number: 1,
+        answer_type: "integer",
+        correct_answer_attributes: {
+          content: "#{a[0] + a[1]}"
+        }
+      },
+      {
+        description: "#{a[2]} + #{a[3]}",
+        marks: rand(1..2),
+        number: 2,
+        answer_type: "integer",
+        correct_answer_attributes: {
+          content: "#{a[2] + a[3]}"
+        }
+      }
+    ]
+  )
+end
+
+

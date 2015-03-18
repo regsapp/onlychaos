@@ -43,11 +43,18 @@ class TestQuestionsController < ApplicationController
   # PATCH/PUT /test_questions/1.json
   def update
     respond_to do |format|
-      if @test_question.update(test_question_params)
+      @test_question.assign_attributes(test_question_params)
+      @test_question.attempts += 1
+      if @test_question.save
+        alert, notice = nil
+        notice = 'Correct.'               if @test_question.correct?
+        alert  = 'Not correct. Try again' if !@test_question.correct? && @test_question.next_chance?
+        alert  = 'Not correct.'           if !@test_question.correct? && !@test_question.next_chance?
+        
         if @test_question.next_test_question
-          format.html { redirect_to edit_test_question_path(@test_question.next_test_question) }
+          format.html { redirect_to edit_test_question_path(@test_question.next_test_question), alert: alert, notice: notice }
         else
-          format.html { redirect_to test_path(@test_question.test) }
+          format.html { redirect_to test_path(@test_question.test) , alert: alert, notice: notice }
         end
         format.json { render :show, status: :ok, location: @test_question }
       else
