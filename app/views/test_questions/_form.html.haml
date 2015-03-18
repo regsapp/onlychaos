@@ -6,9 +6,18 @@
       previewId =  previewSelector.replace('#', '');
       MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
     }
-    $('#update_answer_preview_0').click(function(event){event.preventDefault(); makePreview('#test_question_answers_attributes_0_content', '#answer_preview_0')});
-    $('body').bind('updated',function(){makePreview('#test_question_answers_attributes_0_content', '#update_answer_preview_0')});
-    makePreview('#test_question_answers_attributes_0_content', '#answer_preview_0');
+
+    #{
+      answer_count = @test_question.answers.count
+      indexes = (0...answer_count).to_a
+      indexes.map { |i|
+        %{
+          $('#update_answer_preview_#{i}').click(function(event){event.preventDefault(); makePreview('#test_question_answers_attributes_#{i}_content', '#answer_preview_#{i}')});
+          $('body').bind('updated',function(){makePreview('#test_question_answers_attributes_#{i}_content', '#update_answer_preview_#{i}')});
+          makePreview('#test_question_answers_attributes_#{i}_content', '#answer_preview_#{i}');
+        }
+      }.join('\n')
+    }
   });
 
 / TODO: Adjust javascript for muti part answers
