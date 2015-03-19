@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318142118) do
+ActiveRecord::Schema.define(version: 20150319162419) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20150318142118) do
   end
 
   create_table "question_parts", force: :cascade do |t|
-    t.integer  "number"
     t.text     "description"
     t.integer  "marks",       default: 1
     t.string   "answer_type"

@@ -18,8 +18,13 @@
   %dd.question-text=@question.description.html_safe
   %dt.question-text Hint:
   %dd.question-text=@question.hint.html_safe
+
+%h3 Parts
+%ol
   - @question.question_parts.each do |question_part|
-    %dt.question-text= "Part #{question_part.number}:"
+    %li
+    %dl.dl-horizontal
+    %dt Description:
     %dd.question-text=question_part.description.html_safe
     %dt Marks:
     %dd= question_part.marks

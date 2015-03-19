@@ -34,7 +34,6 @@ question = Question.create!(
         (<b>Assume that A is real</b>)
       }.squish,
       marks: 1,
-      number: 1,
       answer_type: "formula",
       correct_answer_attributes: {
         content: "`A^2+d+pi-e`"
@@ -58,7 +57,6 @@ exam_boards = ExamBoard.all.to_a
       {
         description: "has zero charge,",
         marks: rand(1..2),
-        number: 1,
         answer_type: "multiple bool",
         correct_answer_attributes: {
           content: "neutron OR n"
@@ -67,7 +65,6 @@ exam_boards = ExamBoard.all.to_a
       {
         description: "has the largest specific charge,",
         marks: rand(1..2),
-        number: 2,
         answer_type: "multiple bool",
         correct_answer_attributes: {
           content: "electron OR e-"
@@ -76,7 +73,6 @@ exam_boards = ExamBoard.all.to_a
       {
         description: "when removed leaves a different isotope of the element.",
         marks: rand(1..2),
-        number: 3,
         answer_type: "multiple bool",
         correct_answer_attributes: {
           content: "neutron OR n"
@@ -100,7 +96,6 @@ math = Category.create!(name: "Super simple math")
       {
         description: "#{a[0]} + #{a[1]}",
         marks: 1,
-        number: 1,
         answer_type: "integer",
         correct_answer_attributes: {
           content: "#{a[0] + a[1]}"
@@ -109,7 +104,6 @@ math = Category.create!(name: "Super simple math")
       {
         description: "#{a[2]} + #{a[3]}",
         marks: rand(1..2),
-        number: 2,
         answer_type: "integer",
         correct_answer_attributes: {
           content: "#{a[2] + a[3]}"
