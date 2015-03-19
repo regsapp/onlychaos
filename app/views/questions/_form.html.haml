@@ -21,32 +21,36 @@
       %ul
         - @question.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    = f.label :year_group, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
-  .form-group
-    = f.label :category, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :category_id, Category.all, :id, :name, { prompt: true }, :class => 'form-control'
-  .form-group
-    = f.label :exam_boards, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = hidden_field_tag "question[exam_board_ids][]", nil
-      - ExamBoard.all.each do |exam_board|
-        = check_box_tag "question[exam_board_ids][]", exam_board.id, @question.exam_board_ids.include?(exam_board.id), id: dom_id(exam_board)
-        = label_tag dom_id(exam_board), exam_board.name
-        %br
-  .form-group
-    = f.label :description, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
-  .form-group
-    = f.label :hint, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.cktext_area :hint, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
-  = f.fields_for :question_parts, @question.question_parts do |builder|
-    = render 'question_part_fields', f: builder
+  %fieldset
+    .form-group
+      = f.label :year_group, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
+    .form-group
+      = f.label :category, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.collection_select :category_id, Category.all, :id, :name, { prompt: true }, :class => 'form-control'
+    .form-group
+      = f.label :exam_boards, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = hidden_field_tag "question[exam_board_ids][]", nil
+        - ExamBoard.all.each do |exam_board|
+          = check_box_tag "question[exam_board_ids][]", exam_board.id, @question.exam_board_ids.include?(exam_board.id), id: dom_id(exam_board)
+          = label_tag dom_id(exam_board), exam_board.name
+          %br
+    .form-group
+      = f.label :description, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
+    .form-group
+      = f.label :hint, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.cktext_area :hint, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
+
+    = f.fields_for :question_parts do |question_part_fields|
+      = render 'question_part_fields', f: question_part_fields
+    = link_to_add_fields 'Add Part', f, :question_parts
+
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'

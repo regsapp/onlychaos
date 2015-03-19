@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require ckeditor/init
+//= require questions
 // require_tree .
