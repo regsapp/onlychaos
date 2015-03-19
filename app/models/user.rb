@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  TYPES = ['Admin', 'Student', 'Teacher']
+
   has_many :tests
 
   def admin?

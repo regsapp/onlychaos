@@ -47,6 +47,7 @@
               - if current_user.student?
                 %li
                   = link_to "Dashboard", dashboard_path
+              = model_menu_item(User)
               = model_menu_item(Question)
               = model_menu_item(Answer)
               = model_menu_item(ExamBoard)

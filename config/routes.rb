@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :schools
 
   devise_for :users, :controllers => { registrations: 'registrations' }
+  scope "/my" do
+    resources :users
+  end
 
   resources :answers
 
