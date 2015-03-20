@@ -56,6 +56,9 @@
               = model_menu_item(Category)
               = model_menu_item(Test)
             %ul.nav.navbar-nav.navbar-right{:class => "#{I18n.locale}"}
+              - if current_user.student?
+                %li
+                  = link_to t(".account"), edit_user_registration_path
               %li
                 = link_to t(".sign_out"), destroy_user_session_path, :method => :delete
           - else
