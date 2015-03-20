@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+
   resources :test_questions
 
   resources :exam_boards

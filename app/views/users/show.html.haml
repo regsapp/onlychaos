@@ -10,11 +10,11 @@
 %dl.dl-horizontal
   %dt Email:
   %dd= @user.email
+  %dt First name:
+  %dd= @user.first_name
+  %dt Last name:
+  %dd= @user.last_name
   - if @user.is_a? Student
-    %dt First name:
-    %dd= @user.first_name
-    %dt Last name:
-    %dd= @user.last_name
     %dt Birthday:
     %dd= @user.birthday
     %dt School:

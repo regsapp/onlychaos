@@ -1,4 +1,4 @@
-Admin.create!(email: "admin@example.com", password: "password")
+Admin.create!(email: "admin@example.com", password: "password", first_name: "Miguel", last_name: "Cabero")
 
 as = YearGroup.create!(name: "AS")
 a2 = YearGroup.create!(name: "A2")

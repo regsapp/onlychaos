@@ -1,5 +1,13 @@
 require 'factory_girl_rails'
-FactoryGirl.define do 
+
+FactoryGirl.define do
+  factory :message do
+    email "email"
+    first_name "first_name"
+    last_name "last_name"
+    title "title"
+    body "MyText"
+  end
 
   factory :test_question do
     test

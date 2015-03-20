@@ -25,14 +25,12 @@
       - @users.each do |user|
         %tr
           %td= user.email
+          %td= user.first_name
+          %td= user.last_name
           - if user.is_a? Student
-            %td= user.first_name
-            %td= user.last_name
             %td= user.birthday
             %td= user.school.name
           - else
-            %td
-            %td
             %td
             %td
           %td= user.sign_in_count
