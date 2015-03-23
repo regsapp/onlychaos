@@ -74,6 +74,8 @@ label {
 
 input[type="checkbox"] {
   float: right;
+  // background-color: transparent;
+  z-index: -1000;
 }
 
 .category-label {

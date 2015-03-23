@@ -20,40 +20,41 @@
     }
   });
 
-= form_for @test_question, :html => { :class => "form-horizontal" } do |f|
+= form_for @test_question, :html => { :class => "form-question" } do |f|
   -if @test_question.errors.any?
     .alert.alert-danger.alert-dismissable
       %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-      %h4= "#{pluralize(@test_question.errors.count, "error")} prohibited this test_question from being saved:"
+      %h4= "#{pluralize(@test_question.errors.count, "error")} prohibited this answer from being saved:"
 
       %ul
         - @test_question.errors.full_messages.each do |msg|
           %li= msg
 
-  %p.question-text
-    =@test_question.question.description.html_safe
+  .question
+    .col-sm-16.question-description
+      =@test_question.question.description.html_safe
 
-  - if @test_question.attempts > 0
-    %h5 Hint
-    %p.question-text
-      =@test_question.question.hint.html_safe
+    - if @test_question.attempts > 0
+      %h5 Hint
+      %p.question-text
+        =@test_question.question.hint.html_safe
 
-  - count = 0
-  %ol
-    = f.fields_for :answers do |answer_fields|
-      - question_part = answer_fields.object.question_part
-      %li.question-text
-        = question_part.description.html_safe
-        %em="(for #{pluralize(question_part.marks.to_i, 'mark')})"
-        .form-group
-          .col-sm-10
-            = answer_fields.label :your_answer
-            = answer_fields.text_area :content, :class => 'form-control'
-            %h5 Preview
-            %p
-              %button.btn{ type: "button",id: "update_answer_preview_#{count}" } Update Preview
-            %div{ id: "answer_preview_#{count}" }
-        - count += 1
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      = f.submit @test_question.last? ? "Finish" : "Next question", :class => 'btn btn-primary'
+    - count = 0
+    %ol.question-parts
+      = f.fields_for :answers do |answer_fields|
+        - question_part = answer_fields.object.question_part
+        %li.question-text
+          = question_part.description.html_safe
+          %em="#{pluralize(question_part.marks.to_i, 'mark')}"
+          .form-group
+            .col-sm-12
+              -# = answer_fields.label :your_answer
+              = answer_fields.text_area :content, :class => 'form-control'
+              -# %h5 Preview
+              %p
+                %button.btn{ type: "button",id: "update_answer_preview_#{count}" } Preview
+              %div{ id: "answer_preview_#{count}" }
+          - count += 1
+    .form-group
+      .col-sm-offset-4.col-sm-8
+        = f.submit @test_question.last? ? "Finish" : "Next question", :class => 'btn btn-primary'
