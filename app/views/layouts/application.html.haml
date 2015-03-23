@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title OnlyChaos
+    %title GradeZilla
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
@@ -36,14 +36,17 @@
 
     %header
     .nav.left
-      %h2.logo OnlyChaos
+      %h2.logo GradeZilla
     .nav.right
-      %h3
-        Account &#124;
-        - if user_signed_in?
-          = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav"
+      %ul
+        - if user_signed_in? && current_user.student?
+          %li
+            = link_to "Account | ", edit_user_registration_path, class: "nav"
+          %li
+            = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav"
         - else
-          = link_to "Log in", new_user_session_path, class: "nav"
+          %li
+            = link_to "Log in", new_user_session_path, class: "nav"
     .alerts
       - flash.each do |type, msg|
         - if msg.is_a? String

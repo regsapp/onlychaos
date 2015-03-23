@@ -32,9 +32,6 @@ header {
 
 .nav.right{
   float: right;
-  // width: 200px;
-  /*text-align: right;*/
-  /*display: inline-block;*/
 }
 
 .nav.left {
@@ -49,8 +46,29 @@ header {
   margin-top: 5%;
 }
 
-.nav.right h3 {
-  font-size: 1.5em;
+.nav.right ul {
+  font-size: 1.2em;
+  font-weight: 100;
+  width: 150px;
+}
+
+.nav.right li {
+  border: none;
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+.nav.right a {
+  // display: inline;
+  border: none;
+  color: #fff;
+  float: left;
+  width: 65px;
+}
+
+.nav.right a:hover {
+  text-decoration: none;
 }
 
 /*// TEXT //*/

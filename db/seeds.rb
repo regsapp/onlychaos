@@ -82,7 +82,7 @@ exam_boards = ExamBoard.all.to_a
   )
 end
 
-math = Category.create!(name: "Super simple math")
+math = Category.create!(name: "Super simple math", year: "AS")
 
 20.times do ||
   a = (1..10).to_a.sample(4)
