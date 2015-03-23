@@ -48,8 +48,8 @@ class TestQuestionsController < ApplicationController
       if @test_question.save
         alert, notice = nil
         notice = 'Well done, all correct!'               if @test_question.correct?
-        alert  = 'One of your answers was incorrect. Take a look at the hints' if !@test_question.correct? && @test_question.next_chance?
-        alert  = 'One of your answers was incorrect'           if !@test_question.correct? && !@test_question.next_chance?
+        alert  = 'One or more of your answers was incorrect. Take a look at the hints' if !@test_question.correct? && @test_question.next_chance?
+        alert  = 'One or more of your answers was incorrect'           if !@test_question.correct? && !@test_question.next_chance?
 
         if @test_question.next_test_question
           format.html { redirect_to edit_test_question_path(@test_question.next_test_question), alert: alert, notice: notice }
