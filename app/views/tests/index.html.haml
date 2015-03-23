@@ -14,7 +14,6 @@
         %th User
         %th
         %th
-        %th
 
     %tbody
       - @tests.each do |test|
@@ -24,5 +23,4 @@
           %td= test.duration
           %td= test.user.email
           %td= link_to 'Show', test
-          %td= link_to 'Edit', edit_test_path(test)
           %td= link_to 'Destroy', test, :data => { confirm: 'Are you sure?' }, :method => :delete

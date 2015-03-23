@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :messages
+
+  resources :test_questions
+
   resources :exam_boards
 
   get 'home/index' => 'home#index'
@@ -12,14 +16,15 @@ Rails.application.routes.draw do
   resources :schools
 
   devise_for :users, :controllers => { registrations: 'registrations' }
+  scope "/my" do
+    resources :users
+  end
 
   resources :answers
 
   resources :questions
 
   resources :tests
-
-  get 'tests/:test_id/questions/:question_id/answers/new' => 'answers#new', as: :new_test_answer
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -17,7 +17,9 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @question.build_correct_answer
+    5.times do
+      @question.question_parts.build.build_correct_answer
+    end
   end
 
   # GET /questions/1/edit
@@ -27,9 +29,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    puts "question_params"
-    puts question_params
-    @question = Question.new(question_params)
+    @question = Question.new(question_params_without_blank_question_parts)
 
     respond_to do |format|
       if @question.save
@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1.json
   def update
     respond_to do |format|
-      if @question.update(question_params)
+      if @question.update(question_params_without_blank_question_parts)
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
@@ -74,6 +74,30 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:description, :marks, :answer_type, :category_id, :year_group_id, correct_answer_attributes: [:id, :content], exam_board_ids: [])
+      params.require(:question).permit(
+        :description, 
+        :hint, 
+        :category_id, 
+        :year_group_id,
+        exam_board_ids: [],
+        question_parts_attributes: [
+          :id, 
+          :description, 
+          :marks, 
+          :answer_type, 
+          correct_answer_attributes: [
+            :id,
+            :content
+          ]
+        ]
+      )
+    end
+
+    def question_params_without_blank_question_parts
+      h = question_params.clone
+      h[:question_parts_attributes].each do |index, values|
+        h[:question_parts_attributes].delete index if values["description"].blank?
+      end
+      h
     end
 end

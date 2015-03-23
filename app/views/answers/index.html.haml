@@ -5,7 +5,7 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Question
+        %th Question Part
         %th Answer
         %th Correct Answer
         %th Marks
@@ -16,7 +16,7 @@
     %tbody
       - @answers.each do |answer|
         %tr
-          %td= answer.question_id
+          %td= answer.question_part_id
           %td= answer.content
           %td= answer.correct_answer.content
           %td= "#{answer.marks.to_i} on #{pluralize(answer.max_marks, 'point')}"

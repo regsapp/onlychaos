@@ -1,0 +1,18 @@
+.page-header
+  = link_to test_questions_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_test_question_path(@test_question), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show test_question
+
+%dl.dl-horizontal
+  %dt Test:
+  %dd= @test_question.test_id
+  %dt Question:
+  %dd= @test_question.question_id
+  %dt Number:
+  %dd= @test_question.number
+  %dt Marks:
+  %dd= @test_question.marks

@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+
+    / TODO choose the right config
+    / %script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default")
+    %script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_HTMLorMML-full")
+    :javascript
+      MathJax.Hub.Config({
+        showProcessingMessages: false,
+        tex2jax: { inlineMath: [['$$','$$'],['`','`']] },
+        "HTML-CSS": {
+          styles: {
+            ".MathJax_Display": {
+              display: "inline"
+            }
+          }
+        }
+      });
+
+  %body
+    = yield

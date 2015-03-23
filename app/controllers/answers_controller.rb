@@ -32,11 +32,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        if @answer.next_question
-          format.html { redirect_to new_test_answer_path(question_id: @answer.next_question.id, test_id: @answer.test.id), notice: 'Test has started. Good luck.' }
-        else
-          format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        end
+        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
