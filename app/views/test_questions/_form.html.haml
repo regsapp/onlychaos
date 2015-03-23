@@ -35,8 +35,8 @@
       =@test_question.question.description.html_safe
 
     - if @test_question.attempts > 0
-      %h5 Hint
-      %p.question-text
+      %h5.hint Hint:
+      %p.question-hint
         =@test_question.question.hint.html_safe
 
     - count = 0
@@ -49,11 +49,13 @@
           .form-group
             .col-sm-12
               -# = answer_fields.label :your_answer
-              = answer_fields.text_area :content, :class => 'form-control'
+              %div.answer-box
+                = answer_fields.text_area :content, :class => 'form-control'
               -# %h5 Preview
-              %p
-                %button.btn{ type: "button",id: "update_answer_preview_#{count}" } Preview
-              %div{ id: "answer_preview_#{count}" }
+              %div.preview
+                %p
+                  %button.btn{ type: "button",id: "update_answer_preview_#{count}" } Preview
+                %div{ id: "answer_preview_#{count}" }
           - count += 1
     .form-group
       .col-sm-offset-4.col-sm-8
