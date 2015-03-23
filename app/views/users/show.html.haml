@@ -1,0 +1,29 @@
+.page-header
+  = link_to users_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_user_path(@user), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show user
+
+%dl.dl-horizontal
+  %dt Email:
+  %dd= @user.email
+  %dt First name:
+  %dd= @user.first_name
+  %dt Last name:
+  %dd= @user.last_name
+  - if @user.is_a? Student
+    %dt Birthday:
+    %dd= @user.birthday
+    %dt School:
+    %dd= @user.school.name
+  %dt Sign in count:
+  %dd= @user.sign_in_count
+  %dt Current sign in at:
+  %dd= @user.current_sign_in_at
+  %dt Last sign in at:
+  %dd= @user.last_sign_in_at
+  %dt Type:
+  %dd= @user.type

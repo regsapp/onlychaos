@@ -31,7 +31,7 @@ gem 'devise-bootstrap-views'
 gem 'cancancan'
 gem 'ckeditor'
 gem 'paperclip'
-gem 'fog'
+gem 'fog', '~> 1.28.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -55,6 +55,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.2'
 
   gem "factory_girl_rails", "~> 4.0"
+
+  # Generates UML diagrams
+  gem 'railroady'
 end
 
 ruby '2.2.0'

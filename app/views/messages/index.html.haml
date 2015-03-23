@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_message_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Message
+  %h1 Listing messages
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Date
+        %th Email
+        %th First name
+        %th Last name
+        %th Title
+        %th
+        %th
+
+    %tbody
+      - @messages.each do |message|
+        %tr
+          %td= message.created_at
+          %td= message.email
+          %td= message.first_name
+          %td= message.last_name
+          %td= message.title
+          %td= link_to 'Show', message
+          %td= link_to 'Destroy', message, :data => { confirm: 'Are you sure?' }, :method => :delete

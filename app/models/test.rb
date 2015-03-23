@@ -2,15 +2,18 @@ class Test < ActiveRecord::Base
   belongs_to :year_group
   belongs_to :user
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many :questions
+  has_many :test_questions, dependent: :destroy
+  has_many :questions, through: :test_questions
   has_many :answers
+
+  accepts_nested_attributes_for :test_questions
 
   # validates :year_group_id, presence: true
   validates :duration, :inclusion => { :in => 1..100 }
 
   validate :must_have_questions, on: :create
 
-  before_create :append_questions
+  after_create :create_test_questions
 
   def category_names
     categories.map(&:name).join(", ")
@@ -20,8 +23,8 @@ class Test < ActiveRecord::Base
     duration.to_i
   end
 
-  def next_question
-    questions.find{ |q| q.answers.where(test_id: id).none? }
+  def next_test_question
+    test_questions.find{ |test_question| !test_question.answered? }
   end
 
   def questions_count
@@ -56,7 +59,7 @@ class Test < ActiveRecord::Base
   end
 
   def percentage(aggregation=:all)
-    stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count]
+    stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count] * 100
   end
 
   def grade
@@ -74,7 +77,9 @@ class Test < ActiveRecord::Base
     errors.add(:categories, 'must have questions') unless question_selection.any?
   end
 
-  def append_questions
-    self.questions = @question_selection
+  def create_test_questions
+    question_selection.each_with_index do |question, index|
+      self.test_questions.create!(question_id: question.id, number: index + 1)
+    end
   end
 end

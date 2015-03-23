@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.describe Answer, :type => :model do
   describe "max_marks" do
     before do
-      @question = create(:question)
-      @answer = @question.answers.build(attributes_for(:answer))
+      @question_part = create(:question_part)
+      @answer = @question_part.answers.build(attributes_for(:answer))
     end
 
-    it "should should eq question marks" do
-      @answer.max_marks.should eq @answer.question.marks
+    it "should should eq question_part marks" do
+      @answer.max_marks.should eq @answer.question_part.marks
     end
   end
 
   describe "#mark!" do
     before do
-      @question = create(:question)
-      @correct_answer = @question.create_correct_answer(attributes_for(:answer))
-      @answer = @question.answers.build(attributes_for(:answer))
+      @question_part = create(:question_part)
+      @correct_answer = @question_part.create_correct_answer(attributes_for(:answer))
+      @answer = @question_part.answers.build(attributes_for(:answer))
     end
 
     it "should set marks" do
@@ -39,10 +39,10 @@ RSpec.describe Answer, :type => :model do
 
     context "boolean" do
       before do
-        @question = create(:multiple_bool_question)
-        @correct_answer = @question.build_correct_answer(attributes_for(:multiple_bool_answer))
+        @question_part = create(:multiple_bool_question_part)
+        @correct_answer = @question_part.build_correct_answer(attributes_for(:multiple_bool_answer))
         @correct_answer.content = "(John OR Mary) AND (Dave OR Pat)"
-        @answer = @question.answers.build(attributes_for(:answer))
+        @answer = @question_part.answers.build(attributes_for(:answer))
       end
 
       it "should set zero marks if answer is not correct" do

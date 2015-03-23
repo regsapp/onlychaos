@@ -1,5 +1,5 @@
 .page-header
-  %h1 Test Options
+  %h1 TEST OPTIONS
 
 %ul.tabs
   %li.tab-AS.active
@@ -19,14 +19,17 @@
             - @test.errors.full_messages.each do |msg|
               %li= msg
       .form-object
-        .col-sm-10
+        .col-sm-7.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
-        = f.label :duration, 'TEST DURATION', :class => 'form-label'
-        = succeed ' minutes' do
-          %span#time 60
+        %div.duration
+          = succeed ' minutes' do
+            %span#time 60
+          %br
+          = f.label :duration, 'TEST DURATION', :class => 'form-label'
+
 
       .form-object
-        .col-sm-10.category
+        .col-sm-12.category
           = hidden_field_tag "test[category_ids][]", nil
           - Category.all.each do |category|
             -if category.year == "AS"
@@ -49,14 +52,16 @@
             - @test.errors.full_messages.each do |msg|
               %li= msg
       .form-object
-        .col-sm-10
+        .col-sm-7.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
-        = f.label :duration, 'TEST DURATION', :class => 'form-label'
-        = succeed ' minutes' do
-          %span#time 60
+        %div.duration
+          = succeed ' minutes' do
+            %span#time 60
+          %br
+          = f.label :duration, 'TEST DURATION', :class => 'form-label'
 
       .form-object
-        .col-sm-10.category
+        .col-sm-12.category
           = hidden_field_tag "test[category_ids][]", nil
           - Category.all.each do |category|
             -if category.year == "A2"

@@ -1,0 +1,62 @@
+:javascript
+  $(function() {
+    function makePreview(inputSelector, previewSelector) {
+      input = $(inputSelector).val();
+      $(previewSelector).html(input);
+      previewId =  previewSelector.replace('#', '');
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
+    }
+
+    #{
+      answer_count = @test_question.answers.count
+      indexes = (0...answer_count).to_a
+      indexes.map { |i|
+        %{
+          $('#update_answer_preview_#{i}').click(function(event){event.preventDefault(); makePreview('#test_question_answers_attributes_#{i}_content', '#answer_preview_#{i}')});
+          $('body').bind('updated',function(){makePreview('#test_question_answers_attributes_#{i}_content', '#update_answer_preview_#{i}')});
+          makePreview('#test_question_answers_attributes_#{i}_content', '#answer_preview_#{i}');
+        }
+      }.join('\n')
+    }
+  });
+
+= form_for @test_question, :html => { :class => "form-question" } do |f|
+  -if @test_question.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@test_question.errors.count, "error")} prohibited this answer from being saved:"
+
+      %ul
+        - @test_question.errors.full_messages.each do |msg|
+          %li= msg
+
+  .question
+    .col-sm-16.question-description
+      =@test_question.question.description.html_safe
+
+    - if @test_question.attempts > 0
+      %h5.hint Hint:
+      %p.question-hint
+        =@test_question.question.hint.html_safe
+
+    - count = 0
+    %ol.question-parts
+      = f.fields_for :answers do |answer_fields|
+        - question_part = answer_fields.object.question_part
+        %li.question-text
+          = question_part.description.html_safe
+          %em="#{pluralize(question_part.marks.to_i, 'mark')}"
+          .form-group
+            .col-sm-12
+              -# = answer_fields.label :your_answer
+              %div.answer-box
+                = answer_fields.text_area :content, :class => 'form-control'
+              -# %h5 Preview
+              %div.preview
+                %p
+                  %button.btn{ type: "button",id: "update_answer_preview_#{count}" } Preview
+                %div{ id: "answer_preview_#{count}" }
+          - count += 1
+    .form-group
+      .col-sm-offset-4.col-sm-8
+        = f.submit @test_question.last? ? "Finish" : "Next question", :class => 'btn btn-primary'

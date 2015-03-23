@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  belongs_to :question
+  belongs_to :question_part
   belongs_to :test
   #has_one :correct_answer, through: :question
 
@@ -10,23 +10,19 @@ class Answer < ActiveRecord::Base
   default_scope { where(reference: false) } 
 
   def max_marks
-    question.try(:marks)
+    question_part.try(:marks)
   end
 
   def correct_answer
-    question.try(:correct_answer)
+    question_part.try(:correct_answer)
   end
 
   def type
-    question.answer_type
-  end
-
-  def next_question
-    test.next_question if test
+    question_part.answer_type
   end
 
   def category_name
-    question.category_name
+    question_part.category_name
   end
 
   def mark!
@@ -49,7 +45,13 @@ class Answer < ActiveRecord::Base
   end
 
   def correct?
+    return nil if reference?
     marks == max_marks
+  end
+
+  def answered?
+    return nil if reference?
+    updated_at > created_at if persisted?
   end
 
   def to_type
@@ -57,24 +59,12 @@ class Answer < ActiveRecord::Base
     when "integer"
       content.to_i
     when "text", "formula"
-      content.squish
+      content.to_s.squish
     when "float"
       content.to_f
     when "multiple any", "multiple all", "multiple bool"
-      content.squish.split(/\W+/)
+      content.to_s.squish.split(/\W+/)
     end
-  end
-
-  def number
-    test.question_number(question) if test
-  end
-
-  def test_questions_count
-    test.questions_count if test
-  end
-
-  def last?
-    number == test_questions_count if test
   end
 
   private
@@ -94,7 +84,7 @@ class Answer < ActiveRecord::Base
         when "(", ")"
           s
         else
-          "content.include?('#{s}')"
+          "content.to_s.include?('#{s}')"
         end
       end
       .join(" ")

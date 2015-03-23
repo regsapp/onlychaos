@@ -69,6 +69,17 @@ label {
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
+  text-align: left;
+}
+
+input[type="checkbox"] {
+  float: right;
+  // background-color: transparent;
+  z-index: -1000;
+}
+
+.category-label {
+  width: 150px;
 }
 
 .radio-toolbar input[type="radio"] {
@@ -99,17 +110,51 @@ label {
 
 input[type="range"] {
   position: relative;
-  height: 12px;
-  margin-bottom: 20px;
+  // height: 12px;
+  // margin-bottom: 20px;
   cursor: pointer;
   // background: #ebedef;
-  border-radius: 32px;
+  // border-radius: 32px;
   box-shadow: none;
 }
 
 .form-object {
   margin-top: 8%;
+  position: relative;
 }
+
+div.col-sm-7.range {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+div.duration {
+  border: solid #fff;
+  border-width: 1px;
+  width: 8em;
+  color: #fff;
+  font-weight: 100;
+}
+
+div.duration label {
+  font-size: 0.7em;
+}
+
+span#time {
+  font-size: 2em;
+}
+
+.form-object {
+  overflow: auto;
+}
+
+.duration {
+  float: right;
+  display: inline-block;
+}
+
+
 
 // BUTTON //
 

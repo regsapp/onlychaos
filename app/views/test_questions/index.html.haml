@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_test_question_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Test question
+  %h1 Listing test_questions
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Test
+        %th Question
+        %th Number
+        %th Marks
+        %th
+        %th
+        %th
+
+    %tbody
+      - @test_questions.each do |test_question|
+        %tr
+          %td= test_question.test_id
+          %td= test_question.question_id
+          %td= test_question.number
+          %td= test_question.marks
+          %td= link_to 'Show', test_question
+          %td= link_to 'Edit', edit_test_question_path(test_question)
+          %td= link_to 'Destroy', test_question, :data => { confirm: 'Are you sure?' }, :method => :delete

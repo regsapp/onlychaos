@@ -26,3 +26,22 @@ li a a:focus {
   background-color: white;
   color: gray;
 }
+
+div.charts {
+  width: 100%;
+  height: 250px;
+}
+
+div.chart {
+  margin: 22px;
+  // height: 250px;
+}
+
+// QUESTIONS //
+
+.question-title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 100;
+  color: #fff;
+}
