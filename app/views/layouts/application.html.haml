@@ -38,27 +38,27 @@
     .nav.left
       %ul
         %li
-          %a.logo{:href => "/"} GradeZilla    
+          %a.logo{:href => "/"} GradeZilla
         %li
-          %a{:href => "#"} Options
-          %ul
-            %li
-              = model_menu_item(User)
-            %li
-              = model_menu_item(Question)
-            %li
-              = model_menu_item(ExamBoard)
-            %li
-              = model_menu_item(School)
-            %li
-              = model_menu_item(YearGroup)
-            %li
-              = model_menu_item(Category)
-            %li
-              = model_menu_item(Test)
-            %li
-              = model_menu_item(Message)
-
+          - if user_signed_in? && current_user.admin?
+            %a{:href => "#"} Options
+            %ul
+              %li
+                = model_menu_item(User)
+              %li
+                = model_menu_item(Question)
+              %li
+                = model_menu_item(ExamBoard)
+              %li
+                = model_menu_item(School)
+              %li
+                = model_menu_item(YearGroup)
+              %li
+                = model_menu_item(Category)
+              %li
+                = model_menu_item(Test)
+              %li
+                = model_menu_item(Message)
     .nav.right
       %ul
         - if user_signed_in?

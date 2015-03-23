@@ -8,9 +8,9 @@ class Test < ActiveRecord::Base
 
   accepts_nested_attributes_for :test_questions
 
-  validates :year_group_id, presence: true
+  # validates :year_group_id, presence: true
   validates :duration, :inclusion => { :in => 1..100 }
-  
+
   validate :must_have_questions, on: :create
 
   after_create :create_test_questions

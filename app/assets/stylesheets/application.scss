@@ -17,7 +17,6 @@ body {
   background: linear-gradient(to bottom,  #1083a3 0%,#44a4b5 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1083a3', endColorstr='#44a4b5',GradientType=0 ); /* IE6-9 */
   width: 80%;
-  /*text-align: center;*/
   margin-left: auto;
   margin-right: auto;
   padding-top: 0%;
@@ -78,7 +77,6 @@ a.logo a:hover {
 .nav.left ul {
   font-size: 1.2em;
   font-weight: 100;
-  // width: 150px;
 }
 
 .nav.left ul ul {
@@ -108,15 +106,12 @@ a.logo a:hover {
   }
 
 .nav.left li {
-  // float: left;
   border: none;
   margin: 0;
   padding: 8px 8px;
 }
 
   .nav.left ul li a {
-    // display: block;
-    // text-decoration: none;
     color: #fff;
     border: none;
   }
@@ -124,20 +119,14 @@ a.logo a:hover {
 .nav.left a {
   border: none;
   color: #fff;
-  // float: right;
-  // width: 65px;
 }
-
-// .nav.left a:hover {
-//   text-decoration: none;
-// }
 
 
 /*// TEXT //*/
 
 h1, h2, h3, h4 {
   font-family: 'Lato', sans-serif;
-  color: white;
+  color: #fff;
   font-weight: 100;
   margin: 0;
   text-align: center;
@@ -149,7 +138,7 @@ h2 {
 
 p {
   font-family: 'Lato', sans-serif;
-  color: gray;
+  color: #292929;
   font-weight: 200;
   font-size: 1.5em;
   margin-top: 0px;
@@ -158,11 +147,11 @@ p {
 /*// LINKS //*/
 
 a:link {
-  color: gray;
+  color: #292929;
 }
 
 a:visited {
-  color: gray;
+  color: #292929;
 }
 
 .nav {
@@ -179,20 +168,31 @@ a:visited {
 .alert {
   font-family: 'Lato', sans-serif;
   text-align: center;
-  color: red;
   position: relative;
+}
   .alert-warning {
-    color: red;
+    color: #a67643;
+    background-color: #fcf7e4;
   }
   .alert-success {
-    color: green;
+    background-color: #e3edd8;
+    color: #4d713c;
   }
-}
+  .alert-info {
+    background-color: #d9edf7;
+    color: #40718d;
+  }
+  .alert-danger {
+    background-color: #efdfdf;
+    color: #a04d49;
+  }
 
 .button.close {
-  // position: absolute;
-
   float: right;
   margin-right: 80%;
-  // text-align: right;
+}
+
+// PAGE HEADER //
+div.page-header h1 {
+  clear: both;
 }
