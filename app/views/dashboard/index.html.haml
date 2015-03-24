@@ -3,6 +3,8 @@
 %p
   =link_to "Start a test", new_test_path
 
+%h3= "Stats (on #{'last' if @user.recent_tests.size == Student::MAX_RECENT_TESTS} #{pluralize(@user.recent_tests.size, 'test')})"
+
 %dl.dl-horizontal
   %dt Correct:
   %dd= @user.correct_answers_count
