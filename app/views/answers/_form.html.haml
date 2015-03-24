@@ -41,6 +41,6 @@
     .col-sm-offset-8.col-sm-10
       = f.hidden_field :question_id
       = f.hidden_field :test_id
-      = f.submit "Next Question", :class => 'login button' if @answer.test && !@answer.last?
-      = f.submit "Check Results", :class => 'login button' if @answer.test && @answer.last?
-      = f.submit :class => 'login button'                  unless @answer.test
+      = f.submit "Next Question", :class => 'normal button' if @answer.test && !@answer.last?
+      = f.submit "Check Results", :class => 'normal button' if @answer.test && @answer.last?
+      = f.submit :class => 'normal button'                  unless @answer.test

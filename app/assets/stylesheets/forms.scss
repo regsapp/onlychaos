@@ -158,13 +158,14 @@ span#time {
 
 // BUTTON //
 
-.login.button {
-  // -webkit-border-radius: 8;
-  // -moz-border-radius: 8;
+.normal.button {
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
   border-radius: 8px;
   font-family: 'Lato', sans-serif;
   color: #000000;
-  font-size: 1em;
+  font-size: 0.8em;
+  font-weight: 100;
   background: #e8edf0;
   padding: 5px 40px 5px 40px;
   text-decoration: none;

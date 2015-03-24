@@ -4,46 +4,48 @@
           barColor: '#fff',
           trackColor: '#1f6899',
           scaleColor: false,
-          lineWidth: 5,
-          size: 220,
+          lineWidth: 10,
+          size: 141,
       });
   });
 
-.page-header
-  %h1 TEST RESULTS
+%div.results
+  .page-header
+    %h1 TEST RESULTS
 
-%div.charts
-  .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
+  %div.charts
+    .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
 
-  .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
+    .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
 
-  .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
+    .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
 
-  .chart{"data-percent" => "65"} test.duration?
+    .chart{"data-percent" => "65"} test.duration?
 
-%div
-  -# %ul.dl-horizontal
-  -#   %li= @test.category_names
+  %div.questions
+    -# %ul.dl-horizontal
+    -#   %li= @test.category_names
 
-  - @test.test_questions.each do |test_question|
-    %hr
-    .col-sm-12.question-title
-      = "Question #{test_question.number}"
-    .col-sm-8
-      .question-description
-        =test_question.question.description.html_safe
-      %ol.question-parts
-        - test_question.answers.each do |answer|
-          %li.question-text
-            %dd=answer.question_part.description
-            %dt Your answer:
-            %dd
-              = answer.content
-              %br
-              = answer.correct? ? "Was correct!" : "Was incorrect!"
-            - unless answer.correct?
-              %dt Correct answer:
-              %dd= answer.correct_answer.content
-            %dt Marks:
-            %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
-      =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'login button'
+    - @test.test_questions.each do |test_question|
+      %hr
+      .col-sm-12.question-title
+        = "QUESTION #{test_question.number}"
+      .col-sm-9.question
+        .question-description
+          =test_question.question.description.html_safe
+        %ol.question-parts
+          - test_question.answers.each do |answer|
+            %li.question-text
+              %dd=answer.question_part.description
+              %dt Your answer:
+              %dd
+                = answer.content
+                %br
+                = answer.correct? ? "Was correct!" : "Was incorrect!"
+              - unless answer.correct?
+                %dt Correct answer:
+                %dd= answer.correct_answer.content
+              %dt Marks:
+              %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
+      .col-sm-3.disagree
+        =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button'

@@ -48,6 +48,8 @@ a.logo a:hover {
 
 .page-header {
   margin-top: 5%;
+  // width: 60%;
+  margin: auto;
 }
 
 .nav.right ul {
@@ -190,6 +192,10 @@ a:visited {
 .button.close {
   float: right;
   margin-right: 80%;
+}
+
+ul li.alert {
+  color: #a04d49;
 }
 
 // PAGE HEADER //
