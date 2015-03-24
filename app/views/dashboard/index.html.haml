@@ -1,26 +1,37 @@
+:javascript
+  $(function() {
+      $('.chart').easyPieChart({
+          barColor: '#fff',
+          trackColor: '#1f6899',
+          scaleColor: false,
+          lineWidth: 10,
+          size: 142,
+      });
+  });
+
 %br
-%br
-%br
-%br
-%p
 
-  =link_to "Take a test", new_test_path, :class => "normal button"
+%div.results
 
-%h3= "Stats (on #{'last' if @user.recent_tests.size == Student::MAX_RECENT_TESTS} #{pluralize(@user.recent_tests.size, 'test')})"
+  %div.charts
+    .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
 
-%dl.dl-horizontal
-  %dt Correct:
-  %dd= @user.correct_answers_count
-  %dt Incorrect:
-  %dd= @user.incorrect_answers_count
-  %dt Percentage:
-  %dd= number_to_percentage @user.percentage, precision: 0
-  %dt Grade:
-  %dd= @user.grade
+    .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
 
-%hr
+    .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
 
-%dl.dl-horizontal
-  - (@user.stats.keys - [:all]).each do |aggregation|
-    %dt= aggregation
-    %dd= @user.grade(aggregation)
+    .chart{"data-percent" => "55"} #{@user.grade}
+
+  %div.questions
+
+    %hr
+
+    %dl.dl-horizontal
+      - (@user.stats.keys - [:all]).each do |aggregation|
+        %div.boxes
+          %p.grade= @user.grade(aggregation)
+          %p= aggregation
+
+
+    %div
+      =link_to "Take a test", new_test_path, :class => "normal button"
