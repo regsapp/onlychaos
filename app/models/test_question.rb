@@ -8,6 +8,19 @@ class TestQuestion < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
+  def self.latests_asked_to_user(user, category=nil, limit=10)
+    ids = user.test_question_ids
+    ids |= category.test_question_ids if category
+
+    latests = where(id: ids).order(created_at: :desc)
+    latests = latests.limit(limit) if limit
+    latests
+  end
+
+  def user
+    test.user
+  end
+
   def answered?
     answers.all?{ |answer| answer.answered? }
   end

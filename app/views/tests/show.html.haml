@@ -41,7 +41,7 @@
   %ol
     - test_question.answers.each do |answer|
       %li
-        %dd=answer.question_part.description
+        %dd=answer.question_part.description.html_safe
         %dt Your answer:
         %dd
           = answer.content

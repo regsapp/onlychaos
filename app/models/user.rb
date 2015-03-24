@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
 
   TYPES = ['Admin', 'Student', 'Teacher']
 
-  has_many :tests
-
   def admin?
     type == 'Admin'
   end
