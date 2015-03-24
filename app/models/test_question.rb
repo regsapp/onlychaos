@@ -12,14 +12,6 @@ class TestQuestion < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
 
-  def self.asked_to_user(user, category=nil, recently=false)
-    ids = user.test_question_ids
-    ids &= category.test_question_ids if category
-    asked = where(id: ids)
-    asked = asked.recent if recently
-    asked
-  end
-
   def user
     test.user
   end

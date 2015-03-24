@@ -17,28 +17,21 @@ class Question < ActiveRecord::Base
   before_save :set_marks
 
   def self.selection_for(test)
-    selection = where(year_group_id: test.year_group_id, category_id: test.category_ids).shuffle
-
-    while selection.map(&:marks).sum > test.max_marks do
-      selection.pop
+    candidates = where(year_group_id: test.year_group_id, category_id: test.category_ids).only(:id, :category_id, :marks).shuffle
+    
+    mapping = {}
+    candidates.each do |candidate|
+      mapping[candidate.category] ||= []
+      mapping[candidate.category] << candidate
     end
 
+    selection = []
+    while selection.map(&:marks).sum < test.max_marks do
+      selection << mapping[test.pick_category].pop
+    end
+    selection.pop if selection.map(&:marks).sum > test.max_marks
+
     selection
-  end
-
-  def self.ids_asked_to_user(user, category=nil, recently=false)
-    test_questions = TestQuestion.asked_to_user(user, category, recently)
-    test_questions.map(&:question_id).uniq
-  end
-
-  def self.asked_to_user(user, category=nil, recently=false)
-    where(id: ids_asked_to_user(user, category, recently))
-  end
-
-  def self.never_asked_to_user(user, category=nil, recently=false)
-    never_asked = where.not(id: ids_asked_to_user(user, category, recently))
-    never_asked = never_asked.where(category_id: category.id) if category
-    never_asked
   end
 
   def to_s
