@@ -1,6 +1,37 @@
+:javascript
+  $(function() {
+      $('.chart').easyPieChart({
+          barColor: '#fff',
+          trackColor: '#1f6899',
+          scaleColor: false,
+          lineWidth: 10,
+          size: 142,
+      });
+  });
+
 %br
-%br
-%br
-%br
-%p
-  =link_to "Take a test", new_test_path, :class => "normal button"
+
+%div.results
+
+  %div.charts
+    .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
+
+    .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
+
+    .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
+
+    .chart{"data-percent" => "55"} #{@user.grade}
+
+  %div.questions
+
+    %hr
+
+    %dl.dl-horizontal
+      - (@user.stats.keys - [:all]).each do |aggregation|
+        %div.boxes
+          %p.grade= @user.grade(aggregation)
+          %p= aggregation
+
+
+    %div
+      =link_to "Take a test", new_test_path, :class => "normal button"

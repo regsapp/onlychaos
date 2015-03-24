@@ -42,6 +42,8 @@ FactoryGirl.define do
   factory :user do
     sequence(:email){|n| "user#{n}@example.com" }
     password               "password"
+    first_name             "John"
+    last_name              "Doe"
   end
 
   factory :admin do
@@ -52,8 +54,6 @@ FactoryGirl.define do
   factory :student do
     sequence(:email){|n| "student#{n}@example.com" }
     password               "password"
-    first_name             "John"
-    last_name              "Doe"
     birthday               16.years.ago
     school
   end
