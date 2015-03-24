@@ -26,16 +26,17 @@ class Question < ActiveRecord::Base
     selection
   end
 
-  def self.latests_asked_to_user(user, category=nil, test_question_limit=10)
-    test_questions = TestQuestion.latests_asked_to_user(user, category, test_question_limit)
-    ids = test_questions.map(&:question_ids).uniq
-    where(id: ids)
+  def self.ids_asked_to_user(user, category=nil, recently=false)
+    test_questions = TestQuestion.asked_to_user(user, category, recently)
+    test_questions.map(&:question_id).uniq
   end
 
-  def self.never_asked_to_user(user, category=nil)
-    test_questions = TestQuestion.latests_asked_to_user(user, category, nil)
-    ids = test_questions.map(&:question_ids).uniq
-    never_asked = where.not(id: ids)
+  def self.asked_to_user(user, category=nil, recently=false)
+    where(id: ids_asked_to_user(user, category, recently))
+  end
+
+  def self.never_asked_to_user(user, category=nil, recently=false)
+    never_asked = where.not(id: ids_asked_to_user(user, category, recently))
     never_asked = never_asked.where(category_id: category.id) if category
     never_asked
   end

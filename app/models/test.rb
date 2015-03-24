@@ -17,6 +17,10 @@ class Test < ActiveRecord::Base
 
   after_create :create_test_questions
 
+  RECENT_LIMIT = 10
+
+  scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
+
   def category_names
     categories.map(&:name).join(", ")
   end
