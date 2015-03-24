@@ -1,3 +1,8 @@
+div.results {
+  width: 62%;
+  margin: auto;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -28,20 +33,35 @@ li a a:focus {
 }
 
 div.charts {
-  width: 100%;
-  height: 250px;
+  // width: 60%;
+  margin: auto;
+  // height: 250px;
 }
 
 div.chart {
-  margin: 22px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   // height: 250px;
 }
 
 // QUESTIONS //
+
+div.questions {
+  clear: both;
+  margin: auto;
+}
 
 .question-title {
   text-align: center;
   font-size: 2em;
   font-weight: 100;
   color: #fff;
+}
+
+hr {
+  // width: 60%;
+}
+
+.question {
+  text-align: center;
 }
