@@ -1,6 +1,21 @@
 class Student < User
+  include Stats
+
+  MAX_RECENT_TESTS = 10  
+
+  has_many :tests, :foreign_key => "user_id"
+  has_many :recent_tests, -> { order(created_at: :desc).limit(MAX_RECENT_TESTS) }, :class_name => "Test", :foreign_key => "user_id"
+  has_many :recent_test_questions, :class_name => "TestQuestion", through: :recent_tests, source: :test_questions
   belongs_to :school
 
   validates :school_id, presence: true
   validates :birthday, presence: true
+
+  def test_question_ids
+    test_questions.ids
+  end
+
+  def answers
+    recent_test_questions.map{ |tq| tq.answers.to_a }.flatten
+  end
 end

@@ -3,4 +3,24 @@
 %br
 %br
 %p
+
   =link_to "Take a test", new_test_path, :class => "normal button"
+
+%h3= "Stats (on #{'last' if @user.recent_tests.size == Student::MAX_RECENT_TESTS} #{pluralize(@user.recent_tests.size, 'test')})"
+
+%dl.dl-horizontal
+  %dt Correct:
+  %dd= @user.correct_answers_count
+  %dt Incorrect:
+  %dd= @user.incorrect_answers_count
+  %dt Percentage:
+  %dd= number_to_percentage @user.percentage, precision: 0
+  %dt Grade:
+  %dd= @user.grade
+
+%hr
+
+%dl.dl-horizontal
+  - (@user.stats.keys - [:all]).each do |aggregation|
+    %dt= aggregation
+    %dd= @user.grade(aggregation)
