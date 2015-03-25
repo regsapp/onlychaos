@@ -32,7 +32,7 @@
 
 
       .form-object
-        .col-sm-12.category
+        .col-sm-12.category_to_fix
           = hidden_field_tag "test[category_ids][]", nil
           - Category.all.each do |category|
             -if category.year == "AS"
@@ -57,7 +57,7 @@
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
 
       .form-object
-        .col-sm-12.category
+        .col-sm-12.category_to_fix
           = hidden_field_tag "test[category_ids][]", nil
           - Category.all.each do |category|
             -if category.year == "A2"

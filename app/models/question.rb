@@ -17,17 +17,21 @@ class Question < ActiveRecord::Base
   before_save :set_marks
 
   def self.selection_for(test)
-    candidates = where(year_group_id: test.year_group_id, category_id: test.category_ids).only(:id, :category_id, :marks).shuffle
+    questions = where(category_id: test.category_ids).select(:id, :category_id, :marks).shuffle
     
-    mapping = {}
-    candidates.each do |candidate|
-      mapping[candidate.category] ||= []
-      mapping[candidate.category] << candidate
+    questions_by_category = {}
+    questions.each do |question|
+      questions_by_category[question.category] ||= []
+      questions_by_category[question.category] << question
     end
 
     selection = []
+    
     while selection.map(&:marks).sum < test.max_marks do
-      selection << mapping[test.pick_category].pop
+      picked_category = test.pick_category
+      selected = questions_by_category[picked_category].pop
+      selection << selected if selected
+      break if questions_by_category.values.flatten.none?
     end
     selection.pop if selection.map(&:marks).sum > test.max_marks
 

@@ -8,7 +8,6 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Year group
         %th Categories
         %th Duration
         %th User
@@ -18,7 +17,6 @@
     %tbody
       - @tests.each do |test|
         %tr
-          %td= test.year_group.name
           %td= test.category_names
           %td= test.duration
           %td= test.user.email
