@@ -17,6 +17,10 @@ class Test < ActiveRecord::Base
 
   after_create :create_test_questions
 
+  RECENT_LIMIT = 10
+
+  scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
+
   def category_names
     categories.map(&:name).join(", ")
   end
@@ -38,6 +42,20 @@ class Test < ActiveRecord::Base
     index + 1 if index
   end
 
+  def category_probabilities
+    probabilities = {}
+    total = category_incorrect_percentages.values.sum
+    categories.each do |category|
+      probabilities[category] = category_incorrect_percentages[category].to_f / total
+    end
+    probabilities
+  end
+
+  def pick_category
+    rand_number = rand
+    category_ranges.to_a.find{ |a| rand_number.in? a[1] }[0]
+  end
+
   private
 
   def question_selection
@@ -52,5 +70,24 @@ class Test < ActiveRecord::Base
     question_selection.each_with_index do |question, index|
       self.test_questions.create!(question_id: question.id, number: index + 1)
     end
+  end
+
+  def category_incorrect_percentages
+    percentages = {}
+    categories.each do |category|
+      percentages[category] = user.incorrect_percentage(category.name)
+    end
+    percentages
+  end
+
+  def category_ranges
+    ranges = {}
+    from = 0.0
+    categories.each do |category|
+      to = from + category_probabilities[category]
+      ranges[category] = from..to
+      from = to
+    end
+    ranges
   end
 end

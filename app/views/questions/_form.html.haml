@@ -40,11 +40,11 @@
   .form-group
     = f.label :description, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
+      = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => ckeditor_params
   .form-group
     = f.label :hint, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.cktext_area :hint, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
+      = f.cktext_area :hint, :class => 'col-sm-2 control-label', :ckeditor => ckeditor_params
       
   %h3 Parts
   %ol

@@ -8,14 +8,9 @@ class TestQuestion < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
-  def self.latests_asked_to_user(user, category=nil, limit=10)
-    ids = user.test_question_ids
-    ids |= category.test_question_ids if category
+  RECENT_LIMIT = 10
 
-    latests = where(id: ids).order(created_at: :desc)
-    latests = latests.limit(limit) if limit
-    latests
-  end
+  scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
 
   def user
     test.user

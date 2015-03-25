@@ -13,4 +13,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def ckeditor_params
+    { :language => 'en', extraPlugins: 'mathjax,imageresize,oembed,tableresize' }
+  end
 end

@@ -53,3 +53,66 @@
               %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
       .col-sm-3.disagree
         =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button'
+
+
+
+/ <<<<<<< miguel
+/ .page-header
+/   = link_to tests_path, :class => 'btn btn-default' do
+/     %span.glyphicon.glyphicon-list-alt
+/     Back
+/   %h1 Test results
+
+/ %dl.dl-horizontal
+/   %dt Year group:
+/   %dd= @test.year_group.name
+/   %dt Categories:
+/   %dd= @test.category_names
+/   %dt Duration:
+/   %dd= @test.duration
+/   %dt User:
+/   %dd= @test.user.email
+
+/ %hr
+
+/ %dl.dl-horizontal
+/   %dt Correct:
+/   %dd= @test.correct_answers_count
+/   %dt Incorrect:
+/   %dd= @test.incorrect_answers_count
+/   %dt Percentage:
+/   %dd= number_to_percentage @test.percentage, precision: 0
+/   %dt Grade:
+/   %dd= @test.grade
+
+/ .col-sm-offset-2.col-sm-10
+/   = social_share_button_tag("Gradezilla rules", url: "http://gradezilla.com", popup: "true")
+
+/ %hr
+
+/ %dl.dl-horizontal
+/   - (@test.stats.keys - [:all]).each do |aggregation|
+/     %dt= aggregation
+/     %dd= number_to_percentage @test.percentage(aggregation), precision: 0
+
+/ - @test.test_questions.each do |test_question|
+/   %hr
+/   %dl.dl-horizontal
+/   %dt.question-text= "Question #{test_question.number}:"
+/   %dd.question-text=test_question.question.description.html_safe
+/   %ol
+/     - test_question.answers.each do |answer|
+/       %li
+/         %dd=answer.question_part.description.html_safe
+/         %dt Your answer:
+/         %dd
+/           = answer.content
+/           %br
+/           = answer.correct? ? "Was correct!" : "Was incorrect!"
+/         - unless answer.correct?
+/           %dt Correct answer:
+/           %dd= answer.correct_answer.content
+/         %dt Marks:
+/         %dd= "#{answer.marks} on #{pluralize(answer.max_marks.to_i, 'point')}"
+/   =link_to "Disagree", new_message_path(disagree: 1, question_id: test_question.question.id)
+/ >>>>>>> miguel

@@ -1,10 +1,9 @@
 class Student < User
-  include Stats
-
-  MAX_RECENT_TESTS = 10  
+  include Stats 
 
   has_many :tests, :foreign_key => "user_id"
-  has_many :recent_tests, -> { order(created_at: :desc).limit(MAX_RECENT_TESTS) }, :class_name => "Test", :foreign_key => "user_id"
+  has_many :test_questions, through: :tests
+  has_many :recent_tests, -> { recent }, :class_name => "Test", :foreign_key => "user_id"
   has_many :recent_test_questions, :class_name => "TestQuestion", through: :recent_tests, source: :test_questions
   belongs_to :school
 
