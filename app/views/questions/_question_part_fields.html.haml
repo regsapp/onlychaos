@@ -1,15 +1,22 @@
 %li
-  .form-group
-    = f.label :description, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.cktext_area :description, :class => 'col-sm-2 control-label', :ckeditor => {:language => 'en', extraPlugins: 'mathjax'}
-  .form-group
-    = f.label :marks, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.number_field :marks, :class => 'form-control', :min => 1
-  .form-group
-    = f.label :answer_type, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
-  = f.fields_for :correct_answer do |builder|
-    = render 'correct_answer_fields', f: builder
+  %fieldset
+    .form-group
+      = f.label :description, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.cktext_area :description, :class => 'col-sm-2 control-label ckeditor-part', :ckeditor => ckeditor_params
+    .form-group
+      = f.label :marks, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.number_field :marks, :class => 'form-control', :min => 1
+    .form-group
+      = f.label :answer_type, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
+    = f.fields_for :correct_answer do |builder|
+      = render 'correct_answer_fields', f: builder
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.hidden_field :_destroy
+        = link_to 'Remove Part', '#', class: 'remove_fields'
+    %hr

@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require ckeditor/init
 //= require social-share-button
+//= require questions
 // require_tree .
 
 $(document).ready(function() {
