@@ -1,6 +1,6 @@
 class MessageMailer < ApplicationMailer
-  default from: "no-reply@onlychaos.com"
-  default to: "camilla@onlychaos.com"
+  default from: "no-reply@gradezilla.com"
+  default to: "camilla@gradezilla.com"
 
   def new_message(message)
     @message = message
