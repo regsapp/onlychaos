@@ -1,5 +1,5 @@
 .page-header
-  %h1 Show message
+  %h1 Message
 
 %dl.dl-horizontal
   %dt Email:
@@ -12,3 +12,7 @@
   %dd= @message.title
   %dt Body:
   %dd= @message.body
+
+%div.dashboard
+
+  =link_to "Go To Dashboard", root_path, class: "normal button"
