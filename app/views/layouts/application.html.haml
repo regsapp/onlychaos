@@ -64,14 +64,14 @@
               %li
                 = model_menu_item(Message)
     .nav.right
-      %ul
+      %ul.nav-right
         - if user_signed_in?
-          %li
+          %li.nav-right
             = link_to "Account | ", edit_user_registration_path, class: "nav"
-          %li
+          %li.nav-right
             = link_to "Log out", destroy_user_session_path, method: :delete, class: "nav"
         - else
-          %li
+          %li.nav-right
             = link_to "Log in", new_user_session_path, class: "nav"
     .alerts
       - flash.each do |type, msg|

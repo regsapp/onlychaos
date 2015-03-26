@@ -54,13 +54,13 @@ a.logo a:hover {
   margin: auto;
 }
 
-.nav.right ul {
+.nav.right ul.nav-right {
   font-size: 1.2em;
   font-weight: 100;
-  width: 150px;
+  // width: 150px;
 }
 
-.nav.right li {
+.nav.right li.nav-right {
   border: none;
   display: inline;
   padding: 0;
@@ -209,4 +209,3 @@ div.page-header h1 {
   width: 90%;
   // clear: both;
 }
-
