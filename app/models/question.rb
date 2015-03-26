@@ -10,7 +10,6 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :question_parts
 
   validates :category_id, presence: true
-  # validates :year_group_id, presence: true
 
   validate :must_have_exam_boards unless Proc.new { |question| question.tutorial? }
 
@@ -30,7 +29,7 @@ class Question < ActiveRecord::Base
     end
 
     selection = []
-    
+
     while selection.map(&:marks).sum < test.max_marks do
       picked_category = test.pick_category
       selected = questions_by_category[picked_category].pop

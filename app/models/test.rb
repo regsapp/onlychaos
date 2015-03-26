@@ -10,8 +10,9 @@ class Test < ActiveRecord::Base
 
   accepts_nested_attributes_for :test_questions
 
-  # validates :year_group_id, presence: true
   validates :duration, :inclusion => { in: 1..100 , unless: :tutorial? }
+
+  validate :must_have_categories
 
   after_create :create_test_questions
 
@@ -55,6 +56,10 @@ class Test < ActiveRecord::Base
   end
 
   private
+
+  def must_have_categories
+    errors.add(:categories, 'must have at least one selected') unless categories.any?
+  end
 
   def create_test_questions
     question_selection = tutorial? ? Question.tutorial : Question.selection_for(self)
