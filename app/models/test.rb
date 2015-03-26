@@ -11,9 +11,7 @@ class Test < ActiveRecord::Base
   accepts_nested_attributes_for :test_questions
 
   # validates :year_group_id, presence: true
-  validates :duration, :inclusion => { :in => 1..100 }
-
-  validate :must_have_questions, on: :create
+  validates :duration, :inclusion => { in: 1..100 , unless: :tutorial? }
 
   after_create :create_test_questions
 
@@ -58,15 +56,8 @@ class Test < ActiveRecord::Base
 
   private
 
-  def question_selection
-    @question_selection ||= Question.selection_for(self)
-  end
-
-  def must_have_questions
-    errors.add(:categories, 'must have questions') unless question_selection.any?
-  end
-
   def create_test_questions
+    question_selection = tutorial? ? Question.tutorial : Question.selection_for(self)
     question_selection.each_with_index do |question, index|
       self.test_questions.create!(question_id: question.id, number: index + 1)
     end

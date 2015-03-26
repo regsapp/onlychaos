@@ -25,11 +25,9 @@ class TestQuestion < ActiveRecord::Base
   end
 
   def next_test_question
-    if !correct? && next_chance?
-      self
-    else
-      test.next_test_question
-    end
+    return self if !correct? && next_chance?
+    return self if !correct? && tutorial?
+    test.next_test_question
   end
 
   def last?
@@ -38,6 +36,10 @@ class TestQuestion < ActiveRecord::Base
 
   def next_chance?
     attempts < 2
+  end
+
+  def tutorial?
+    test.tutorial?
   end
 
   private

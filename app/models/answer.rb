@@ -54,6 +54,10 @@ class Answer < ActiveRecord::Base
     updated_at > created_at if persisted?
   end
 
+  def tutorial?
+    test.tutorial?
+  end
+
   def to_type
     case type
     when "integer"

@@ -53,6 +53,10 @@ class TestQuestionsController < ApplicationController
 
         if @test_question.next_test_question
           format.html { redirect_to edit_test_question_path(@test_question.next_test_question), alert: alert, notice: notice }
+        elsif @test_question.tutorial?
+          current_user.tutorial_completed = true
+          current_user.save!
+          format.html { redirect_to dashboard_path(@test_question.test), notice: "Well done! Now do some real stuff" }
         else
           format.html { redirect_to test_path(@test_question.test) , alert: alert, notice: notice }
         end
