@@ -14,5 +14,6 @@
       <%= f.submit "LOGIN", class: 'normal button' %>
     <% end %>
 
+    <h4><%= render "devise/shared/links" %></h4>
     <h4>Don't have an account?  <%= link_to 'Request one here', new_user_registration_path %></h4>
 </section>
