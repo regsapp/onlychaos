@@ -12,6 +12,33 @@
 /     makePreview('#question_correct_answer', '#answer_preview');
 /   });
 
+:javascript
+  $(function(){
+    function is_ckeditor_initialized(id){
+      return CKEDITOR.instances[id] ? true : false;
+    }
+
+    function init_ckeditor(id){
+      if (typeof CKEDITOR != 'undefined') {
+        CKEDITOR.replace(id, {"language":"en","extraPlugins":"mathjax"});
+      } else {
+        setTimeout(arguments.callee, 50);
+      }
+    }
+
+    $('.add_fields').click(function(e){
+      e.preventDefault();
+      setTimeout(function(){
+        $('.ckeditor-part').each(function(){
+          var id = $(this).attr('id');
+          if(!is_ckeditor_initialized(id)){
+            init_ckeditor(id);
+          }
+        })
+      }, 400)
+    })
+  })
+
 = form_for @question, :html => { :class => "form-horizontal" } do |f|
   -if @question.errors.any?
     .alert.alert-danger.alert-dismissable
