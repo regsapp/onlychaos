@@ -1,8 +1,6 @@
 Admin.create!(email: "admin@example.com", password: "password", first_name: "Miguel", last_name: "Cabero")
 
-as = YearGroup.create!(name: "AS")
-a2 = YearGroup.create!(name: "A2")
-
+tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
 astrophysics = Category.create!(name: "Astrophysics", year: "A2")
 mechanics = Category.create!(name: "Mechanics", year: "AS")
 electricity = Category.create!(name: "Electricity", year: "A2")
@@ -15,8 +13,76 @@ cam = ExamBoard.create!(name: 'University of Cambridge Local Examinations Syndic
 school = ox.schools.create(name: "Hogwarts")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date)
 
+# Tutorial questions
+
+Question.create({ 
+  category_id: tutorial.id,
+  description: '',
+  hint: '',
+  question_parts_attributes: [
+    { description: %q{
+        <p>
+          An object is thrown upwards with a speed of 25 ms<sup>-1</sup>. How high will it be when the speed is 12 ms<sup>-1</sup>.
+        </p>
+        <p>
+          Write down the equation you would use to solve this in a single equation. 
+        </p>
+      }.squish,
+      marks: 1,
+      answer_type: "formula",
+      correct_answer_attributes: {
+        content: "`v^2 = u^2 + 2as`"
+      }
+    }
+  ]
+})
+
+Question.create({ 
+  category_id: tutorial.id,
+  description: '',
+  hint: '',
+  question_parts_attributes: [
+    { description: %q{
+        <p>
+          An aeroplane is flying horizontally and heading north through the air. Its
+speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
+What formula would you use to calculate the speed over the ground?  
+        </p>
+      }.squish,
+      marks: 1,
+      answer_type: "formula",
+      correct_answer_attributes: {
+        content: "`sqrt(a^2 + b^2)`"
+      }
+    }
+  ]
+})
+
+Question.create({ 
+  category_id: tutorial.id,
+  description: '',
+  hint: '',
+  question_parts_attributes: [
+    { description: %q{
+        <p>
+          An aeroplane is flying horizontally and heading north through the air. Its
+speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
+How would you calculate the angle from north at which the plane flies
+over the ground? 
+        </p>
+      }.squish,
+      marks: 1,
+      answer_type: "formula",
+      correct_answer_attributes: {
+        content: "`tan^(-1)(b/a)`"
+      }
+    }
+  ]
+})
+
+
+# Other questions
 question = Question.create!(
-  year_group_id: as.id,
   category_id: astrophysics.id,
   exam_board_ids: [ox.id],
   description: %q{
@@ -43,12 +109,11 @@ question = Question.create!(
 )
 
 year_groups = YearGroup.all.to_a
-categories = Category.all.to_a
+categories = Category.real.to_a
 exam_boards = ExamBoard.all.to_a
 
 20.times do ||
   Question.create!(
-    year_group_id: year_groups.sample.id,
     category_id: categories.sample.id,
     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
     description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
@@ -87,7 +152,6 @@ math = Category.create!(name: "Super simple math", year: "AS")
 20.times do ||
   a = (1..10).to_a.sample(4)
   Question.create!(
-    year_group_id: year_groups.sample.id,
     category_id: math.id,
     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
     description: "(UID:#{rand(1000)}) Simple math question",

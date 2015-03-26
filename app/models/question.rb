@@ -12,9 +12,13 @@ class Question < ActiveRecord::Base
   validates :category_id, presence: true
   # validates :year_group_id, presence: true
 
-  validate :must_have_exam_boards
+  validate :must_have_exam_boards unless Proc.new { |question| question.tutorial? }
 
   before_save :set_marks
+
+  def self.tutorial
+    Category.tutorial.questions
+  end
 
   def self.selection_for(test)
     questions = where(category_id: test.category_ids).select(:id, :category_id, :marks).shuffle
@@ -50,10 +54,14 @@ class Question < ActiveRecord::Base
     exam_boards.map(&:name).join(", ")
   end
 
+  def tutorial?
+    category.tutorial?
+  end
+
   private
 
   def must_have_exam_boards
-    errors.add(:exam_boards, 'must have at least one selected') if exam_boards.none?
+    errors.add(:exam_boards, 'must have at least one selected') unless exam_boards.any?
   end
 
   def set_marks

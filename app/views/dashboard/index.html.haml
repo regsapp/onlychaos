@@ -10,31 +10,38 @@
   });
 
 %br
-/ <<<<<<< miguel
-/ %h3= "Stats (on #{'last' if @user.recent_tests.size == Test::RECENT_LIMIT} #{pluralize(@user.recent_tests.size, 'test')})"
-/ >>>>>>> miguel
 
-%div.results
+- if @user.tutorial_completed?
 
-  %div.charts
-    .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
+  / <<<<<<< miguel
+  / %h3= "Stats (on #{'last' if @user.recent_tests.size == Test::RECENT_LIMIT} #{pluralize(@user.recent_tests.size, 'test')})"
+  / >>>>>>> miguel
 
-    .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
+  %div.results
 
-    .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
+    %div.charts
+      .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
 
-    .chart{"data-percent" => "55"} #{@user.grade}
+      .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
 
-  %div.questions
+      .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
 
-    %hr
+      .chart{"data-percent" => "55"} #{@user.grade}
 
-    %dl.dl-horizontal
-      - (@user.stats.keys - [:all]).each do |aggregation|
-        %div.boxes
-          %p.grade= @user.grade(aggregation)
-          %p= aggregation
+    %div.questions
+
+      %hr
+
+      %dl.dl-horizontal
+        - (@user.stats.keys - [:all]).each do |aggregation|
+          %div.boxes
+            %p.grade= @user.grade(aggregation)
+            %p= aggregation
+  %div
+    =link_to "Take a test", new_test_path, :class => "normal button"
+-else
+  %div
+    =link_to "Preliminary test", tests_path(test:{ tutorial: 1 }), :method => :post, :class => "normal button"
 
 
-    %div
-      =link_to "Take a test", new_test_path, :class => "normal button"
+

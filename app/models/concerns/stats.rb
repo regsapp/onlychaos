@@ -6,6 +6,7 @@ module Stats
 
     @stats = {}
     answers.each do |answer|
+      next if answer.tutorial?
       [:all, answer.category_name].each do |aggregation|
         @stats[aggregation] ||= Hash.new(0)
         @stats[aggregation][:correct_answers_count] += answer.correct? ? 1 : 0

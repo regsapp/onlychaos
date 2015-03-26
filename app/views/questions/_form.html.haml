@@ -22,10 +22,6 @@
         - @question.errors.full_messages.each do |msg|
           %li= msg
   .form-group
-    = f.label :year_group, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
-  .form-group
     = f.label :category, :class => 'col-sm-2 control-label'
     .col-sm-10
       = f.collection_select :category_id, Category.all, :id, :name, { prompt: true }, :class => 'form-control'

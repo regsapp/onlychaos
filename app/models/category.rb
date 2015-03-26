@@ -4,11 +4,15 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :tests
 
   validates :name, presence: true, uniqueness: true
-  validates :year, presence: true
+  validates :year, presence: { unless: :tutorial? }
 
+  scope :real, -> { where(tutorial: false) }
+
+  def self.tutorial
+    find_by(tutorial: true)
+  end
 
   def test_question_ids
     test_questions.ids
   end
-
 end
