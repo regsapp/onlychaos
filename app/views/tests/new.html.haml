@@ -49,10 +49,10 @@
 
       .form-object
         .col-sm-7.range
-          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showNewValue(this.value)'
         %div.duration
           = succeed ' minutes' do
-            %span#time 60
+            %span#A2time 60
           %br
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
 
@@ -71,4 +71,9 @@
 :javascript
   function showValue(newValue) {
     document.getElementById('time').innerHTML = newValue;
+  }
+
+:javascript
+  function showNewValue(newValue) {
+    document.getElementById('A2time').innerHTML = newValue;
   }
