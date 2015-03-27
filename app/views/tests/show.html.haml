@@ -26,6 +26,10 @@
 
     =link_to "To Dashboard", root_path, class: "normal button"
 
+  .col-sm-offset-8.col-sm-4
+    %p Share your results:
+    = social_share_button_tag("Gradezilla rules", url: "http://gradezilla.com", popup: "true")
+
   %div.questions
     -# %ul.dl-horizontal
     -#   %li= @test.category_names
