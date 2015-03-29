@@ -26,4 +26,13 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  # hack to render formulas generated with ckeditor when using MathJax
+  # with config TeX-MML-AM_HTMLorMML-full (required asciimath answer preview)
+  # instead of config default
+
+  def change_math_delims(text)
+    re = Regexp.new("(<span\\ class=\"math\\-tex\\-or\\-mml\">\\\\\\()(.+)(\\\\\\)</span>)")
+    text.gsub(re, '`\2`').html_safe
+  end
 end

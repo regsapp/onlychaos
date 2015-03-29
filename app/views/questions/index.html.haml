@@ -23,8 +23,8 @@
         %tr.question-table
           %td= question.category.name
           %td= question.exam_board_names
-          %td.question-text= question.description.html_safe
-          %td.question-text= question.hint.html_safe
+          %td.question-text= change_math_delims(question.description)
+          %td.question-text= change_math_delims(question.hint)
           %td= question.question_parts.count
           %td= question.marks
           %td= link_to 'Show', question

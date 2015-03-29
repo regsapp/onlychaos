@@ -13,9 +13,9 @@
   %dt Exam boards:
   %dd= @question.exam_board_names
   %dt.question-text Description:
-  %dd.question-text=@question.description.html_safe
+  %dd.question-text=change_math_delims(@question.description)
   %dt.question-text Hint:
-  %dd.question-text=@question.hint.html_safe
+  %dd.question-text=change_math_delims(@question.hint)
 
 %h3 Parts
 %ol
@@ -23,7 +23,7 @@
     %li
     %dl.dl-horizontal
     %dt Description:
-    %dd.question-text=question_part.description.html_safe
+    %dd.question-text=change_math_delims(question_part.description)
     %dt Marks:
     %dd= question_part.marks
     %dt Answer type:
