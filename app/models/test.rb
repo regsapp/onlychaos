@@ -2,7 +2,7 @@ class Test < ActiveRecord::Base
   include Stats
 
   belongs_to :year_group
-  belongs_to :user
+  belongs_to :student, :class_name => "Student", :foreign_key => "user_id"
   has_and_belongs_to_many :categories
   has_many :test_questions, dependent: :destroy
   has_many :questions, through: :test_questions
@@ -10,15 +10,30 @@ class Test < ActiveRecord::Base
 
   accepts_nested_attributes_for :test_questions
 
-  validates :duration, :inclusion => { in: 1..100 , unless: :tutorial? }
+  validates :duration, inclusion: { in: 1..100 , unless: :tutorial? }
 
   validate :must_have_categories
+  validate :must_have_selected_questions
 
+
+  # temporarily (while we don't have exam boards per school)
+  has_one :exam_board, through: :student
+  attr_writer :exam_board_id
+  validates :exam_board_id, presence: { unless: :tutorial? }
+  after_save :store_exam_board_id
+
+  def exam_board_id
+    @exam_board_id ||= student.exam_board_id
+  end
+
+  
   after_create :create_test_questions
 
   RECENT_LIMIT = 10
 
   scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
+
+
 
   def category_names
     categories.map(&:name).join(", ")
@@ -52,7 +67,7 @@ class Test < ActiveRecord::Base
 
   def pick_category
     rand_number = rand
-    category_ranges.to_a.find{ |a| rand_number.in? a[1] }[0]
+    category_ranges.to_a.find{ |a| rand_number.in? a[1] }.to_a[0]
   end
 
   private
@@ -61,9 +76,17 @@ class Test < ActiveRecord::Base
     errors.add(:categories, 'must have at least one selected') unless categories.any?
   end
 
+  def must_have_selected_questions
+    errors.add(:selection, 'must have at least one question') unless selected_questions.any?
+  end
+
+  def selected_questions
+    return @selected_questions if @selected_questions
+    @selected_questions = tutorial? ? Question.tutorial : Question.selection_for(self)
+  end
+
   def create_test_questions
-    question_selection = tutorial? ? Question.tutorial : Question.selection_for(self)
-    question_selection.each_with_index do |question, index|
+    selected_questions.each_with_index do |question, index|
       self.test_questions.create!(question_id: question.id, number: index + 1)
     end
   end
@@ -71,7 +94,7 @@ class Test < ActiveRecord::Base
   def category_incorrect_percentages
     percentages = {}
     categories.each do |category|
-      percentages[category] = user.incorrect_percentage(category.name)
+      percentages[category] = student.incorrect_percentage(category.name)
     end
     percentages
   end
@@ -85,5 +108,10 @@ class Test < ActiveRecord::Base
       from = to
     end
     ranges
+  end
+
+  def store_exam_board_id
+    student.exam_board_id = exam_board_id
+    student.save!
   end
 end

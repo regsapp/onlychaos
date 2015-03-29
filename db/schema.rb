@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326163559) do
+ActiveRecord::Schema.define(version: 20150327113148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,9 +159,11 @@ ActiveRecord::Schema.define(version: 20150326163559) do
     t.date     "birthday"
     t.integer  "school_id"
     t.boolean  "tutorial_completed",     default: false
+    t.integer  "exam_board_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["exam_board_id"], name: "index_users_on_exam_board_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
@@ -181,5 +183,6 @@ ActiveRecord::Schema.define(version: 20150326163559) do
   add_foreign_key "test_questions", "tests"
   add_foreign_key "tests", "users"
   add_foreign_key "tests", "year_groups"
+  add_foreign_key "users", "exam_boards"
   add_foreign_key "users", "schools"
 end

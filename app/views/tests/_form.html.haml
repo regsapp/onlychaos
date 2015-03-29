@@ -8,10 +8,11 @@
         %ul
           - @test.errors.full_messages.each do |msg|
             %li= msg
-    / .form-group
-    /   = f.label :year_group, :class => 'col-sm-2 control-label'
-    /   .col-sm-10
-    /     = f.collection_select :year_group_id, YearGroup.all, :id, :name, { prompt: true }, :class => 'form-control'
+    .form-group
+      = f.fields_for :user do |user_fields|
+        = user_fields.label :exam_board, :class => 'col-sm-2 control-label'
+        .col-sm-10
+          = user_fields.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
     .form-object
       = f.label :duration, 'TEST DURATION', :class => 'form-label'
       .col-sm-10

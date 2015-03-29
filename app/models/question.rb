@@ -20,7 +20,10 @@ class Question < ActiveRecord::Base
   end
 
   def self.selection_for(test)
-    questions = where(category_id: test.category_ids).select(:id, :category_id, :marks).shuffle
+    questions = test.exam_board.questions
+                               .where(category_id: test.category_ids)
+                               .select(:id, :category_id, :marks)
+                               .shuffle
     
     questions_by_category = {}
     questions.each do |question|
@@ -32,7 +35,7 @@ class Question < ActiveRecord::Base
 
     while selection.map(&:marks).sum < test.max_marks do
       picked_category = test.pick_category
-      selected = questions_by_category[picked_category].pop
+      selected = questions_by_category[picked_category].to_a.pop
       selection << selected if selected
       break if questions_by_category.values.flatten.none?
     end

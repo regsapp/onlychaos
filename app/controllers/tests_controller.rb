@@ -16,7 +16,7 @@ class TestsController < ApplicationController
 
   # GET /tests/new
   def new
-    @test = Test.new
+    @test = current_user.tests.build
   end
 
   # GET /tests/1/edit
@@ -26,9 +26,7 @@ class TestsController < ApplicationController
   # POST /tests
   # POST /tests.json
   def create
-    @test = Test.new(test_params)
-    @test.user = current_user
-
+    @test = current_user.tests.build(test_params)
     respond_to do |format|
       if @test.save
         format.html { redirect_to edit_test_question_path(@test.next_test_question), notice: 'Test has started. Good luck.' }
@@ -72,6 +70,6 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:duration, :tutorial, :category_ids => [])
+      params.require(:test).permit(:id, :duration, :tutorial, :exam_board_id, :category_ids => [])
     end
 end
