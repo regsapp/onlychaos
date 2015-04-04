@@ -23,6 +23,7 @@ body {
   margin-right: auto;
   padding-top: 0%;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 /*// HEADER //*/
@@ -212,4 +213,15 @@ div.page-header h1 {
 .form-question {
   width: 90%;
   // clear: both;
+}
+
+// FOOTER//
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  color: #fff;
+  height: 20px;
 }

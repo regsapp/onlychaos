@@ -9,10 +9,11 @@ electricity = Category.create!(name: "Electricity", year: "A2")
 particles = Category.create!(name: "Particles", year: "A2")
 waves = Category.create!(name: "Waves", year: "AS")
 
-ox  = ExamBoard.create!(name: 'University of Oxford Delegacy of Local Examinations')
-cam = ExamBoard.create!(name: 'University of Cambridge Local Examinations Syndicate')
+ocr  = ExamBoard.create!(name: 'OCR')
+aqa = ExamBoard.create!(name: 'AQA')
+edexcel = ExamBoard.create!(name: 'Edexcel')
 
-school = ox.schools.create(name: "Hogwarts")
+school = ocr.schools.create(name: "Rickmansworth School")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date, exam_board_id: 1)
 
 # Tutorial questions
