@@ -103,31 +103,31 @@ over the ground?
 
 
 # Other questions
-question = Question.create!(
-  category_id: astrophysics.id,
-  exam_board_ids: [ocr.id],
-  description: %q{
-    Suppose we have a particle in 1-dimension, with wavefunction $$Ae^{-\frac{|x|}{2d}}$$.
-  }.squish,
-  hint: %q{
-    Remember $$Ae^{-\frac{|x|}{2d}}$$, bla bla bla.
-  }.squish,
-  question_parts_attributes: [
-    {
-      description: %q{
-        What is the probability to find the particle in the interval $$[0,d]$$?
-        <br>
-        Please provide your answer in terms of $$A$$, $$d$$, mathematical constants such as $$\pi$$ (entered as <code>pi</code>) or $$e$$ (entered as <code>e</code>).
-        (<b>Assume that A is real</b>)
-      }.squish,
-      marks: 1,
-      answer_type: "formula",
-      correct_answer_attributes: {
-        content: "`A^2+d+pi-e`"
-      }
-    }
-  ]
-)
+# question = Question.create!(
+#   category_id: astrophysics.id,
+#   exam_board_ids: [ocr.id],
+#   description: %q{
+#     Suppose we have a particle in 1-dimension, with wavefunction $$Ae^{-\frac{|x|}{2d}}$$.
+#   }.squish,
+#   hint: %q{
+#     Remember $$Ae^{-\frac{|x|}{2d}}$$, bla bla bla.
+#   }.squish,
+#   question_parts_attributes: [
+#     {
+#       description: %q{
+#         What is the probability to find the particle in the interval $$[0,d]$$?
+#         <br>
+#         Please provide your answer in terms of $$A$$, $$d$$, mathematical constants such as $$\pi$$ (entered as <code>pi</code>) or $$e$$ (entered as <code>e</code>).
+#         (<b>Assume that A is real</b>)
+#       }.squish,
+#       marks: 1,
+#       answer_type: "formula",
+#       correct_answer_attributes: {
+#         content: "`A^2+d+pi-e`"
+#       }
+#     }
+#   ]
+# )
 
 year_groups = YearGroup.all.to_a
 categories = Category.real.to_a
@@ -168,32 +168,32 @@ exam_boards = ExamBoard.all.to_a
 #   )
 # end
 
-math = Category.create!(name: "Super simple math", year: "AS")
-
-20.times do ||
-  a = (1..10).to_a.sample(4)
-  Question.create!(
-    category_id: math.id,
-    exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
-    description: "(UID:#{rand(1000)}) Simple math question",
-    hint: "bla bla bla",
-    question_parts_attributes: [
-      {
-        description: "#{a[0]} + #{a[1]}",
-        marks: 1,
-        answer_type: "integer",
-        correct_answer_attributes: {
-          content: "#{a[0] + a[1]}"
-        }
-      },
-      {
-        description: "#{a[2]} + #{a[3]}",
-        marks: rand(1..2),
-        answer_type: "integer",
-        correct_answer_attributes: {
-          content: "#{a[2] + a[3]}"
-        }
-      }
-    ]
-  )
-end
+# math = Category.create!(name: "Super simple math", year: "AS")
+#
+# 20.times do ||
+#   a = (1..10).to_a.sample(4)
+#   Question.create!(
+#     category_id: math.id,
+#     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
+#     description: "(UID:#{rand(1000)}) Simple math question",
+#     hint: "bla bla bla",
+#     question_parts_attributes: [
+#       {
+#         description: "#{a[0]} + #{a[1]}",
+#         marks: 1,
+#         answer_type: "integer",
+#         correct_answer_attributes: {
+#           content: "#{a[0] + a[1]}"
+#         }
+#       },
+#       {
+#         description: "#{a[2]} + #{a[3]}",
+#         marks: rand(1..2),
+#         answer_type: "integer",
+#         correct_answer_attributes: {
+#           content: "#{a[2] + a[3]}"
+#         }
+#       }
+#     ]
+#   )
+# end
