@@ -6,11 +6,11 @@ aqa = ExamBoard.create!(name: 'AQA')
 edexcel = ExamBoard.create!(name: 'Edexcel')
 
 tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
-astrophysics = Category.create!(name: "Astrophysics", year: "A2", exam_board_id: 1)
-mechanics = Category.create!(name: "Mechanics", year: "AS", exam_board_id: 1)
-electricity = Category.create!(name: "Electricity", year: "A2", exam_board_id: 2)
-particles = Category.create!(name: "Particles", year: "A2", exam_board_id: 3)
-waves = Category.create!(name: "Waves", year: "AS", exam_board_id: 2)
+# astrophysics = Category.create!(name: "Astrophysics", year: "A2", exam_board_id: 1)
+# mechanics = Category.create!(name: "Mechanics", year: "AS", exam_board_id: 1)
+# electricity = Category.create!(name: "Electricity", year: "A2", exam_board_id: 2)
+# particles = Category.create!(name: "Particles", year: "A2", exam_board_id: 3)
+# waves = Category.create!(name: "Waves", year: "AS", exam_board_id: 2)
 
 school = ocr.schools.create(name: "Rickmansworth School")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date, exam_board_id: 1)
@@ -20,15 +20,21 @@ school.students.create!(email: "student@test.com", password: "password", first_n
 
 Question.create({
   category_id: tutorial.id,
-  description: '',
-  hint: '',
+  description: %q{
+      <p>
+        An object is thrown upwards with a speed of 25 ms<sup>-1</sup>. How high will it be when the speed is 12 ms<sup>-1</sup>.
+      </p>
+      <p>
+        Write down the equation you would use to solve this in a single equation.
+      </p>
+    }.squish,
+  hint: %q{
+      <p>Have you typed it exactly as shown?</p>
+    }.squish,
   question_parts_attributes: [
     { description: %q{
         <p>
-          An object is thrown upwards with a speed of 25 ms<sup>-1</sup>. How high will it be when the speed is 12 ms<sup>-1</sup>.
-        </p>
-        <p>
-          Write down the equation you would use to solve this in a single equation.
+          In the box below, type: <strong>v^2 = u^2 + 2as</strong>.
         </p>
       }.squish,
       marks: 1,
@@ -42,14 +48,20 @@ Question.create({
 
 Question.create({
   category_id: tutorial.id,
-  description: '',
-  hint: '',
+  description: %q{
+      <p>
+        An aeroplane is flying horizontally and heading north through the air. Its
+speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
+What formula would you use to calculate the speed over the ground?
+      </p>
+    }.squish,
+  hint: %q{
+      <p>Have you typed it exactly as shown?</p>
+    }.squish,
   question_parts_attributes: [
     { description: %q{
         <p>
-          An aeroplane is flying horizontally and heading north through the air. Its
-speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
-What formula would you use to calculate the speed over the ground?
+          In the box below, type: <strong>sqrt(a^2 + b^2)</strong>.
         </p>
       }.squish,
       marks: 1,
@@ -63,15 +75,21 @@ What formula would you use to calculate the speed over the ground?
 
 Question.create({
   category_id: tutorial.id,
-  description: '',
-  hint: '',
-  question_parts_attributes: [
-    { description: %q{
-        <p>
-          An aeroplane is flying horizontally and heading north through the air. Its
+  description: %q{
+      <p>
+        An aeroplane is flying horizontally and heading north through the air. Its
 speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
 How would you calculate the angle from north at which the plane flies
 over the ground?
+      </p>
+    }.squish,
+  hint: %q{
+      <p>Have you typed it exactly as shown?</p>
+    }.squish,
+  question_parts_attributes: [
+    { description: %q{
+        <p>
+          In the box below, type: <strong>tan^(-1)(b/a)</strong>.
         </p>
       }.squish,
       marks: 1,
@@ -115,40 +133,40 @@ year_groups = YearGroup.all.to_a
 categories = Category.real.to_a
 exam_boards = ExamBoard.all.to_a
 
-20.times do ||
-  Question.create!(
-    category_id: categories.sample.id,
-    exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
-    description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
-    hint: "bla bla bla",
-    question_parts_attributes: [
-      {
-        description: "has zero charge,",
-        marks: rand(1..2),
-        answer_type: "multiple bool",
-        correct_answer_attributes: {
-          content: "neutron OR n"
-        }
-      },
-      {
-        description: "has the largest specific charge,",
-        marks: rand(1..2),
-        answer_type: "multiple bool",
-        correct_answer_attributes: {
-          content: "electron OR e-"
-        }
-      },
-      {
-        description: "when removed leaves a different isotope of the element.",
-        marks: rand(1..2),
-        answer_type: "multiple bool",
-        correct_answer_attributes: {
-          content: "neutron OR n"
-        }
-      }
-    ]
-  )
-end
+# 20.times do ||
+#   Question.create!(
+#     category_id: categories.sample.id,
+#     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
+#     description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
+#     hint: "bla bla bla",
+#     question_parts_attributes: [
+#       {
+#         description: "has zero charge,",
+#         marks: rand(1..2),
+#         answer_type: "multiple bool",
+#         correct_answer_attributes: {
+#           content: "neutron OR n"
+#         }
+#       },
+#       {
+#         description: "has the largest specific charge,",
+#         marks: rand(1..2),
+#         answer_type: "multiple bool",
+#         correct_answer_attributes: {
+#           content: "electron OR e-"
+#         }
+#       },
+#       {
+#         description: "when removed leaves a different isotope of the element.",
+#         marks: rand(1..2),
+#         answer_type: "multiple bool",
+#         correct_answer_attributes: {
+#           content: "neutron OR n"
+#         }
+#       }
+#     ]
+#   )
+# end
 
 math = Category.create!(name: "Super simple math", year: "AS")
 
