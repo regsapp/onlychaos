@@ -11,11 +11,11 @@ ox  = ExamBoard.create!(name: 'University of Oxford Delegacy of Local Examinatio
 cam = ExamBoard.create!(name: 'University of Cambridge Local Examinations Syndicate')
 
 school = ox.schools.create(name: "Hogwarts")
-school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date)
+school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date, exam_board_id: 1)
 
 # Tutorial questions
 
-Question.create({ 
+Question.create({
   category_id: tutorial.id,
   description: '',
   hint: '',
@@ -25,7 +25,7 @@ Question.create({
           An object is thrown upwards with a speed of 25 ms<sup>-1</sup>. How high will it be when the speed is 12 ms<sup>-1</sup>.
         </p>
         <p>
-          Write down the equation you would use to solve this in a single equation. 
+          Write down the equation you would use to solve this in a single equation.
         </p>
       }.squish,
       marks: 1,
@@ -37,7 +37,7 @@ Question.create({
   ]
 })
 
-Question.create({ 
+Question.create({
   category_id: tutorial.id,
   description: '',
   hint: '',
@@ -46,7 +46,7 @@ Question.create({
         <p>
           An aeroplane is flying horizontally and heading north through the air. Its
 speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
-What formula would you use to calculate the speed over the ground?  
+What formula would you use to calculate the speed over the ground?
         </p>
       }.squish,
       marks: 1,
@@ -58,7 +58,7 @@ What formula would you use to calculate the speed over the ground?
   ]
 })
 
-Question.create({ 
+Question.create({
   category_id: tutorial.id,
   description: '',
   hint: '',
@@ -68,7 +68,7 @@ Question.create({
           An aeroplane is flying horizontally and heading north through the air. Its
 speed through the air is <em>a</em> and the wind is blowing east with a speed <em>b</em>.
 How would you calculate the angle from north at which the plane flies
-over the ground? 
+over the ground?
         </p>
       }.squish,
       marks: 1,

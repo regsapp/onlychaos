@@ -24,7 +24,7 @@ class Question < ActiveRecord::Base
                                .where(category_id: test.category_ids)
                                .select(:id, :category_id, :marks)
                                .shuffle
-    
+
     questions_by_category = {}
     questions.each do |question|
       questions_by_category[question.category] ||= []

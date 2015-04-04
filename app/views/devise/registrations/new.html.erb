@@ -10,14 +10,14 @@
     <div class="form-object">
       <%= f.text_field :last_name, autofocus: true, placeholder: 'family name' %>
     </div>
-    <!-- <div class="form-object">
-      <%= f.label :birthday, "Date of birth" %>
-      <%= f.date_select :birthday, {}, autofocus: true %>
+    <div class="form-object">
+      <!-- <%= f.label :birthday, "Date of birth" %> -->
+      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1990, :end_year => 2013, autofocus: true %>
     </div>
     <div class="form-object">
-      <%= f.label :school, "School / College" %> 
-      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: true }, autofocus: true, placeholder: 'school/college' %>
-    </div> -->
+      <!-- <%= f.label :school, "School / College" %> -->
+      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true %>
+    </div>
     <div class="form-object">
       <%= f.email_field :email, autofocus: true, placeholder: 'school/college email' %>
     </div>

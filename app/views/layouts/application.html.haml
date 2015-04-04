@@ -42,7 +42,8 @@
     .nav.left
       %ul
         %li
-          %a.logo{:href => "/"} GradeZilla
+          %a.logo{:href => "/"} Grade
+          %b zilla
         %li
           - if user_signed_in? && current_user.admin?
             %a{:href => "#"} Options
