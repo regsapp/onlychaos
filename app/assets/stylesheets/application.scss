@@ -218,7 +218,8 @@ div.page-header h1 {
 // FOOTER//
 
 footer {
-  position: absolute;
+  clear: both;
+  position: fixed;
   bottom: 0;
   width: 100%;
   left: 0;

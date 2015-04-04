@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327113148) do
+ActiveRecord::Schema.define(version: 20150404124501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,14 @@ ActiveRecord::Schema.define(version: 20150327113148) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.text     "year"
-    t.boolean  "tutorial",   default: false
+    t.boolean  "tutorial",      default: false
+    t.integer  "exam_board_id"
   end
+
+  add_index "categories", ["exam_board_id"], name: "index_categories_on_exam_board_id", using: :btree
 
   create_table "categories_tests", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
@@ -105,6 +108,11 @@ ActiveRecord::Schema.define(version: 20150327113148) do
   add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree
   add_index "questions", ["year_group_id"], name: "index_questions_on_year_group_id", using: :btree
 
+  create_table "questions_tests", id: false, force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "test_id",     null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",    null: false
@@ -114,6 +122,19 @@ ActiveRecord::Schema.define(version: 20150327113148) do
 
   add_index "schools", ["exam_board_id"], name: "index_schools_on_exam_board_id", using: :btree
   add_index "schools", ["name"], name: "index_schools_on_name", using: :btree
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.integer  "user_id"
+  end
+
+  add_index "sessions", ["question_id"], name: "index_sessions_on_question_id", using: :btree
+  add_index "sessions", ["test_id"], name: "index_sessions_on_test_id", using: :btree
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
 
   create_table "test_questions", force: :cascade do |t|
     t.integer  "test_id"
@@ -139,6 +160,19 @@ ActiveRecord::Schema.define(version: 20150327113148) do
 
   add_index "tests", ["user_id"], name: "index_tests_on_user_id", using: :btree
   add_index "tests", ["year_group_id"], name: "index_tests_on_year_group_id", using: :btree
+
+  create_table "testsessions", force: :cascade do |t|
+    t.string   "answer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "test_id"
+    t.integer  "question_id"
+  end
+
+  add_index "testsessions", ["question_id"], name: "index_testsessions_on_question_id", using: :btree
+  add_index "testsessions", ["test_id"], name: "index_testsessions_on_test_id", using: :btree
+  add_index "testsessions", ["user_id"], name: "index_testsessions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",        null: false
@@ -175,6 +209,7 @@ ActiveRecord::Schema.define(version: 20150327113148) do
 
   add_foreign_key "answers", "question_parts"
   add_foreign_key "answers", "tests"
+  add_foreign_key "categories", "exam_boards"
   add_foreign_key "question_parts", "questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "year_groups"

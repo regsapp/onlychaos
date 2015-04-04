@@ -40,4 +40,37 @@ $(document).ready(function() {
 		$('.tab-AS').removeClass('active');
 	});
 
+	$('.Edexcel').hide();
+	$('.AQA').hide();
+
+	$('.OCR-link').click(function(e) {
+		e.preventDefault();
+		$('.OCR').show();
+		$('.Edexcel').hide();
+		$('.AQA').hide();
+		$('.tab-OCR').addClass('active');
+		$('.tab-Edexcel').removeClass('active');
+		$('.tab-AQA').removeClass('active');
+	});
+
+	$('.Edexcel-link').click(function(e) {
+		e.preventDefault();
+		$('.Edexcel').show();
+		$('.OCR').hide();
+		$('.AQA').hide();
+		$('.tab-Edexcel').addClass('active');
+		$('.tab-OCR').removeClass('active');
+		$('.tab-AQA').removeClass('active');
+	});
+
+	$('.AQA-link').click(function(e) {
+		e.preventDefault();
+		$('.AQA').show();
+		$('.OCR').hide();
+		$('.Edexcel').hide();
+		$('.tab-AQA').addClass('active');
+		$('.tab-OCR').removeClass('active');
+		$('.tab-Edexcel').removeClass('active');
+	});
+
 });

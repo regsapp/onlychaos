@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
   has_many :test_questions, through: :questions
   has_and_belongs_to_many :tests
 
+  has_and_belongs_to_many :exam_boards
+
   validates :name, presence: true, uniqueness: true
   validates :year, presence: { unless: :tutorial? }
 

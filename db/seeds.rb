@@ -1,20 +1,20 @@
 Admin.create!(email: "admin@example.com", password: "password", first_name: "Miguel", last_name: "Cabero")
 Admin.create!(email: "camillavk@gmail.com", password: "lovephysics", first_name: "Camilla", last_name: "van Klinken")
 
-
-tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
-astrophysics = Category.create!(name: "Astrophysics", year: "A2")
-mechanics = Category.create!(name: "Mechanics", year: "AS")
-electricity = Category.create!(name: "Electricity", year: "A2")
-particles = Category.create!(name: "Particles", year: "A2")
-waves = Category.create!(name: "Waves", year: "AS")
-
 ocr  = ExamBoard.create!(name: 'OCR')
 aqa = ExamBoard.create!(name: 'AQA')
 edexcel = ExamBoard.create!(name: 'Edexcel')
 
+tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
+astrophysics = Category.create!(name: "Astrophysics", year: "A2", exam_board_id: 1)
+mechanics = Category.create!(name: "Mechanics", year: "AS", exam_board_id: 1)
+electricity = Category.create!(name: "Electricity", year: "A2", exam_board_id: 2)
+particles = Category.create!(name: "Particles", year: "A2", exam_board_id: 3)
+waves = Category.create!(name: "Waves", year: "AS", exam_board_id: 2)
+
 school = ocr.schools.create(name: "Rickmansworth School")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date, exam_board_id: 1)
+school.students.create!(email: "student@test.com", password: "password", first_name: "Hermoine", last_name: "Granger", birthday: "1981/7/31".to_date, exam_board_id: 2, tutorial_completed: true)
 
 # Tutorial questions
 
@@ -87,7 +87,7 @@ over the ground?
 # Other questions
 question = Question.create!(
   category_id: astrophysics.id,
-  exam_board_ids: [ox.id],
+  exam_board_ids: [ocr.id],
   description: %q{
     Suppose we have a particle in 1-dimension, with wavefunction $$Ae^{-\frac{|x|}{2d}}$$.
   }.squish,

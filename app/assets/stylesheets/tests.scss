@@ -37,6 +37,37 @@ li a a:focus {
   color: gray;
 }
 
+ul.tabs-exams {
+  list-style-type: none;
+  margin-top: 50px;
+  // margin: 0;
+  padding: 0;
+}
+
+ul.tabs-exams li {
+  display: inline;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: white;
+  padding: 8px 15px;
+  color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul.tabs-exams li a a:focus {
+  padding: 0 1em;
+  text-decoration: none;
+}
+
+ul.tabs-exams .active {
+  background-color: white;
+  color: gray;
+}
+
+
 div.charts {
   // width: 60%;
   margin: auto;

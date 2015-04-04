@@ -20,11 +20,11 @@ class Question < ActiveRecord::Base
   end
 
   def self.selection_for(test)
-    questions = test.exam_board.questions
-                               .where(category_id: test.category_ids)
-                               .select(:id, :category_id, :marks)
-                               .shuffle
-
+    # questions = test.exam_board.questions
+    #                            .where(category_id: test.category_ids)
+    #                            .select(:id, :category_id, :marks)
+    #                            .shuffle
+    questions = where(category_id: test.category_ids).select(:id, :category_id, :marks).shuffle
     questions_by_category = {}
     questions.each do |question|
       questions_by_category[question.category] ||= []
