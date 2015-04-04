@@ -23,9 +23,7 @@
 
       .form-object
         .col-sm-12
-          = f.label :exam_board, :class => 'form-label'
-          .col-sm-10
-            = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
+          = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
 
 
       .form-object
@@ -56,9 +54,7 @@
 
       .form-object
         .col-sm-12
-          = f.label :exam_board, :class => 'form-label'
-          .col-sm-10
-            = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
+          = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
 
       .form-object
         .col-sm-7.range

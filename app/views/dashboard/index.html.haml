@@ -38,10 +38,7 @@
             %p.grade= @user.grade(aggregation)
             %p= aggregation
   %div
-    =link_to "Take a test", new_test_path, :class => "normal button"
+    =link_to "TAKE A TEST", new_test_path, :class => "normal button"
 -else
   %div
-    =link_to "Preliminary test", tests_path(test:{ tutorial: 1 , category_ids: [Category.tutorial.id]}), :method => :post, :class => "normal button"
-
-
-
+    =link_to "TAKE A PRACTISE TEST", tests_path(test:{ tutorial: 1 , category_ids: [Category.tutorial.id]}), :method => :post, :class => "normal button"
