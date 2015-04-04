@@ -1,4 +1,6 @@
 Admin.create!(email: "admin@example.com", password: "password", first_name: "Miguel", last_name: "Cabero")
+Admin.create!(email: "camillavk@gmail.com", password: "lovephysics", first_name: "Camilla", last_name: "van Klinken")
+
 
 tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
 astrophysics = Category.create!(name: "Astrophysics", year: "A2")

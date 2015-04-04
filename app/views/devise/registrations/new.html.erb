@@ -11,15 +11,18 @@
       <%= f.text_field :last_name, autofocus: true, placeholder: 'family name' %>
     </div>
     <div class="form-object">
-      <!-- <%= f.label :birthday, "Date of birth" %> -->
-      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1990, :end_year => 2013, autofocus: true %>
+      <%= f.label :birthday, "(DoB)" %>
+      <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1990, :end_year => 2013, autofocus: true, :class => 'form-control' %>
     </div>
     <div class="form-object">
       <!-- <%= f.label :school, "School / College" %> -->
-      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true %>
+      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true, :class => 'form-control' %>
     </div>
     <div class="form-object">
       <%= f.email_field :email, autofocus: true, placeholder: 'school/college email' %>
+    </div>
+    <div class="form-object">
+      <%= f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control' %>
     </div>
     <div class="form-object">
       <%= f.password_field :password, placeholder: 'password' %>

@@ -6,6 +6,9 @@
     <div class="form-object">
       <%= f.email_field :email, autofocus: true, placeholder: 'email' %>
     </div>
+    <div class='form-object'>
+      <%= f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control' %>
+    </div>
     <div class="form-object">
       <!-- <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br /> -->
       <%= f.password_field :password, :autocomplete => "off", placeholder: "new password (to change it)" %>
