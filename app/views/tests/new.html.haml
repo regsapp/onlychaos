@@ -20,7 +20,8 @@
 .AS
   .section.form
     = form_for @test do |f|
-
+      %br
+      %p.questions Questions in the style of:
       %ul.tabs-exams
         %li.tab-OCR.active
           %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
@@ -78,7 +79,8 @@
 .A2
   .section.form
     = form_for @test do |f|
-
+      %br
+      %p.questions Questions in the style of:
       %ul.tabs-exams
         %li.tab-OCR.active
           %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
