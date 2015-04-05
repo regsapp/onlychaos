@@ -35,6 +35,18 @@ ol.question-parts > li:before {
   text-align: right;
 }
 
+.question-parts{
+  .form-group{
+    clear: both;
+  }
+  .col-xs-6{
+    margin: 0;
+  }
+  .answer-preview{
+    line-height: 20px;
+  }
+}
+
 em {
   float: right;
 }
