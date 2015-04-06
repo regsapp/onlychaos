@@ -1,4 +1,4 @@
-%li
+%li.question_parts
   %fieldset
     .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
@@ -12,6 +12,7 @@
       = f.label :answer_type, :class => 'col-sm-2 control-label'
       .col-sm-10
         = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
+
     = f.fields_for :correct_answer do |builder|
       = render 'correct_answer_fields', f: builder
 

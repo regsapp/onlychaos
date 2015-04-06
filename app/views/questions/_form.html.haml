@@ -71,10 +71,12 @@
 
   %h3 Parts
 
-  %ol
+  %ul
     = f.fields_for :question_parts, @question.question_parts do |builder|
       = render 'question_part_fields', f: builder
-    = link_to_add_fields 'Add Part', f, :question_parts
+      = link_to_add_fields 'Add Part', f, :question_parts
+
+    %hr
 
   .form-group
     .col-sm-offset-2.col-sm-10

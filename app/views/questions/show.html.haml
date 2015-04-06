@@ -10,23 +10,30 @@
 %dl.dl-horizontal
   %dt Category:
   %dd= @question.category.name
-  %dt Exam boards:
+  %br
+  %dt Exam board(s):
   %dd= @question.exam_board_names
-  %dt.question-text Description:
-  %dd.question-text=change_math_delims(@question.description)
-  %dt.question-text Hint:
-  %dd.question-text=change_math_delims(@question.hint)
+  %br
+  %dt Description:
+  %dd=change_math_delims(@question.description)
+  %dt Hint:
+  %dd=change_math_delims(@question.hint)
+  %hr
 
 %h3 Parts
 %ol
   - @question.question_parts.each do |question_part|
-    %li
+    %li.question_parts
     %dl.dl-horizontal
     %dt Description:
-    %dd.question-text=change_math_delims(question_part.description)
+    %dd=change_math_delims(question_part.description)
+    %br
     %dt Marks:
     %dd= question_part.marks
+    %br
     %dt Answer type:
     %dd= question_part.answer_type
+    %br
     %dt Correct answer:
     %dd= question_part.correct_answer.content
+    %hr
