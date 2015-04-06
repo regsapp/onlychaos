@@ -33,6 +33,7 @@ gem 'ckeditor'
 gem 'paperclip'
 gem 'fog', '~> 1.28.0'
 gem 'social-share-button'
+gem 'aws-sdk'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
