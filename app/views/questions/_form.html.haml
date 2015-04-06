@@ -79,5 +79,15 @@
     %hr
 
   .form-group
+    = f.label :status, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.radio_button :status, "draft"
+      = f.label :status_draft, "Draft"
+      = f.radio_button :status, "pending"
+      = f.label :status_pending, "Pending"
+      = f.radio_button :status, "live"
+      = f.label :status_live, "Live"
+
+  .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'

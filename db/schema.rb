@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404124501) do
+ActiveRecord::Schema.define(version: 20150406133645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150404124501) do
     t.integer  "year_group_id"
     t.integer  "category_id"
     t.text     "hint"
+    t.text     "status"
   end
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id", using: :btree

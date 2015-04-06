@@ -8,6 +8,9 @@
   %h1 Show question
 
 %dl.dl-horizontal
+  %dt STATUS
+  %dd= @question.status.upcase
+  %br
   %dt Category:
   %dd= @question.category.name
   %br

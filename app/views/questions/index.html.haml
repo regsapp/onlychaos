@@ -14,6 +14,7 @@
         %th Hint
         %th Parts
         %th Marks
+        %th Status
         %th
         %th
         %th
@@ -27,6 +28,7 @@
           %td.question-text= change_math_delims(question.hint)
           %td= question.question_parts.count
           %td= question.marks
+          %td= question.status
           %td= link_to 'Show', question
           %td= link_to 'Edit', edit_question_path(question)
           %td= link_to 'Destroy', question, :data => { confirm: 'Are you sure?' }, :method => :delete
