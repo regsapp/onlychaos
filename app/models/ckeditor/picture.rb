@@ -7,7 +7,7 @@ class Ckeditor::Picture < Ckeditor::Asset
                       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
                     },
                     :path => ":attachement/:id/:style_:basename.:extension",
-                    :url => "gradezilla.s3.amazonaws.com"
+                    :url => "gradezilla.s3.amazonaws.com",
                     # :url  => "/ckeditor_assets/pictures/:id/:style_:basename.:extension",
                     # :path => ":rails_root/public/ckeditor_assets/pictures/:id/:style_:basename.:extension",
                     :styles => { :content => '800>', :thumb => '118x100#' }
