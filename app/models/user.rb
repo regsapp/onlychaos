@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  TYPES = ['Admin', 'Student', 'Teacher']
+  TYPES = ['Admin', 'Student', 'Teacher', 'Input']
 
   def admin?
     type == 'Admin'
@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
   def teacher?
     type == 'Teacher'
   end
+
+  def input?
+    type == 'Input'
+  end
+
 end

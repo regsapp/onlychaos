@@ -18,6 +18,11 @@ class Ability
       can :create, Message
       can :read, Message, email: user.email
       can :manage, TestQuestion
+    when Input
+      can :create, Question
+      can :update, Question
+      can :destroy, Question
+      can :read, Question
     end
     # Define abilities for the passed in user here. For example:
     #
