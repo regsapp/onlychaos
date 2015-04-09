@@ -12,6 +12,7 @@
       %tr
         %th Name
         %th Exam Board
+        %th No. of Questions
         %th
         %th
         %th
@@ -21,6 +22,7 @@
         %tr
           %td= category.name
           %td= category.exam_board_id
+          %td= category.questions.count
           %td= link_to 'Show', category
           %td= link_to 'Edit', edit_category_path(category)
           %td= link_to 'Destroy', category, :data => { confirm: 'Are you sure?' }, :method => :delete
