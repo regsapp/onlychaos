@@ -7,7 +7,7 @@
       clearTimeout(previewTimeout);
       previewTimeout = setTimeout(function(){
         input = $(inputSelector).val();
-        $(previewSelector).html(input);
+        $(previewSelector).html('`'+input+'`');
         previewId =  previewSelector.replace('#', '');
         MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
       }, 300);
