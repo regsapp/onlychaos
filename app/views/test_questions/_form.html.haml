@@ -40,11 +40,6 @@
     .col-sm-12.question-description
       =@test_question.question.description.html_safe
 
-    - if @test_question.attempts > 0
-      %h5.hint Hint:
-      %p.question-hint
-        =@test_question.question.hint.html_safe
-
     - count = 0
     %ol.question-parts
       = f.fields_for :answers do |answer_fields|
@@ -52,17 +47,31 @@
         %li.question-text
           = question_part.description.html_safe
           %em="#{pluralize(question_part.marks.to_i, 'mark')}"
-          .form-group
-            .row
-              -# = answer_fields.label :your_answer
-              %div.answer-box.col-xs-6
-                = answer_fields.text_area :content, :class => 'form-control'
-              %div.units
-                = question_part.units.html_safe
+          - if question_part.answer_type == 'formula'
+            .form-group
+              .row
+                %div.answer-box.col-xs-6
+                  - if question_part.answer_type = 'formula'
+                    = answer_fields.text_area :content, :class => 'form-control'
+                %div.preview.col-xs-6
+                  %div{ id: "answer_preview_#{count}", class: "answer_preview" }
+          - else
+            .form-group
+              .row
+                %div.answer-box.col-xs-6
+                  = answer_fields.text_field :content, :class => 'form-object'
+                %div.units
+                  - if !question_part.units.blank?
+                    = question_part.units.html_safe
+
               -# %h5 Preview
-              %div.preview.col-xs-6
-                %div{ id: "answer_preview_#{count}", class: "answer_preview" }
+
           - count += 1
     .form-group
       .col-sm-offset-4.col-sm-8
         = f.submit @test_question.last? ? "Finish" : "Next question", :class => 'btn btn-primary'
+
+    - if @test_question.attempts > 0
+      %h5.hint Hint:
+      %p.question-hint
+        =@test_question.question.hint.html_safe
