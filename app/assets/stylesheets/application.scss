@@ -178,6 +178,8 @@ a:visited {
   font-family: 'Lato', sans-serif;
   text-align: center;
   position: relative;
+  margin-top: 6%;
+  padding: 6px;
 }
   .alert-warning {
     color: #a67643;
@@ -192,7 +194,7 @@ a:visited {
     color: #40718d;
   }
   .alert-danger {
-    background-color: #efdfdf;
+    background-color: #ccc;
     color: #a04d49;
   }
 

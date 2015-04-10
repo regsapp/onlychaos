@@ -11,3 +11,22 @@ p.grade {
   font-weight: 400;
   color: #fff;
 }
+
+div.tutorial {
+  width: 62%;
+  margin: auto;
+  // text-align: left !important;
+  padding-top: 30%;
+}
+
+div.tutorial h2 {
+  text-align: left;
+  margin-top: 15px;
+}
+
+a:link.test_link {
+  color: #fff;
+  // font-size: 2em;
+  font-weight: 100;
+  text-decoration: underline;
+}

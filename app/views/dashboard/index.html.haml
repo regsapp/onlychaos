@@ -13,10 +13,6 @@
 
 - if @user.tutorial_completed?
 
-  / <<<<<<< miguel
-  / %h3= "Stats (on #{'last' if @user.recent_tests.size == Test::RECENT_LIMIT} #{pluralize(@user.recent_tests.size, 'test')})"
-  / >>>>>>> miguel
-
   %div.results
 
     %div.charts
@@ -39,6 +35,23 @@
             %p= aggregation
   %div
     =link_to "TAKE A TEST", new_test_path, :class => "normal button"
+
 -else
-  %div
-    =link_to "TAKE A PRACTISE TEST", tests_path(test:{ tutorial: 1 , category_ids: [Category.tutorial.id]}), :method => :post, :class => "normal button"
+
+  %div.results
+
+    %div.charts
+      .chart{"data-percent" => "70"} - COMPLETED
+
+      .chart{"data-percent" => "30"} - CORRECT
+
+      .chart{"data-percent" => "25"} - INCORRECT
+
+      .chart{"data-percent" => "55"} - GRADE
+
+    %div.tutorial
+      %h2 1. #{link_to "Take a practise test", tests_path(test:{ tutorial: 1 , category_ids: [Category.tutorial.id]}), :method => :post, :class => "test_link"}
+
+      %h2 2. Start taking exam questions
+
+      %h2 3. Get estimated grades for each topic
