@@ -17,6 +17,11 @@
       = render 'correct_answer_fields', f: builder
 
     .form-group
+      = f.label :units, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.cktext_area :units, :class => 'col-sm-2 control-label ckeditor-part', :ckeditor => ckeditor_params
+
+    .form-group
       .col-sm-offset-2.col-sm-10
         = f.hidden_field :_destroy
         = link_to 'Remove Part', '#', class: 'remove_fields'

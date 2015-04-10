@@ -57,6 +57,8 @@
               -# = answer_fields.label :your_answer
               %div.answer-box.col-xs-6
                 = answer_fields.text_area :content, :class => 'form-control'
+              %div.units
+                = question_part.units.html_safe
               -# %h5 Preview
               %div.preview.col-xs-6
                 %div{ id: "answer_preview_#{count}", class: "answer_preview" }

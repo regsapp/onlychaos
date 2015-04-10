@@ -75,7 +75,7 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(
         :description,
         :hint,
-        :status, 
+        :status,
         :category_id,
         :year_group_id,
         exam_board_ids: [],
@@ -84,6 +84,7 @@ class QuestionsController < ApplicationController
           :description,
           :marks,
           :answer_type,
+          :units,
           correct_answer_attributes: [
             :id,
             :content
