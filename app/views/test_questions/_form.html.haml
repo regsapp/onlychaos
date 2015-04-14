@@ -6,11 +6,24 @@
     function makePreview(inputSelector, previewSelector) {
       clearTimeout(previewTimeout);
       previewTimeout = setTimeout(function(){
-        input = $(inputSelector).val();
-        $(previewSelector).html('`'+input+'`');
-        previewId =  previewSelector.replace('#', '');
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub, previewId]);
+        input_value = $(inputSelector).val();
+        if(input_value && input_value.length >0){
+          var parts = input_value.split(' ');
+          $(parts).each(function(i){parts[i] = "`"+wrap_grades_if_needed(parts[i])+"`"})
+          $(previewSelector).html(parts.join(' '));
+          previewId =  previewSelector.replace('#', '');
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub, previewId]);
+        }
       }, 300);
+    }
+
+    function wrap_grades_if_needed(input){
+      var grade_symbol_position = input.indexOf('^');
+      if(-1 != grade_symbol_position){
+        grade_symbol_position = grade_symbol_position + 1;
+        input = input.substr(0, grade_symbol_position) + '{' + input.substr(grade_symbol_position) + '}';
+      }
+      return input;
     }
 
     #{
