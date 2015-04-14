@@ -20,7 +20,7 @@ div.dashboard_bottom {
 
 ul.tabs {
   list-style-type: none;
-  margin-top: 50px;
+  // margin-top: 10px;
   // margin: 0;
   padding: 0;
 }
@@ -50,6 +50,10 @@ li a a:focus {
 
 p.questions {
   color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-top: 1em;
+  margin-bottom: 0.8em;
 }
 
 ul.tabs-exams {
@@ -66,7 +70,7 @@ ul.tabs-exams li {
   border-radius: 8px;
   border-width: 1px;
   border-color: white;
-  padding: 1.5% 2%;
+  padding: 2.5% 4%;
   overflow: auto;
   // margin-left: 20px;
   // margin-right: 20px;

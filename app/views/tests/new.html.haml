@@ -11,6 +11,7 @@
 .page-header
   %h1 TEST OPTIONS
 
+%p.questions Year group:
 %ul.tabs
   %li.tab-AS.active
     %a.AS-link{"data-toggle" => "tab", :href => "#"} AS
@@ -33,17 +34,17 @@
       -# .form-object
       -#   .col-sm-12
       -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control'
-
-
+      %br
+      %p.questions Test duration:
       .form-object
-        .col-sm-7.range
+        .col-sm-8.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
         %div.duration
           = succeed ' minutes' do
             %span#time 60
           %br
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
-
+      %p.questions Categories:
       .OCR
         .form-object
           .col-sm-12.category_to_fix
@@ -92,16 +93,17 @@
       -# .form-object
       -#   .col-sm-12
       -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
-
+      %br
+      %p.questions Test duration:
       .form-object
-        .col-sm-7.range
+        .col-sm-8.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showNewValue(this.value)'
         %div.duration
           = succeed ' minutes' do
             %span#A2time 60
           %br
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
-
+      %p.questions Categories:
       .OCR
         .form-object
           .col-sm-12.category_to_fix
