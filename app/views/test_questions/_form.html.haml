@@ -70,6 +70,21 @@
             %div.formulas
               %p.formulas Formulas
 
+          - elsif question_part.answer_type == 'multiple choice'
+            .form-group
+              = answer_fields.radio_button(:content, "A")
+              %h3
+                = question_part.choice_a
+              = answer_fields.radio_button(:content, "B")
+              %h3
+                = question_part.choice_b
+              = answer_fields.radio_button(:content, "C")
+              %h3
+                = question_part.choice_c
+              = answer_fields.radio_button(:content, "D")
+              %h3
+                = question_part.choice_d
+
           - else
             .form-group
               .row

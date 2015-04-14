@@ -3,11 +3,11 @@ class Answer < ActiveRecord::Base
   belongs_to :test
   #has_one :correct_answer, through: :question
 
-  TYPES = ["integer", "text", "float", "formula", "multiple any", "multiple all", "multiple bool"]
+  TYPES = ["integer", "text", "float", "formula", "multiple any", "multiple all", "multiple bool", "multiple choice"]
 
   before_save :mark!
 
-  default_scope { where(reference: false) } 
+  default_scope { where(reference: false) }
 
   def max_marks
     question_part.try(:marks)
@@ -30,7 +30,7 @@ class Answer < ActiveRecord::Base
       self.marks = 0
 
       case type
-      when "integer", "text", "float", "formula"
+      when "integer", "text", "float", "formula", "mutiple choice"
         set_max_marks! if to_type == correct_answer.to_type
       when "multiple any"
         set_max_marks! if correct_answer.to_type.any?{ |s| s.in? to_type }
@@ -62,7 +62,7 @@ class Answer < ActiveRecord::Base
     case type
     when "integer"
       content.to_i
-    when "text", "formula"
+    when "text", "formula", "multiple choice"
       content.to_s.squish
     when "float"
       content.to_f
