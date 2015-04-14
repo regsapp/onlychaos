@@ -9,52 +9,47 @@
       });
   });
 
-%div.results
-  .page-header
-    %h1 TEST RESULTS
+%div.container
+  %div.results
+    .page-header
+      %h1 TEST RESULTS
 
-  %div.charts
-    .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
+    %div.charts
+      .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
+      .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
+      .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
+      .chart{"data-percent" => "65"} #{@test.grade}
 
-    .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
+    %div.dashboard
+      =link_to "To Dashboard", root_path, class: "normal button"
 
-    .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
+    -# .col-sm-offset-8.col-sm-4
+    -#   %p Share your results:
+    -#   = social_share_button_tag("Gradezilla rules", url: "http://gradezilla.com", popup: "true")
 
-    .chart{"data-percent" => "65"} #{@test.grade}
+    %div.questions
+      - @test.test_questions.each do |test_question|
+        %hr
+        .col-sm-12.question-title
+          = "QUESTION #{test_question.number}"
+        .col-sm-9.question
+          .question-description
+            =change_math_delims(test_question.question.description)
+          %ol.question-parts
+            - test_question.answers.each do |answer|
+              %li.question-text
+                %dd=change_math_delims(answer.question_part.description)
+                %h6 Your answer:
+                %dd
+                  = answer.content
+                  = answer.correct? ? "Was correct!" : "Was incorrect!"
+                - unless answer.correct?
+                  %dt Correct answer:
+                  %dd= answer.correct_answer.content
+                %h6 Marks:
+                %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
+        .col-sm-3.disagree
+          =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button'
 
-  %div.dashboard
-
+  %div.dashboard_bottom
     =link_to "To Dashboard", root_path, class: "normal button"
-
-  .col-sm-offset-8.col-sm-4
-    %p Share your results:
-    = social_share_button_tag("Gradezilla rules", url: "http://gradezilla.com", popup: "true")
-
-  %div.questions
-    -# %ul.dl-horizontal
-    -#   %li= @test.category_names
-
-    - @test.test_questions.each do |test_question|
-      %hr
-      .col-sm-12.question-title
-        = "QUESTION #{test_question.number}"
-      .col-sm-9.question
-        .question-description
-          =change_math_delims(test_question.question.description)
-        %ol.question-parts
-          - test_question.answers.each do |answer|
-            %li.question-text
-              %dd=change_math_delims(answer.question_part.description)
-              %dt Your answer:
-              %dd
-                = answer.content
-                %br
-                = answer.correct? ? "Was correct!" : "Was incorrect!"
-              - unless answer.correct?
-                %dt Correct answer:
-                %dd= answer.correct_answer.content
-              %dt Marks:
-              %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
-      .col-sm-3.disagree
-        =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button'
-

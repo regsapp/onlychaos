@@ -11,3 +11,39 @@ p.grade {
   font-weight: 400;
   color: #fff;
 }
+
+div.tutorial {
+  width: 62%;
+  margin: auto;
+  // text-align: left !important;
+  padding-top: 30%;
+}
+
+div.tutorial h2 {
+  text-align: left;
+  margin-top: 15px;
+}
+
+a:link.test_link {
+  color: #fff;
+  // font-size: 2em;
+  font-weight: 100;
+  text-decoration: underline;
+}
+
+// BUTTON //
+
+.big.button {
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  color: #000000;
+  font-size: 1.2em;
+  font-weight: 400;
+  background: #e8edf0;
+  padding: 8px 45px 8px 45px;
+  text-decoration: none;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
