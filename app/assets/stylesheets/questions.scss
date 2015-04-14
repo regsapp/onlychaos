@@ -2,6 +2,7 @@
   color: #fff;
   font-weight: 400;
   text-align: left;
+  margin-top: 20px;
 }
 
 .question-text {
@@ -15,12 +16,13 @@ ol.question-parts {
   margin: 0;
   margin-left: 3em;
   padding: 0;
+  padding-top: 20px;
 }
 
 ol.question-parts > li {
   position: relative;
   margin-bottom: 20px;
-  padding-left: 0.5em;
+  padding-left: 0em;
   min-height: 3em;
   display: list-item;
   list-style-position: inside;
@@ -33,9 +35,11 @@ ol.question-parts > li:before {
   width: 0.8em;
   line-height: 1;
   text-align: right;
+  // font-size: 2em;
 }
 
 .question-parts{
+
   .form-group{
     clear: both;
   }

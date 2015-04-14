@@ -1,10 +1,21 @@
+// div.container {
+//   position: relative;
+// }
+
 div.results {
-  width: 62%;
+  width: 70%;
   margin: auto;
 }
 
 div.dashboard {
   float: right;
+}
+
+div.dashboard_bottom {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
 }
 
 ul.tabs {
@@ -73,7 +84,7 @@ ul.tabs-exams .active {
 
 
 div.charts {
-  // width: 60%;
+  // width: 90%;
   margin: auto;
   // height: 250px;
 }
@@ -81,6 +92,7 @@ div.charts {
 div.chart {
   margin-top: 20px;
   margin-bottom: 20px;
+  color: #fff;
   // height: 250px;
 }
 
@@ -104,4 +116,19 @@ hr {
 
 .question {
   text-align: center;
+}
+
+// ANSWERS //
+
+.answer_preview {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
+  padding-top: 2%;
+}
+
+// FORMULAS //
+
+.formulas {
+  font-weight: 900;
+  text-decoration: underline;
 }

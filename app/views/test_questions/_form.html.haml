@@ -51,10 +51,12 @@
             .form-group
               .row
                 %div.answer-box.col-xs-6
-                  - if question_part.answer_type = 'formula'
-                    = answer_fields.text_area :content, :class => 'form-control'
+                  = answer_fields.text_area :content, :class => 'form-control'
                 %div.preview.col-xs-6
                   %div{ id: "answer_preview_#{count}", class: "answer_preview" }
+            %div.formulas
+              %p.formulas Formulas
+
           - else
             .form-group
               .row
