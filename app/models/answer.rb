@@ -30,7 +30,7 @@ class Answer < ActiveRecord::Base
       self.marks = 0
 
       case type
-      when "integer", "text", "float", "formula", "mutiple choice"
+      when "integer", "text", "float", "formula", "multiple choice"
         set_max_marks! if to_type == correct_answer.to_type
       when "multiple any"
         set_max_marks! if correct_answer.to_type.any?{ |s| s.in? to_type }

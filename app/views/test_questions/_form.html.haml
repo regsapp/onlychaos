@@ -72,18 +72,11 @@
 
           - elsif question_part.answer_type == 'multiple choice'
             .form-group
-              = answer_fields.radio_button(:content, "A")
-              %h3
-                = question_part.choice_a
-              = answer_fields.radio_button(:content, "B")
-              %h3
-                = question_part.choice_b
-              = answer_fields.radio_button(:content, "C")
-              %h3
-                = question_part.choice_c
-              = answer_fields.radio_button(:content, "D")
-              %h3
-                = question_part.choice_d
+              - ('a'..'d').each do |l|
+                - content = question_part.send("choice_#{l}")
+                = answer_fields.radio_button(:content, content)
+                = label :"content_choice_#{l}", content
+                %br
 
           - else
             .form-group
