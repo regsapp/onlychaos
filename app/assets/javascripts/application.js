@@ -24,6 +24,13 @@
 
 $(document).ready(function() {
 
+	$('#add-school').hide();
+
+	$('.add-school').click(function(e) {
+		e.preventDefault();
+		$('#add-school').show();
+	});
+
 	$('.A2').hide();
 
 	$('.AS-link').click(function(e) {
