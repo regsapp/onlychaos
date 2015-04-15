@@ -13,7 +13,7 @@
 
 %p.questions Year group:
 %ul.tabs
-  %li.tab-AS.active
+  %li.tab-AS
     %a.AS-link{"data-toggle" => "tab", :href => "#"} AS
   %li.tab-A2
     %a.A2-link{"data-toggle" => "tab", :href => "#"} A2
@@ -25,7 +25,7 @@
       %p.questions Questions in the style of:
       .col-sm-12
       %ul.tabs-exams
-        %li.tab-OCR.active
+        %li.tab-OCR
           %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
         %li.tab-Edexcel
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
@@ -36,7 +36,7 @@
       -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control'
       %br
       %p.questions Test duration:
-      .form-object
+      .form-object.range
         .col-sm-8.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
         %div.duration
@@ -84,7 +84,7 @@
       %br
       %p.questions Questions in the style of:
       %ul.tabs-exams
-        %li.tab-OCR.active
+        %li.tab-OCR
           %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
         %li.tab-Edexcel
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
