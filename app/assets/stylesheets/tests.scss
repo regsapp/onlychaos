@@ -94,8 +94,8 @@ div.charts {
 }
 
 div.chart {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 27px 20px 27px;
+  // margin-bottom: 20px;
   color: #fff;
   // height: 250px;
 }
@@ -139,7 +139,7 @@ hr {
 
 // TEST RESULTS //
 
-div.question {
+.question.results {
   float: left;
 }
 
