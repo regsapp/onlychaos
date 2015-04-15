@@ -85,6 +85,10 @@ class QuestionsController < ApplicationController
           :marks,
           :answer_type,
           :units,
+          :choice_a,
+          :choice_b,
+          :choice_c,
+          :choice_d,
           correct_answer_attributes: [
             :id,
             :content

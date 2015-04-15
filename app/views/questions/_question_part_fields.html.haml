@@ -1,6 +1,10 @@
 %li.question_parts
   %fieldset
     .form-group
+      = f.label :answer_type, :class => 'col-sm-2 control-label'
+      .col-sm-10
+        = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
+    .form-group
       = f.label :description, :class => 'col-sm-2 control-label'
       .col-sm-10
         = f.cktext_area :description, :class => 'col-sm-2 control-label ckeditor-part', :ckeditor => ckeditor_params
@@ -8,13 +12,36 @@
       = f.label :marks, :class => 'col-sm-2 control-label'
       .col-sm-10
         = f.number_field :marks, :class => 'form-control', :min => 1
-    .form-group
-      = f.label :answer_type, :class => 'col-sm-2 control-label'
-      .col-sm-10
-        = f.collection_select :answer_type, Answer::TYPES, :to_s, :to_s, { prompt: true }, :class => 'form-control'
 
+        .form-group
+          %h3 Multiple Choice Options
+
+        .form-group
+          = f.label :choice_a, :class => 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :choice_a, :class => 'form-control'
+
+        .form-group
+          = f.label :choice_b, :class => 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :choice_b, :class => 'form-control'
+
+        .form-group
+          = f.label :choice_c, :class => 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :choice_c, :class => 'form-control'
+
+        .form-group
+          = f.label :choice_d, :class => 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :choice_d, :class => 'form-control'
+
+    %p if multiple choice, write the full answer
     = f.fields_for :correct_answer do |builder|
       = render 'correct_answer_fields', f: builder
+
+    .form-group
+      %h3 Units (if applicable)
 
     .form-group
       = f.label :units, :class => 'col-sm-2 control-label'

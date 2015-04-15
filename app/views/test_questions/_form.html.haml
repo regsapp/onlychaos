@@ -70,6 +70,14 @@
             %div.formulas
               %p.formulas Formulas
 
+          - elsif question_part.answer_type == 'multiple choice'
+            .form-group
+              - ('a'..'d').each do |l|
+                - content = question_part.send("choice_#{l}")
+                = answer_fields.radio_button(:content, content)
+                = label :"content_choice_#{l}", content
+                %br
+
           - else
             .form-group
               .row
