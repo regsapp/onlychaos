@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   resources :year_groups
 
-  resources :schools
+  resources :schools do
+    collection { post :import }
+  end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   scope "/my" do

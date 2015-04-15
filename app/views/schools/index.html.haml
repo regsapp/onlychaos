@@ -4,12 +4,20 @@
     New School
   %h1 Listing schools
 
+%h3 Import a CSV file
+= form_tag import_schools_path, multipart: true do
+  = file_field_tag :file
+  = submit_tag "Import CSV"
+
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
         %th Name
-        %th Exam board
+        -# %th Exam Board
+        %th School Type
+        %th Status
+        %th No of Students
         %th
         %th
         %th
@@ -18,7 +26,10 @@
       - @schools.each do |school|
         %tr
           %td= school.name
-          %td= school.exam_board.name
+          -# %td= school.exam_board.name
+          %td= school.school_type
+          %td= school.status
+          %td= school.students.count
           %td= link_to 'Show', school
           %td= link_to 'Edit', edit_school_path(school)
           %td= link_to 'Destroy', school, :data => { confirm: 'Are you sure?' }, :method => :delete

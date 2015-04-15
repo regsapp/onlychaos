@@ -1,30 +1,45 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  load_and_authorize_resource param_method: :school_params
 
-  # GET /schools
-  # GET /schools.json
   def index
     @schools = School.all
   end
 
-  # GET /schools/1
-  # GET /schools/1.json
-  def show
+  def import
+    begin
+      School.import(params[:file])
+      redirect_to root_url, notice: "Schools imported"
+    rescue
+      redirect_to root_url, notice: "Invalid file format"
+    end
   end
 
-  # GET /schools/new
+  # before_action :set_school, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!
+  # load_and_authorize_resource param_method: :school_params
+  #
+  # # GET /schools
+  # # GET /schools.json
+  # def index
+  #   @schools = School.all
+  # end
+  #
+  # # GET /schools/1
+  # # GET /schools/1.json
+  # def show
+  # end
+  #
+  # # GET /schools/new
   def new
     @school = School.new
   end
-
-  # GET /schools/1/edit
+  #
+  # # GET /schools/1/edit
   def edit
+    @school = School.find(params[:id])
   end
-
-  # POST /schools
-  # POST /schools.json
+  #
+  # # POST /schools
+  # # POST /schools.json
   def create
     @school = School.new(school_params)
 
@@ -38,9 +53,9 @@ class SchoolsController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /schools/1
-  # PATCH/PUT /schools/1.json
+  #
+  # # PATCH/PUT /schools/1
+  # # PATCH/PUT /schools/1.json
   def update
     respond_to do |format|
       if @school.update(school_params)
@@ -52,9 +67,9 @@ class SchoolsController < ApplicationController
       end
     end
   end
-
-  # DELETE /schools/1
-  # DELETE /schools/1.json
+  #
+  # # DELETE /schools/1
+  # # DELETE /schools/1.json
   def destroy
     @school.destroy
     respond_to do |format|
@@ -62,7 +77,7 @@ class SchoolsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  #
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_school
@@ -71,6 +86,6 @@ class SchoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
-      params.require(:school).permit(:name, :exam_board_id)
+      params.require(:school).permit(:name, :school_type, :status, :open_date, :postcode, :email, :exam_board_id)
     end
 end
