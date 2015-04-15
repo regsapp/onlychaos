@@ -22,6 +22,7 @@ class MessagesController < ApplicationController
     if params[:disagree] && params[:question_id]
       question = Question.find(params[:question_id])
       @message.title = "I disagree on Question #{question.id}"
+      # @message.body = "#{question.description}"
     end
   end
 
@@ -29,7 +30,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    
+
     if current_user
       @message.email = current_user.email
       @message.first_name = current_user.first_name
@@ -38,7 +39,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to @message, notice: 'Your message has been sent successfully.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
