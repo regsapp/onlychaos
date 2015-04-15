@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  autocomplete :school, :name
 
   # GET /users
   # GET /users.json

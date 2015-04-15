@@ -28,7 +28,8 @@
     </div>
     <div class="form-object">
       <!-- <%= f.label :school, "School / College" %> -->
-      <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true, :class => 'form-control' %>
+      <!-- <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true, :class => 'form-control' %> -->
+      <%= f.autocomplete_field :school_id, autocomplete_school_name_users_path %>
     </div>
     <%= f.submit "SIGN UP", class: "normal button" %>
   <% end %>

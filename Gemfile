@@ -35,6 +35,9 @@ gem 'fog', '~> 1.28.0'
 gem 'social-share-button'
 gem 'aws-sdk'
 
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
