@@ -37,8 +37,8 @@
     <br/>
     <h4>School missing? <a href="#" class="add-school">Add it here</a></h4>
     <div class="form-object" id="add-school">
-      <%= f.text_field :school_name, placeholder: 'school/college name' %>
-
+      <%= f.text_field :school_name, placeholder: 'school/college name', id_element: '#school_id' %>
+      <%= f.hidden_field :school_id, id: 'school_id' %>
       <!-- <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true, :class => 'form-control' %> -->
     </div>
     <%= f.submit "SIGN UP", class: "normal button" %>
