@@ -36,6 +36,7 @@
           .col-sm-10
             = f.text_area :choice_d, :class => 'form-control'
 
+    %p if multiple choice, write the full answer
     = f.fields_for :correct_answer do |builder|
       = render 'correct_answer_fields', f: builder
 
