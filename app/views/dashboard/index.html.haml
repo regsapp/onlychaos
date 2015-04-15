@@ -36,6 +36,10 @@
   %div
     =link_to "TAKE A TEST", new_test_path, :class => "big button"
 
+  %h3.dashboard-messages
+    "#{motivational_message(@user)}"
+
+
 -else
 
   %div.results

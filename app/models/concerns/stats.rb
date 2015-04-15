@@ -51,7 +51,7 @@ module Stats
     when 45...55
       "E"
     when 0...45
-      "Fail"
+      "F"
     else
       nil
     end
