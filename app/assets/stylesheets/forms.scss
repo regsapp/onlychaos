@@ -190,3 +190,43 @@ p.update {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.ui-menu {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.ui-menu-item {
+  position: relative;
+  margin: 0;
+  padding: 3px 1em 3px .4em;
+  cursor: pointer;
+  min-height: 0;
+  display: list-item;
+  max-width: 300px;
+  background-color: #1083a3;
+  /* support: IE7; */
+  /* support: IE10, see #8844; */
+}
+
+.ui-menu-item:hover {
+  background: #44a4b5;
+}
+
+.ui-menu-item:active {
+  background: #44a4b5;
+}
+
+
+
+.ui-autocomplete {
+  position: absolute;
+}
+
+.ui-menu {
+  outline: none;
+}
+
+.ui-helper-hidden-accessible{
+  display:none;
+}
