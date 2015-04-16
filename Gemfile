@@ -38,6 +38,8 @@ gem 'aws-sdk'
 gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 
+gem 'airbrake'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
