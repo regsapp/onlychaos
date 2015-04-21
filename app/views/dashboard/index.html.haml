@@ -16,7 +16,7 @@
   %div.results
 
     %div.charts
-      .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
+      .chart{"data-percent" => "#{total_answers_count(@user)}"} #{@user.total_answers_count} ANSWERED
 
       .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
 

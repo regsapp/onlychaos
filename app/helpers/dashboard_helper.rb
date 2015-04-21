@@ -1,5 +1,6 @@
 module DashboardHelper
 
+
   def motivational_message(user)
     if user.grade == "A"
       a_grade.sample
