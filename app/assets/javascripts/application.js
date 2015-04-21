@@ -82,4 +82,12 @@ $(document).ready(function() {
 		$('.tab-Edexcel').removeClass('active');
 	});
 
+	$(".formulas").hover(
+   function(e){
+       $("#formulatip").show();
+   },
+   function(e){
+       $("#formulatip").hide();
+  });
+
 });

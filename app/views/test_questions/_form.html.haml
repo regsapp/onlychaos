@@ -69,6 +69,8 @@
                   %div{ id: "answer_preview_#{count}", class: "answer_preview" }
             %div.formulas
               %p.formulas Formulas
+              #formulatip
+                = render 'formula'
 
           - elsif question_part.answer_type == 'multiple choice'
             .form-group

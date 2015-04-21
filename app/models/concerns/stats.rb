@@ -28,6 +28,11 @@ module Stats
     stats[aggregation][:questions_count] - stats[aggregation][:correct_answers_count]
   end
 
+  def total_answers_count(aggregation=:all)
+    return 0 unless stats[aggregation]
+    stats[aggregation][:questions_count]
+  end
+
   def percentage(aggregation=:all)
     return nil unless stats[aggregation]
     stats[aggregation][:correct_answers_count].to_f / stats[aggregation][:questions_count] * 100
