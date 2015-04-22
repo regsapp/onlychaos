@@ -54,9 +54,9 @@ a.logo a:hover {
 }
 
 .page-header {
-  margin-top: 5%;
+  margin: 5% 0 2% 0;
   // width: 60%;
-  margin: auto;
+  // margin: auto;
 }
 
 .nav.right ul.nav-right {
@@ -221,7 +221,7 @@ ul li.alert {
 }
 
 // PAGE HEADER //
-div.page-header h1 {
+.page-header h1 {
   clear: both;
 }
 

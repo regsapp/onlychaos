@@ -167,19 +167,34 @@ span#A2time {
 // BUTTON //
 
 .normal.button {
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
-  border-radius: 8px;
-  font-family: 'Lato', sans-serif;
-  color: #000000;
-  font-size: 0.8em;
-  font-weight: 400;
-  background: #e8edf0;
-  padding: 5px 40px 5px 40px;
-  text-decoration: none;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  // -webkit-border-radius: 8;
+  // -moz-border-radius: 8;
+  // border-radius: 8px;
+  // font-family: 'Lato', sans-serif;
+  // color: #000000;
+  // font-size: 0.8em;
+  // font-weight: 400;
+  // background: #e8edf0;
+  // padding: 5px 40px 5px 40px;
+  // text-decoration: none;
+  // margin-top: 40px;
+  // margin-bottom: 10px;
   // text-align: center;
+  background: transparent;
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  border: solid #fff 2px;
+  // font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.normal.button:hover {
+  background: #1f6899;
+  text-decoration: none;
 }
 
 .normal.button.right {
