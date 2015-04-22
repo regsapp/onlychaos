@@ -1,7 +1,7 @@
 -if @test.errors.any?
   .alert.alert-danger.alert-dismissable
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-    %h4= "#{pluralize(@test.errors.count, "error")} prohibited this test from being created:"
+    %h4= "#{pluralize(@test.errors.count, "error")} stopped this test from being created:"
 
     %ul.alert
       - @test.errors.full_messages.each do |msg|
@@ -55,15 +55,15 @@
                   = label_tag dom_id(category), category.name
                   = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
-        .Edexcel
-          .form-object
-            .col-sm-12.category_to_fix
-              =# hidden_field_tag "test[category_ids][]", nil
-              - Category.real.each do |category|
-                -if category.year == "AS" && category.exam_board_id == 3
-                  .category-label
-                    = label_tag dom_id(category), category.name
-                    = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+      .Edexcel
+        .form-object
+          .col-sm-12.category_to_fix
+            =# hidden_field_tag "test[category_ids][]", nil
+            - Category.real.each do |category|
+              -if category.year == "AS" && category.exam_board_id == 3
+                .category-label
+                  = label_tag dom_id(category), category.name
+                  = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
       .AQA
         .form-object
@@ -114,15 +114,15 @@
                   = label_tag dom_id(category), category.name
                   = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
-        .Edexcel
-          .form-object
-            .col-sm-12.category_to_fix
-              =# hidden_field_tag "test[category_ids][]", nil
-              - Category.real.each do |category|
-                -if category.year == "A2" && category.exam_board_id == 3
-                  .category-label
-                    = label_tag dom_id(category), category.name
-                    = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+      .Edexcel
+        .form-object
+          .col-sm-12.category_to_fix
+            =# hidden_field_tag "test[category_ids][]", nil
+            - Category.real.each do |category|
+              -if category.year == "A2" && category.exam_board_id == 3
+                .category-label
+                  = label_tag dom_id(category), category.name
+                  = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
       .AQA
         .form-object
