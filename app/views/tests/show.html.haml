@@ -38,7 +38,7 @@
           %ol.question-parts
             - test_question.answers.each do |answer|
               %li.question-text
-                %div.question.results
+                %div.question-part-description
                   %p=change_math_delims(answer.question_part.description)
                 %div.student-answer
                   %h6 Your answer:
@@ -48,6 +48,7 @@
                   - unless answer.correct?
                     %h6 Correct answer:
                     %h7= answer.correct_answer.content
+                %div.student-marks
                   %h6 Marks:
                   %h7= "#{answer.marks} of #{answer.max_marks.to_i}"
         .col-sm-12.disagree

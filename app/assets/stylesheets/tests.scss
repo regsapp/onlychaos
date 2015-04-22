@@ -195,11 +195,17 @@ hr {
 
 // TEST RESULTS //
 
-.question.results {
+.question-part-description {
   float: left;
 }
 
-div.student-answer {
+.student-answer {
+  float: left;
+  clear: left;
+  padding-left: 3%;
+}
+
+.student-marks {
   float: right;
 }
 
