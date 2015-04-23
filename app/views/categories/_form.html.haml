@@ -6,7 +6,7 @@
 
       %ul
         - @category.errors.full_messages.each do |msg|
-          %li= msg
+          %li.alerts= msg
 
   .form-group
     = f.label :name, :class => 'col-sm-2 control-label'

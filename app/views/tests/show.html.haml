@@ -35,7 +35,7 @@
         .col-sm-9.question
           .question-description
             =change_math_delims(test_question.question.description)
-          %ol.question-parts
+          %ol.question-part
             - test_question.answers.each do |answer|
               %li.question-text
                 %div.question-part-description

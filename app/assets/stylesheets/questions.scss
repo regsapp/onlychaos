@@ -13,10 +13,18 @@
 
 ol.question-parts {
   list-style-type: lower-alpha;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+ol.question-part {
+  list-style-type: lower-alpha;
   list-style-position: outside;
   margin: 0;
   padding: 0;
 }
+
 
 ol.question-parts > li {
   // position: relative;
@@ -69,6 +77,7 @@ textarea.form-control {
 div.answer-box {
   display: inline-block;
   width: 50%;
+  float: right;
 }
 
 div.preview {
