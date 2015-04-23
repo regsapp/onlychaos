@@ -18,7 +18,7 @@
       .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
       .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
       .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
-      .chart{"data-percent" => "65"} #{@test.grade}
+      .chart{"data-percent" => "65"} #{@test.grade} PREDICTED
 
     %div.dashboard
       =link_to "To Dashboard", root_path, class: "normal button"
@@ -49,10 +49,10 @@
                     %h6 Correct answer:
                     %h7= answer.correct_answer.content
                 %div.student-marks
-                  %h6 Marks:
-                  %h7= "#{answer.marks} of #{answer.max_marks.to_i}"
-        .col-sm-12.disagree
-          =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button right'
+                  %h6 Marks: #{answer.marks} of #{answer.max_marks.to_i}
+                  =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'link right'
 
-  %div.dashboard_bottom
-    =link_to "To Dashboard", root_path, class: "normal button"
+
+
+%div.dashboard_bottom
+  =link_to "To Dashboard", root_path, class: "normal button"

@@ -53,6 +53,10 @@ input[type=email], [type=password], [type=text] {
   text-align: center;
 }
 
+.form-control.message {
+  text-align: left;
+}
+
 .year-group {
   // padding-left: 0 !important;
   color: black;
@@ -197,8 +201,9 @@ span#A2time {
   text-decoration: none;
 }
 
-.normal.button.right {
-  float: right;
+.link.right {
+  color: #fff;
+  font-size: 1.2em;
 }
 
 p.update {
