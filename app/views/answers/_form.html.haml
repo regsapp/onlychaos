@@ -20,7 +20,7 @@
 
       %ul
         - @answer.errors.full_messages.each do |msg|
-          %li= msg
+          %li.alerts= msg
   .question
     .col-sm-12.question-description
       = @answer.question

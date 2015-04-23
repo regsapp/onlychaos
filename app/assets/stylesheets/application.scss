@@ -55,9 +55,9 @@ a.logo a:hover {
 }
 
 .page-header {
-  margin-top: 5%;
+  margin: 5% 0 2% 0;
   // width: 60%;
-  margin: auto;
+  // margin: auto;
 }
 
 .nav.right ul.nav-right {
@@ -217,12 +217,19 @@ a:visited {
   margin-right: 80%;
 }
 
-ul li.alert {
+// li.alert {
+//
+// }
+
+li.alerts {
   color: #a04d49;
+  border: none;
+  display: inline-block;
+  padding: 0 10px 0 10px;
 }
 
 // PAGE HEADER //
-div.page-header h1 {
+.page-header h1 {
   clear: both;
 }
 

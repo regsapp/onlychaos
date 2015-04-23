@@ -39,8 +39,9 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Your message has been sent successfully.' }
-        format.json { render :show, status: :created, location: @message }
+        format.html { redirect_to :back, notice: 'Your message has been sent successfully.' }
+        # format.json { render :show, status: :created, location: @message }
+        format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }

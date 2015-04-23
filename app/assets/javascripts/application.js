@@ -32,6 +32,7 @@ $(document).ready(function() {
 	});
 
 	$('.A2').hide();
+	$('.OCR').hide();
 
 	$('.AS-link').click(function(e) {
 		e.preventDefault();

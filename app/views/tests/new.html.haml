@@ -1,11 +1,11 @@
 -if @test.errors.any?
   .alert.alert-danger.alert-dismissable
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-    %h4= "#{pluralize(@test.errors.count, "error")} prohibited this test from being created:"
+    %h4= "#{pluralize(@test.errors.count, "error")} stopped this test from being created:"
 
     %ul.alert
       - @test.errors.full_messages.each do |msg|
-        %li.alert
+        %li.alerts
         = msg
 
 .page-header
