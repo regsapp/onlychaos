@@ -15,7 +15,7 @@ FactoryGirl.define do
     number 1
     marks 1
   end
- 
+
   factory :exam_board do
     sequence(:name){|n| "name#{n}" }
   end
@@ -33,7 +33,7 @@ FactoryGirl.define do
   factory :year_group do
     sequence(:name){|n| "name#{n}" }
   end
-  
+
   factory :school do
     sequence(:name){|n| "name#{n}" }
     exam_board

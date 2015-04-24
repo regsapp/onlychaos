@@ -7,7 +7,7 @@ RSpec.describe Answer, :type => :model do
       @answer = @question_part.answers.build(attributes_for(:answer))
     end
 
-    it "should should eq question_part marks" do
+    it "should eq question_part marks" do
       @answer.max_marks.should eq @answer.question_part.marks
     end
   end
@@ -61,4 +61,3 @@ RSpec.describe Answer, :type => :model do
     end
   end
 end
-
