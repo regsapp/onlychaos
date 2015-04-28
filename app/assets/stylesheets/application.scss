@@ -221,6 +221,7 @@ a:visited {
 .alerts {
   margin-top: 5%;
   position: relative;
+  clear: both;
 }
 
 .alert {
@@ -251,10 +252,6 @@ a:visited {
   float: right;
   margin-right: 80%;
 }
-
-// li.alert {
-//
-// }
 
 li.alerts {
   color: #a04d49;
