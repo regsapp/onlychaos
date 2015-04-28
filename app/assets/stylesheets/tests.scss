@@ -206,12 +206,23 @@ hr {
 .formulas {
   font-weight: 900;
   text-decoration: underline;
+  width: 7em;
+}
+
+table.table {
+  border-collapse: collapse;
+}
+
+table.table > tbody > tr > td {
+  padding: 0.125em;
+  border: none;
 }
 
 // TEST RESULTS //
 
 .question-part-description {
   float: left;
+  clear: both;
 }
 
 .student-answer {
