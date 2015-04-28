@@ -6,6 +6,7 @@
 @import 'bootstrap';
 @import 'dashboard';
 @import "social-share-button";
+@import "phone";
 
 /*// MAIN //*/
 
@@ -26,43 +27,65 @@ body {
   padding-bottom: 20px;
 }
 
-/*// HEADER //*/
+@media screen and (max-width: 700px) {
+  body {
+    width: 95%;
+  }
+}
 
-header {
-  height: 45px;
+/*// HEADER //*/
+@media screen and (min-width: 920px) {
+  header {
+    height: 45px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  header {
+    height: 2px;
+  }
+
+  .nav.right {
+    width: 10em;
+  }
+
+  .nav.left {
+    width: 10em;
+  }
 }
 
 .nav.right{
   float: right;
+  // width: 10em;
 }
 
 .nav.left {
   float: left;
+  // width: 10em;
 }
 
-a.logo {
-  font-size: 2em;
-  font-weight: 100;
-}
+@media screen and (min-width: 700px) {
+  a.logo {
+    font-size: 2em;
+    font-weight: 100;
+  }
 
-b {
-  font-size: 2em;
-}
+  b {
+    font-size: 2em;
+  }
 
-a.logo a:hover {
-  text-decoration: none;
+  a.logo a:hover {
+    text-decoration: none;
+  }
 }
 
 .page-header {
   margin: 5% 0 2% 0;
-  // width: 60%;
-  // margin: auto;
 }
 
 .nav.right ul.nav-right {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 100;
-  // width: 150px;
 }
 
 .nav.right li.nav-right {
@@ -76,8 +99,14 @@ a.logo a:hover {
   border: none;
   color: #fff;
   float: left;
-  width: 65px;
+  width: 4em;
 }
+
+// @media screen and (max-width: 700px) {
+//   .nav.right a {
+//     width: 50px;
+//   }
+// }
 
 .nav.right a:hover {
   text-decoration: none;
@@ -133,20 +162,29 @@ a.logo a:hover {
 .hr {
   margin-bottom: 20px;
 }
-
+// }
 
 /*// TEXT //*/
 
 h1, h2, h3, h4 {
   font-family: 'Lato', sans-serif;
   color: #fff;
-  font-weight: 100;
   margin: 0;
   text-align: center;
+  font-weight: 100;
 }
 
 h2 {
   font-size: 2em;
+  clear: both;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  font-weight: 100;
+  font-size: 1.5em;
+  margin-top: 0px;
 }
 
 h6 {
@@ -159,11 +197,7 @@ h7 {
 }
 
 p {
-  font-family: 'Lato', sans-serif;
-  color: #fff;
-  font-weight: 200;
-  font-size: 1.5em;
-  margin-top: 0px;
+  font-weight: 100;
 }
 
 /*// LINKS //*/
