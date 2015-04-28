@@ -21,13 +21,16 @@ FactoryGirl.define do
   end
 
   factory :test do
-    year_group
+    # year_group
     duration 30
     user
+    category
   end
 
   factory :category do
     sequence(:name){|n| "name#{n}" }
+    exam_board
+    year              "AS"
   end
 
   factory :year_group do
