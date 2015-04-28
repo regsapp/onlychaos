@@ -193,6 +193,15 @@ span#A2time {
   display: inline-block;
 }
 
+.units {
+  float: right;
+}
+
+@media screen and (min-width: 500px) {
+  .row {
+    width: 25em;
+  }
+}
 
 
 // BUTTON //
