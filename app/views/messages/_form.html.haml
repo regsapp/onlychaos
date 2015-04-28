@@ -21,11 +21,11 @@
       .col-sm-10
         = f.text_field :last_name, :class => 'form-control'
   .form-group
-    = f.label :title, :class => 'col-sm-2 control-label'
+    = f.label :title, "Subject", :class => 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :title, :class => 'form-control'
   .form-group
-    = f.label :body, :class => 'col-sm-2 control-label'
+    = f.label :body, "Tell us why you disagree", :class => 'col-sm-2 control-label'
     .col-sm-10
       = f.text_area :body, :class => 'form-control message', rows: 10
   .form-group
