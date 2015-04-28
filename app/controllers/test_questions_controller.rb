@@ -48,7 +48,7 @@ class TestQuestionsController < ApplicationController
       if @test_question.save
         alert, notice = nil
         notice = 'Well done, all correct!'               if @test_question.correct?
-        alert  = 'One or more of your answers was incorrect. Take a look at the hints' if !@test_question.correct? && @test_question.next_chance?
+        alert  = 'One or more of your answers was incorrect. Take a look at the hints below' if !@test_question.correct? && @test_question.next_chance?
         alert  = 'One or more of your answers was incorrect'           if !@test_question.correct? && !@test_question.next_chance? && !@test_question.last?
 
         if @test_question.next_test_question

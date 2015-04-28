@@ -107,3 +107,9 @@ p.question-hint {
 li.question_parts {
   border: none;
 }
+
+@media screen and (max-width: 500px) {
+  img {
+    width: 10em;
+  }
+}
