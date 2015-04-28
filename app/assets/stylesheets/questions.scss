@@ -74,7 +74,13 @@ textarea.form-control {
   text-align: center;
 }
 
-div.answer-box {
+@media screen and (max-width: 500px) {
+  .answer-box {
+    float: left;
+  }
+}
+
+.answer-box {
   display: inline-block;
   width: 50%;
   float: right;
