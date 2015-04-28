@@ -26,7 +26,7 @@ body {
   margin-right: auto;
   padding-top: 0%;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 1.2em;
 }
 
 @media screen and (max-width: 700px) {
@@ -216,7 +216,7 @@ a:visited {
   text-decoration: none;
 }
 
-// ALERTS // -> Still need to fix!
+// ALERTS //
 
 .alerts {
   margin-top: 5%;
@@ -267,7 +267,6 @@ li.alerts {
 
 .form-question {
   width: 90%;
-  // clear: both;
 }
 
 // FOOTER//
@@ -275,7 +274,7 @@ li.alerts {
 footer {
   clear: both;
   position: fixed;
-  bottom: 0;
+  bottom: 2em;
   width: 100%;
   left: 0;
   color: #fff;
