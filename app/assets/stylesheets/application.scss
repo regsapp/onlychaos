@@ -111,7 +111,7 @@ body {
 // }
 
 .nav.right a:hover {
-  text-decoration: none;
+  // text-decoration: none;
 }
 
 .nav.left ul {
@@ -205,7 +205,7 @@ p {
 /*// LINKS //*/
 
 a:link {
-  color: #292929;
+  color: #fff;
 }
 
 a:visited {
@@ -273,10 +273,21 @@ li.alerts {
 
 footer {
   clear: both;
-  position: fixed;
-  bottom: 2em;
+  // position: fixed;
+  bottom: 3em;
   width: 100%;
   left: 0;
   color: #fff;
   height: 20px;
+  margin: 15em 0 0 0;
+}
+
+@media screen and (min-width: 700px) {
+  .footer.left {
+    float: left;
+  }
+
+  .footer.right {
+    float: right;
+  }
 }
