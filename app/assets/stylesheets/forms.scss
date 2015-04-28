@@ -27,8 +27,22 @@ section.form-signup {
   display: inline-block;
 }
 
-#new_test {
-  width: 40%;
+@media screen and (max-width: 500px) {
+  #new_test {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  #new_test {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #new_test {
+    width: 40%;
+  }
 }
 
 
@@ -36,7 +50,6 @@ section.form-signup {
 
 input[type=email], [type=password], [type=text] {
   font-family: 'Lato', sans-serif;
-  // padding-left: 15px;
   border: none;
   width: 300px;
   background-color: transparent;
@@ -47,10 +60,15 @@ input[type=email], [type=password], [type=text] {
   color: white;
   font-size: 1.5em;
   font-weight: 400;
-  // text-transform: uppercase;
   padding-bottom: 2%;
   display: inline-block;
   text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  input[type=email], [type=password], [type=text] {
+    width: 200px;
+  }
 }
 
 .form-control.message {
