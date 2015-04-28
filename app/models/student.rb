@@ -1,6 +1,8 @@
 class Student < User
   include Stats
 
+  has_paper_trail :on => [:update], :only => [:grades, :percentages, :total_answers, :correct_answers]
+
   has_many :tests, :foreign_key => "user_id"
   has_many :test_questions, through: :tests
   has_many :recent_tests, -> { recent }, :class_name => "Test", :foreign_key => "user_id"
