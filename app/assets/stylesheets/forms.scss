@@ -33,7 +33,7 @@ section.form-signup {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (min-width: 500px) {
   #new_test {
     width: 60%;
   }
