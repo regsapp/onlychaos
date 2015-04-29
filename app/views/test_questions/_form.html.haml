@@ -100,3 +100,6 @@
       %h5.hint Hint:
       %p.question-hint
         =@test_question.question.hint.html_safe
+
+:javascript
+  mixpanel.track("Answered a question");
