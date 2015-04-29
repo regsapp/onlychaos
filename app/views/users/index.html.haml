@@ -5,18 +5,19 @@
   %h1 Listing users
 
 .table-responsive
-  %table.table.table-striped.table-bordered.table-hover
+  %table.table.table-bordered.table-hover
     %thead
       %tr
         %th Email
         %th First name
         %th Last name
-        %th Birthday
         %th School
         %th Sign in count
         %th Current sign in at
         %th Last sign in at
         %th Type
+        %th No. Q
+        %th Percent
         %th
         %th
         %th
@@ -28,15 +29,16 @@
           %td= user.first_name
           %td= user.last_name
           - if user.is_a? Student
-            %td= user.birthday
             %td= user.school_name
           - else
             %td
             %td
           %td= user.sign_in_count
-          %td= user.current_sign_in_at
-          %td= user.last_sign_in_at
+          %td= user.current_sign_in_at.to_date
+          %td= user.last_sign_in_at.to_date
           %td= user.type
+          %td= user.total_answers
+          %td= user.percentages.to_i
           %td= link_to 'Show', user_path(user)
           %td= link_to 'Edit', edit_user_path(user)
           %td= link_to 'Destroy', user_path(user), :data => { confirm: 'Are you sure?' }, :method => :delete

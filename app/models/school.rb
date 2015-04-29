@@ -1,6 +1,7 @@
 class School < ActiveRecord::Base
   require 'csv'
 
+  has_many :users
   has_many :students
   has_many :teachers
   belongs_to :exam_board
