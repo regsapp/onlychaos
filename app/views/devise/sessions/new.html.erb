@@ -24,9 +24,13 @@
 		$('#myLogin').keypress(function(event){
 		    if ( e.which == 13 ){
 				event.preventDefault();
-				var email = $("#email").val();
-        // mixpanel.alias(email);
-				mixpanel.identify(email);
+        var alias = mixpanel.cookie.props._alias;
+				var email = $("#email").val().toLowerCase();
+        if (alias != undefined) {
+          mixpanel.identify(email);
+        } else {
+          mixpanel.alias(email);
+        }
 				mixpanel.track("Logged in",{},callback_function);
 				mixpanel.people.set({"$created":new Date(), "$email":email});
 				setTimeout(callback_function,400);
@@ -35,9 +39,13 @@
 		// If the user clicks the submit button to submit
 		$("#myLogin").click(function(event){
 			event.preventDefault();
-			var email = $("#email").val();
-      // mixpanel.alias(email);
-			mixpanel.identify(email);
+      var alias = mixpanel.cookie.props._alias;
+			var email = $("#email").val().toLowerCase();
+      if (alias != undefined) {
+        mixpanel.identify(email);
+      } else {
+        mixpanel.alias(email);
+      }
 			mixpanel.track("Logged in",{},callback_function);
 			mixpanel.people.set({"$created":new Date(), "$email":email});
 			setTimeout(callback_function,400);

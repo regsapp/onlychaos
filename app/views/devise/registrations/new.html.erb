@@ -53,7 +53,7 @@
 		$('#mySubmit').keypress(function(event){
 		    if ( e.which == 13 ){
 				event.preventDefault();
-				var email = $("#email").val();
+				var email = $("#email").val().toLowerCase();
 				mixpanel.alias(email);
 				mixpanel.track("Created Account",{},callback_function);
 				mixpanel.people.set({"$created":new Date(), "$email":email});
@@ -63,7 +63,7 @@
 		// If the user clicks the submit button to submit
 		$("#mySubmit").click(function(event){
 			event.preventDefault();
-			var email = $("#email").val();
+			var email = $("#email").val().toLowerCase();
 			mixpanel.alias(email);
 			mixpanel.track("Created Account",{},callback_function);
 			mixpanel.people.set({"$created":new Date(), "$email":email});
