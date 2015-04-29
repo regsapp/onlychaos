@@ -37,8 +37,10 @@
           %td= user.current_sign_in_at.to_date
           %td= user.last_sign_in_at.to_date
           %td= user.type
-          %td= user.total_answers
-          %td= user.percentages.to_i
+          %td
+          %td
+          -# %td= user.total_answers
+          -# %td= user.percentages.to_i
           %td= link_to 'Show', user_path(user)
           %td= link_to 'Edit', edit_user_path(user)
           %td= link_to 'Destroy', user_path(user), :data => { confirm: 'Are you sure?' }, :method => :delete
