@@ -5,13 +5,13 @@
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form", id: "register" }) do |f| %>
     <div class="form-object">
-      <%= f.text_field :first_name, autofocus: true, placeholder: 'first name' %>
+      <%= f.text_field :first_name, autofocus: true, placeholder: 'first name', id: "firstname" %>
     </div>
     <!-- <div class="form-object">
       <%= f.text_field :last_name, autofocus: true, placeholder: 'family name' %>
     </div> -->
     <div class="form-object">
-      <%= f.email_field :email, autofocus: true, placeholder: 'email' %>
+      <%= f.email_field :email, autofocus: true, placeholder: 'email', id: "email" %>
     </div>
     <!-- <div class="form-object">
       <%= f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control' %>
@@ -41,13 +41,37 @@
       <%= f.hidden_field :school_id, id: 'school_id' %>
       <!-- <%= f.collection_select :school_id, School.all, :id, :name, { prompt: "school/college" }, autofocus: true, :class => 'form-control' %> -->
     </div>
-    <%= f.submit "SIGN UP", class: "normal button" %>
+    <%= f.submit "SIGN UP", class: "normal button", id: "mySubmit" %>
   <% end %>
 
   <h4>Already have an account?  <%= link_to 'Login here', new_user_session_path %></h4>
 </section>
 
 <script type="text/javascript">
-  mixpanel.track_forms("#register", "Created Account");
-  mixpanel.identify()
+
+		// If the user presses return key to submit
+		$('#mySubmit').keypress(function(event){
+		    if ( e.which == 13 ){
+				event.preventDefault();
+				var email = $("#email").val();
+				mixpanel.alias(email);
+				mixpanel.track("Created Account",{},callback_function);
+				mixpanel.people.set({"$created":new Date(), "$email":email});
+				setTimeout(callback_function,400);
+				}
+		});
+		// If the user clicks the submit button to submit
+		$("#mySubmit").click(function(event){
+			event.preventDefault();
+			var email = $("#email").val();
+			mixpanel.alias(email);
+			mixpanel.track("Created Account",{},callback_function);
+			mixpanel.people.set({"$created":new Date(), "$email":email});
+			setTimeout(callback_function,400);
+		})
+
+		function callback_function(){
+			$("#register").submit();
+
+		}
 </script>
