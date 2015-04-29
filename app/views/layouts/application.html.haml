@@ -53,6 +53,25 @@
       for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
       mixpanel.init("adb385295eaa7b487c0bb10bb6345416");
     / end Mixpanel
+    / start uservoice
+    / UserVoice JavaScript SDK (only needed once on a page)
+    :javascript
+      (function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/KHadCfc47KTyS9qZlTNVQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
+    / A tab to launch the Classic Widget
+    :javascript
+      UserVoice = window.UserVoice || [];
+      UserVoice.push(['showTab', 'classic_widget', {
+        mode: 'full',
+        primary_color: '#cc6d00',
+        link_color: '#007dbf',
+        default_mode: 'support',
+        forum_id: 294492,
+        tab_label: 'Feedback & Ideas',
+        tab_color: '#cc6d00',
+        tab_position: 'middle-right',
+        tab_inverted: false
+      }]);
+    /end uservoice
   %body
 
     %header
