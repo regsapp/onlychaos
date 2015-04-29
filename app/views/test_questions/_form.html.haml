@@ -39,7 +39,7 @@
     }
   });
 
-= form_for @test_question, :html => { :class => "form-question" } do |f|
+= form_for @test_question, :html => { :class => "form-question", :id => "answer" } do |f|
   -if @test_question.errors.any?
     .alert.alert-danger.alert-dismissable
       %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
@@ -102,4 +102,4 @@
         =@test_question.question.hint.html_safe
 
 :javascript
-  mixpanel.track("Answered a question");
+  mixpanel.track_forms("#answer", "Answered a question");
