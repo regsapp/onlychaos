@@ -70,6 +70,15 @@ class Test < ActiveRecord::Base
     category_ranges.to_a.find{ |a| rand_number.in? a[1] }.to_a[0]
   end
 
+  def self.question_marks
+    questions = self.questions
+    array_marks = []
+    questions.each do |question|
+      array_marks << question.marks
+    end
+    return array_marks.sum
+  end
+
   private
 
   def must_have_categories

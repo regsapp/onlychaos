@@ -12,4 +12,8 @@ module TestsHelper
     test.incorrect_answers_count.to_f / total_answers_count(test).to_f * 100
   end
 
+  
+
+
+
 end
