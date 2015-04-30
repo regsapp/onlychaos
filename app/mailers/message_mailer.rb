@@ -6,4 +6,8 @@ class MessageMailer < ApplicationMailer
     @message = message
     mail(subject: "#{message.title}")
   end
+
+  def weekly_mail(student)
+    mail(:to => student.email)
+  end
 end

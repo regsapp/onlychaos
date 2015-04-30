@@ -60,4 +60,12 @@ class Student < User
     end
   end
 
+  def self.weekly_update
+    transaction do
+      all.each do |student|
+        MessageMailer.weekly_mail(student).deliver_now
+      end
+    end
+  end
+
 end
