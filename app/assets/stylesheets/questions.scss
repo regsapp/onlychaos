@@ -13,33 +13,38 @@
 
 ol.question-parts {
   list-style-type: lower-alpha;
+  list-style-position: inside;
   margin: 0;
-  margin-left: 3em;
-  padding: 0;
-  padding-top: 20px;
+  padding: 0 0 2em 0;
 }
 
+ol.question-part {
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+  margin: 0;
+  padding: 0;
+}
+
+
 ol.question-parts > li {
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 0em;
-  min-height: 3em;
+  // position: relative;
+  // margin-bottom: 20px;
+  // // padding-left: 0em;
+  // min-height: 3em;
   display: list-item;
-  list-style-position: inside;
+  padding: 1px 1px 1px 1px;
 }
 
 ol.question-parts > li:before {
   position: absolute;
   top: 0;
   left: -1em;
-  width: 0.8em;
+  width: 1.8em;
   line-height: 1;
-  text-align: right;
-  // font-size: 2em;
+  font-size: 3em;
 }
 
 .question-parts{
-
   .form-group{
     clear: both;
   }
@@ -69,9 +74,16 @@ textarea.form-control {
   text-align: center;
 }
 
-div.answer-box {
+@media screen and (max-width: 500px) {
+  .answer-box {
+    float: left;
+  }
+}
+
+.answer-box {
   display: inline-block;
   width: 50%;
+  float: right;
 }
 
 div.preview {
@@ -94,4 +106,10 @@ p.question-hint {
 
 li.question_parts {
   border: none;
+}
+
+@media screen and (max-width: 500px) {
+  img {
+    width: 10em;
+  }
 }

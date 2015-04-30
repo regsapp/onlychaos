@@ -2,7 +2,7 @@ module ApplicationHelper
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
-  
+
   def model_menu_item(model)
     if can? :read, model
       resources = model.to_s.underscore.pluralize
@@ -26,4 +26,7 @@ module ApplicationHelper
     re = Regexp.new("(<span\\ class=\"math\\-tex\\-or\\-mml\">\\\\\\()(.+)(\\\\\\)</span>)")
     text.gsub(re, '`\2`').html_safe
   end
+
+
+
 end

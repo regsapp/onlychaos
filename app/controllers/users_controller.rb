@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  autocomplete :school, :name
 
   # GET /users
   # GET /users.json
@@ -29,8 +30,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to users_url, notice: 'User was successfully created.' }
+        # format.json { render :show, status: :created, location: @user }
+        format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -70,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :school, :type, :exam_board, :first_name, :last_name, :password)
+      params.require(:user).permit(:email, :school, :type, :first_name, :last_name, :password, :school_name, :grades, :percentages, :total_answers, :correct_answers)
     end
 end

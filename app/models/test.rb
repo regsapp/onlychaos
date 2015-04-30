@@ -18,16 +18,16 @@ class Test < ActiveRecord::Base
 
 
   # temporarily (while we don't have exam boards per school)
-  has_one :exam_board, through: :student
-  attr_writer :exam_board_id
-  validates :exam_board_id, presence: { unless: :tutorial? }
-  after_save :store_exam_board_id
+  # has_one :exam_board, through: :student
+  # attr_writer :exam_board_id
+  # validates :exam_board_id, presence: { unless: :tutorial? }
+  # after_save :store_exam_board_id
 
   def exam_board_id
     @exam_board_id ||= student.exam_board_id
   end
 
-  
+
   after_create :create_test_questions
 
   RECENT_LIMIT = 10

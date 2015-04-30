@@ -35,6 +35,18 @@ gem 'fog', '~> 1.28.0'
 gem 'social-share-button'
 gem 'aws-sdk'
 
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
+
+gem 'airbrake'
+
+
+gem 'paper_trail', '~> 4.0.0.beta'
+gem 'whenever', :require => false
+
+gem 'newrelic_rpm'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

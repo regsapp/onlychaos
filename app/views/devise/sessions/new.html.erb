@@ -2,18 +2,57 @@
   <h2>Improve your physics AS/A2 grades</h2>
   <p>Self marking revision past papers</p>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form", id: 'login' }) do |f| %>
       <div class="form-object">
-        <%= f.email_field :email, autofocus: true, placeholder: 'school/college email' %>
+        <%= f.email_field :email, autofocus: true, placeholder: 'school/college email', id: 'email' %>
       </div>
 
       <div class="form-object">
         <%= f.password_field :password, autocomplete: "off", placeholder: 'password' %>
       </div>
 
-      <%= f.submit "LOGIN", class: 'normal button' %>
+      <%= f.submit "LOGIN", class: 'normal button', id: 'myLogin' %>
     <% end %>
 
     <h4><%= render "devise/shared/links" %></h4>
     <h4>Don't have an account?  <%= link_to 'Sign up here', new_user_registration_path %></h4>
 </section>
+
+<script type="text/javascript">
+
+		// If the user presses return key to submit
+		$('#myLogin').keypress(function(event){
+		    if ( e.which == 13 ){
+				event.preventDefault();
+        var alias = mixpanel.cookie.props._alias;
+				var email = $("#email").val().toLowerCase();
+        if (alias != undefined) {
+          mixpanel.identify(email);
+        } else {
+          mixpanel.alias(email);
+        }
+				mixpanel.track("Logged in",{},callback_function);
+				mixpanel.people.set({"$created":new Date(), "$email":email});
+				setTimeout(callback_function,400);
+				}
+		});
+		// If the user clicks the submit button to submit
+		$("#myLogin").click(function(event){
+			event.preventDefault();
+      var alias = mixpanel.cookie.props._alias;
+			var email = $("#email").val().toLowerCase();
+      if (alias != undefined) {
+        mixpanel.identify(email);
+      } else {
+        mixpanel.alias(email);
+      }
+			mixpanel.track("Logged in",{},callback_function);
+			mixpanel.people.set({"$created":new Date(), "$email":email});
+			setTimeout(callback_function,400);
+		})
+
+		function callback_function(){
+			$("#login").submit();
+
+		}
+</script>

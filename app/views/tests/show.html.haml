@@ -18,7 +18,7 @@
       .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
       .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
       .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
-      .chart{"data-percent" => "65"} #{@test.grade}
+      .chart{"data-percent" => "65"} #{@test.grade} PREDICTED
 
     %div.dashboard
       =link_to "To Dashboard", root_path, class: "normal button"
@@ -35,21 +35,26 @@
         .col-sm-9.question
           .question-description
             =change_math_delims(test_question.question.description)
-          %ol.question-parts
+          %ol.question-part
             - test_question.answers.each do |answer|
               %li.question-text
-                %dd=change_math_delims(answer.question_part.description)
-                %h6 Your answer:
-                %dd
-                  = answer.content
-                  = answer.correct? ? "Was correct!" : "Was incorrect!"
-                - unless answer.correct?
-                  %dt Correct answer:
-                  %dd= answer.correct_answer.content
-                %h6 Marks:
-                %dd= "#{answer.marks} of #{pluralize(answer.max_marks.to_i, 'mark')}"
-        .col-sm-3.disagree
-          =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'normal button'
+                %div.question-part-description
+                  %p=change_math_delims(answer.question_part.description)
+                %div.student-answer
+                  %h6 Your answer:
+                  %h7
+                    = answer.content
+                    = answer.correct? ? "- was correct!" : "- was incorrect!"
+                  - unless answer.correct?
+                    %h6 Correct answer:
+                    %h7= answer.correct_answer.content
+                %div.student-marks
+                  %h6 Marks: #{answer.marks} of #{answer.max_marks.to_i}
+                  =link_to "Disagree?", new_message_path(disagree: 1, question_id: test_question.question.id), class: 'link right'
 
-  %div.dashboard_bottom
-    =link_to "To Dashboard", root_path, class: "normal button"
+
+
+%div.dashboard_bottom
+  =link_to "TO DASHBOARD", root_path, class: "normal button"
+
+  =link_to "TAKE ANOTHER TEST", new_test_path, :class => "normal button"

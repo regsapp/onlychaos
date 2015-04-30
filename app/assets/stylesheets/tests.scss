@@ -1,26 +1,28 @@
-// div.container {
-//   position: relative;
-// }
-
-div.results {
+.results {
   width: 70%;
   margin: auto;
+}
+
+@media screen and (min-width: 700px) {
+  .results {
+    width: 100%;
+  }
 }
 
 div.dashboard {
   float: right;
 }
 
-div.dashboard_bottom {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-}
+// div.dashboard_bottom {
+//   position: fixed;
+//   bottom: 0;
+//   right: 0;
+//   width: 100%;
+// }
 
 ul.tabs {
   list-style-type: none;
-  margin-top: 50px;
+  // margin-top: 10px;
   // margin: 0;
   padding: 0;
 }
@@ -38,6 +40,20 @@ li {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 700px) {
+  li.tab-OCR {
+    margin: 0 0.5em 0 0.5em;
+  }
+  li.tab-AQA {
+    margin: 0 0.5em 0 0.5em;
+  }
+  li.tab-Edexcel {
+    margin: 0 0.5em 0 0.5em;
+  }
+}
+
+
+
 li a a:focus {
   padding: 0 1em;
   text-decoration: none;
@@ -50,12 +66,18 @@ li a a:focus {
 
 p.questions {
   color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-top: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.form-object.range {
+  margin-top: 1.1em;
 }
 
 ul.tabs-exams {
   list-style-type: none;
-  margin-top: 30px;
-  // margin: 0;
   padding: 0;
 }
 
@@ -66,10 +88,8 @@ ul.tabs-exams li {
   border-radius: 8px;
   border-width: 1px;
   border-color: white;
-  padding: 1.5% 2%;
+  padding: 2% 0%;
   overflow: auto;
-  // margin-left: 20px;
-  // margin-right: 20px;
 }
 
 ul.tabs-exams li a a:focus {
@@ -78,10 +98,65 @@ ul.tabs-exams li a a:focus {
 }
 
 ul.tabs-exams .active {
-  background-color: white;
+  background-color: #fff;
   color: gray;
 }
 
+.AS-link {
+  width: 8em;
+  height: 2em;
+  display: inline-block;
+}
+
+.A2-link {
+  width: 8em;
+  height: 2em;
+  display: inline-block;
+}
+
+.tab-AS {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tab-A2 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.OCR-link {
+  width: 5em;
+  height: 2.2em;
+  display: inline-block;
+}
+
+.AQA-link {
+  width: 5em;
+  height: 2.2em;
+  display: inline-block;
+}
+
+.Edexcel-link {
+  width: 5em;
+  height: 2.2em;
+  display: inline-block;
+}
+
+.tab-OCR {
+  // padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tab-AQA {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tab-Edexcel {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 div.charts {
   // width: 90%;
@@ -90,8 +165,8 @@ div.charts {
 }
 
 div.chart {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 27px 20px 27px;
+  // margin-bottom: 20px;
   color: #fff;
   // height: 250px;
 }
@@ -131,4 +206,37 @@ hr {
 .formulas {
   font-weight: 900;
   text-decoration: underline;
+  width: 7em;
+}
+
+table.table {
+  border-collapse: collapse;
+}
+
+table.table > tbody > tr > td {
+  padding: 0.125em;
+  border: none;
+}
+
+// TEST RESULTS //
+
+.question-part-description {
+  float: left;
+  clear: both;
+}
+
+.student-answer {
+  float: left;
+  clear: left;
+  padding-left: 3%;
+}
+
+.student-marks {
+  float: right;
+}
+
+#formulatip {
+display:none;
+border:2px solid #fff;
+width:480px;
 }

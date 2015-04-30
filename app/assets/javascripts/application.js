@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require autocomplete-rails
 // require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap
@@ -22,7 +24,15 @@
 
 $(document).ready(function() {
 
+	$('#add-school').hide();
+
+	$('.add-school').click(function(e) {
+		e.preventDefault();
+		$('#add-school').show();
+	});
+
 	$('.A2').hide();
+	$('.OCR').hide();
 
 	$('.AS-link').click(function(e) {
 		e.preventDefault();
@@ -72,5 +82,13 @@ $(document).ready(function() {
 		$('.tab-OCR').removeClass('active');
 		$('.tab-Edexcel').removeClass('active');
 	});
+
+	$(".formulas").hover(
+   function(e){
+       $("#formulatip").show();
+   },
+   function(e){
+       $("#formulatip").hide();
+  });
 
 });

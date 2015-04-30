@@ -2,7 +2,7 @@
   %h1 Listing messages
 
 .table-responsive
-  %table.table.table-striped.table-bordered.table-hover
+  %table.table.table-bordered.table-hover
     %thead
       %tr
         %th Date
@@ -16,7 +16,7 @@
     %tbody
       - @messages.each do |message|
         %tr
-          %td= message.created_at
+          %td= message.created_at.to_date
           %td= message.email
           %td= message.first_name
           %td= message.last_name

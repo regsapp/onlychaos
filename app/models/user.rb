@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :last_name, presence: true
+  belongs_to :school
 
   TYPES = ['Admin', 'Student', 'Teacher', 'Input']
 
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
 
   def input?
     type == 'Input'
+  end
+
+  def school_name
+    (school = self.school) && school.name
   end
 
 end

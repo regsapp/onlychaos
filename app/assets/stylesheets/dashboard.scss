@@ -1,7 +1,7 @@
 div.boxes {
   border: solid 1px #fff;
-  height: 170px;
-  width: 170px;
+  height: 200px;
+  width: 200px;
   margin: 25px;
   display: inline-block;
 }
@@ -16,7 +16,7 @@ div.tutorial {
   width: 62%;
   margin: auto;
   // text-align: left !important;
-  padding-top: 30%;
+  padding-top: 25%;
 }
 
 div.tutorial h2 {
@@ -34,16 +34,34 @@ a:link.test_link {
 // BUTTON //
 
 .big.button {
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
-  border-radius: 8px;
-  font-family: 'Lato', sans-serif;
-  color: #000000;
-  font-size: 1.2em;
-  font-weight: 400;
-  background: #e8edf0;
-  padding: 8px 45px 8px 45px;
+  background: transparent;
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  border: solid #fff 2px;
+  // font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
   text-decoration: none;
-  margin-top: 40px;
-  margin-bottom: 10px;
 }
+
+.big.button:hover {
+  background: #1f6899;
+  text-decoration: none;
+}
+
+// .big.button {
+//   -webkit-border-radius: 8;
+//   -moz-border-radius: 8;
+//   border-radius: 8px;
+//   font-family: 'Lato', sans-serif;
+//   color: #000000;
+//   font-size: 1.2em;
+//   font-weight: 400;
+//   background: #e8edf0;
+//   padding: 8px 45px 8px 45px;
+//   text-decoration: none;
+//   margin-top: 40px;
+//   margin-bottom: 10px;
+// }

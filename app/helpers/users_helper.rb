@@ -12,4 +12,6 @@ module UsersHelper
     user.incorrect_answers_count.to_f / total_answers_count(user).to_f * 100
   end
 
+  
+
 end

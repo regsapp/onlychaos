@@ -16,13 +16,13 @@
   %div.results
 
     %div.charts
-      .chart{"data-percent" => "#{@user.percentage}"} #{number_to_percentage @user.percentage, precision: 0}
+      .chart{"data-percent" => "#{total_answers_count(@user)}"} #{@user.total_answers_count} ANSWERED
 
       .chart{"data-percent" => "#{correct_percent(@user)}"} #{@user.correct_answers_count} CORRECT
 
       .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
 
-      .chart{"data-percent" => "55"} #{@user.grade}
+      .chart{"data-percent" => "55"} #{@user.grade} PREDICTED
 
     %div.questions
 
@@ -35,6 +35,10 @@
             %p= aggregation
   %div
     =link_to "TAKE A TEST", new_test_path, :class => "big button"
+
+  %h3.dashboard-messages
+    "#{motivational_message(@user)}"
+
 
 -else
 

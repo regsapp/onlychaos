@@ -39,7 +39,7 @@
     }
   });
 
-= form_for @test_question, :html => { :class => "form-question" } do |f|
+= form_for @test_question, :html => { :class => "form-question", :id => "answer" } do |f|
   -if @test_question.errors.any?
     .alert.alert-danger.alert-dismissable
       %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
@@ -68,7 +68,9 @@
                 %div.preview.col-xs-6
                   %div{ id: "answer_preview_#{count}", class: "answer_preview" }
             %div.formulas
-              %p.formulas Formulas
+              %p.formulas Formula tips
+              #formulatip
+                = render 'formula'
 
           - elsif question_part.answer_type == 'multiple choice'
             .form-group
@@ -98,3 +100,6 @@
       %h5.hint Hint:
       %p.question-hint
         =@test_question.question.hint.html_safe
+
+:javascript
+  mixpanel.track_forms("#answer", "Answered a question");

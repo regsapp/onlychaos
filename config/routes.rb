@@ -13,11 +13,15 @@ Rails.application.routes.draw do
 
   resources :year_groups
 
-  resources :schools
+  resources :schools do
+    collection { post :import }
+  end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   scope "/my" do
-    resources :users
+    resources :users do
+      get :autocomplete_school_name, :on => :collection
+    end
   end
 
   resources :answers
