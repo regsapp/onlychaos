@@ -10,6 +10,7 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :question_parts, allow_destroy: true
 
   validates :category_id, presence: true
+  validates :level, presence: true, numericality: { greater_or_equal_to: 1, less_or_equal_to: 5 }
 
   validate :must_have_exam_boards unless Proc.new { |question| question.tutorial? }
 

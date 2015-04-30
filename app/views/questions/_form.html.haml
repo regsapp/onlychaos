@@ -53,6 +53,10 @@
     .col-sm-10
       = f.collection_select :category_id, Category.all, :id, :name, { prompt: true }, :class => 'form-control'
   .form-group
+    = f.label :level, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.collection_select :level, (1..5).to_a, :to_i, :to_i, { prompt: true }, :class => 'form-control'
+  .form-group
     = f.label :exam_boards, :class => 'col-sm-2 control-label'
     .col-sm-10
       = hidden_field_tag "question[exam_board_ids][]", nil

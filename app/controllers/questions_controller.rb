@@ -76,6 +76,7 @@ class QuestionsController < ApplicationController
         :description,
         :hint,
         :status,
+        :level,
         :category_id,
         :year_group_id,
         exam_board_ids: [],

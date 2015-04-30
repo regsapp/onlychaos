@@ -18,7 +18,8 @@ school.students.create!(email: "student@test.com", password: "password", first_n
 
 # Tutorial questions
 
-Question.create({
+Question.create!({
+  level: 1,
   category_id: tutorial.id,
   description: %q{
       <p>
@@ -46,7 +47,8 @@ Question.create({
   ]
 })
 
-Question.create({
+Question.create!({
+  level: 1,
   category_id: tutorial.id,
   description: %q{
       <p>
@@ -73,7 +75,8 @@ What formula would you use to calculate the speed over the ground?
   ]
 })
 
-Question.create({
+Question.create!({
+  level: 1,
   category_id: tutorial.id,
   description: %q{
       <p>
