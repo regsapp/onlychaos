@@ -5,13 +5,14 @@
   %h1 Listing tests
 
 .table-responsive
-  %table.table.table-striped.table-bordered.table-hover
+  %table.table.table-bordered.table-hover
     %thead
       %tr
         %th Categories
         %th Duration
         %th User
-        %th
+        %th No. of questions
+        %th No. correct
         %th
 
     %tbody
@@ -19,6 +20,7 @@
         %tr
           %td= test.category_names
           %td= test.duration
-          %td= test.user.email
+          %td= test.student.email
+          %td= test.questions.count
+          %td= test.correct_answers_count
           %td= link_to 'Show', test
-          %td= link_to 'Destroy', test, :data => { confirm: 'Are you sure?' }, :method => :delete

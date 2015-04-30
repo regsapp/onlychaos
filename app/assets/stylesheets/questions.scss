@@ -15,7 +15,7 @@ ol.question-parts {
   list-style-type: lower-alpha;
   list-style-position: inside;
   margin: 0;
-  padding: 0;
+  padding: 0 0 2em 0;
 }
 
 ol.question-part {
@@ -74,7 +74,13 @@ textarea.form-control {
   text-align: center;
 }
 
-div.answer-box {
+@media screen and (max-width: 500px) {
+  .answer-box {
+    float: left;
+  }
+}
+
+.answer-box {
   display: inline-block;
   width: 50%;
   float: right;
@@ -100,4 +106,10 @@ p.question-hint {
 
 li.question_parts {
   border: none;
+}
+
+@media screen and (max-width: 500px) {
+  img {
+    width: 10em;
+  }
 }

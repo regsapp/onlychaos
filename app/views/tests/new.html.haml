@@ -24,31 +24,27 @@
       %br
       %p.questions Questions in the style of:
       .col-sm-12
-      %ul.tabs-exams
-        %li.tab-OCR
-          %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
-        %li.tab-Edexcel
-          %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
-        %li.tab-AQA
-          %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      -# .form-object
-      -#   .col-sm-12
-      -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control'
+        %ul.tabs-exams
+          %li.tab-OCR
+            %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
+          %li.tab-Edexcel
+            %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
+          %li.tab-AQA
+            %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
       %br
       %p.questions Test duration:
       .form-object.range
         .col-sm-8.range
-          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...101, value: 5, :onchange => 'showValue(this.value)'
         %div.duration
           = succeed ' minutes' do
-            %span#time 60
+            %span#time 5
           %br
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
       %p.questions Categories:
       .OCR
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "AS" && category.exam_board_id == 1
                 .category-label
@@ -58,7 +54,6 @@
       .Edexcel
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "AS" && category.exam_board_id == 3
                 .category-label
@@ -68,12 +63,13 @@
       .AQA
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "AS" && category.exam_board_id == 2
                 .category-label
                   = label_tag dom_id(category), category.name
                   = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+
+      %h4 Select your year group, exam board and categories from the options above
 
       .form-object
         = f.submit :class => 'normal button'
@@ -90,24 +86,20 @@
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      -# .form-object
-      -#   .col-sm-12
-      -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
       %br
       %p.questions Test duration:
       .form-object
         .col-sm-8.range
-          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showNewValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...101, value: 5, :onchange => 'showNewValue(this.value)'
         %div.duration
           = succeed ' minutes' do
-            %span#A2time 60
+            %span#A2time 5
           %br
           = f.label :duration, 'TEST DURATION', :class => 'form-label'
       %p.questions Categories:
       .OCR
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "A2" && category.exam_board_id == 1
                 .category-label
@@ -117,7 +109,6 @@
       .Edexcel
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "A2" && category.exam_board_id == 3
                 .category-label
@@ -127,20 +118,13 @@
       .AQA
         .form-object
           .col-sm-12.category_to_fix
-            =# hidden_field_tag "test[category_ids][]", nil
             - Category.real.each do |category|
               -if category.year == "A2" && category.exam_board_id == 2
                 .category-label
                   = label_tag dom_id(category), category.name
                   = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
-      -# .form-object
-      -#   .col-sm-12.category_to_fix
-      -#     - Category.real.each do |category|
-      -#       -if category.year == "A2"
-      -#         .category-label
-      -#           = label_tag dom_id(category), category.name
-      -#           = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+      %h4 Select your year group, exam board and categories from the options above
 
       .form-object
         = f.submit :class => 'normal button'
@@ -154,3 +138,6 @@
   function showNewValue(newValue) {
     document.getElementById('A2time').innerHTML = newValue;
   }
+
+:javascript
+  mixpanel.track("Started Test");

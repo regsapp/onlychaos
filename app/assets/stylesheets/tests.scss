@@ -1,10 +1,12 @@
-// div.container {
-//   position: relative;
-// }
-
-div.results {
+.results {
   width: 70%;
   margin: auto;
+}
+
+@media screen and (min-width: 700px) {
+  .results {
+    width: 100%;
+  }
 }
 
 div.dashboard {
@@ -38,6 +40,20 @@ li {
   margin-right: 20px;
 }
 
+@media screen and (max-width: 700px) {
+  li.tab-OCR {
+    margin: 0 0.5em 0 0.5em;
+  }
+  li.tab-AQA {
+    margin: 0 0.5em 0 0.5em;
+  }
+  li.tab-Edexcel {
+    margin: 0 0.5em 0 0.5em;
+  }
+}
+
+
+
 li a a:focus {
   padding: 0 1em;
   text-decoration: none;
@@ -62,7 +78,6 @@ p.questions {
 
 ul.tabs-exams {
   list-style-type: none;
-  margin-top: 30px;
   padding: 0;
 }
 
@@ -88,14 +103,14 @@ ul.tabs-exams .active {
 }
 
 .AS-link {
-  width: 147px;
-  height: 34px;
+  width: 8em;
+  height: 2em;
   display: inline-block;
 }
 
 .A2-link {
-  width: 147px;
-  height: 34px;
+  width: 8em;
+  height: 2em;
   display: inline-block;
 }
 
@@ -110,20 +125,20 @@ ul.tabs-exams .active {
 }
 
 .OCR-link {
-  width: 95px;
-  height: 34px;
+  width: 5em;
+  height: 2.2em;
   display: inline-block;
 }
 
 .AQA-link {
-  width: 95px;
-  height: 34px;
+  width: 5em;
+  height: 2.2em;
   display: inline-block;
 }
 
 .Edexcel-link {
-  width: 95px;
-  height: 34px;
+  width: 5em;
+  height: 2.2em;
   display: inline-block;
 }
 
@@ -191,12 +206,23 @@ hr {
 .formulas {
   font-weight: 900;
   text-decoration: underline;
+  width: 7em;
+}
+
+table.table {
+  border-collapse: collapse;
+}
+
+table.table > tbody > tr > td {
+  padding: 0.125em;
+  border: none;
 }
 
 // TEST RESULTS //
 
 .question-part-description {
   float: left;
+  clear: both;
 }
 
 .student-answer {

@@ -21,8 +21,7 @@ class MessagesController < ApplicationController
 
     if params[:disagree] && params[:question_id]
       question = Question.find(params[:question_id])
-      @message.title = "I disagree on Question #{question.id}"
-      # @message.body = "#{question.description}"
+      @message.title = "I disagree on with this question"
     end
   end
 
