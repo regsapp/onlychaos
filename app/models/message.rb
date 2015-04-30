@@ -12,6 +12,6 @@ class Message < ActiveRecord::Base
   private
 
   def send_notification
-    MessageMailer.new_message(self).deliver
+    MessageMailer.new_message(self).deliver_now
   end
 end
