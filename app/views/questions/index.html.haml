@@ -9,7 +9,7 @@
     %thead
       %tr
         %th Category
-        %th Level
+        -# %th Level
         %th Exam boards
         %th Description
         %th Marks
@@ -22,7 +22,7 @@
       - @questions.each do |question|
         %tr.question-table
           %td= question.category.name
-          %td= question.level
+          -# %td= question.level
           %td= question.exam_board_names
           %td.question-text= change_math_delims(question.description)
           %td= question.marks

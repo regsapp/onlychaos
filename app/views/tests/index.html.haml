@@ -9,7 +9,7 @@
     %thead
       %tr
         %th Categories
-        %th Level
+        -# %th Level
         %th Duration
         %th User
         %th No. of questions
@@ -20,7 +20,7 @@
       - @tests.each do |test|
         %tr
           %td= test.category_names
-          %td= test.level
+          -# %td= test.level
           %td= test.duration
           %td= test.student.email
           %td= test.questions.count
