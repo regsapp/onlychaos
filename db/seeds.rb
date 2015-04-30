@@ -6,11 +6,11 @@ aqa = ExamBoard.create!(name: 'AQA')
 edexcel = ExamBoard.create!(name: 'Edexcel')
 
 tutorial = Category.create!(name: "Tutorial (prerequisite for new students)", tutorial: true)
-# astrophysics = Category.create!(name: "Astrophysics", year: "A2", exam_board_id: 1)
-# mechanics = Category.create!(name: "Mechanics", year: "AS", exam_board_id: 1)
-# electricity = Category.create!(name: "Electricity", year: "A2", exam_board_id: 2)
-# particles = Category.create!(name: "Particles", year: "A2", exam_board_id: 3)
-# waves = Category.create!(name: "Waves", year: "AS", exam_board_id: 2)
+astrophysics = Category.create!(name: "Astrophysics", year: "A2", exam_board_id: 1)
+mechanics = Category.create!(name: "Mechanics", year: "AS", exam_board_id: 1)
+electricity = Category.create!(name: "Electricity", year: "A2", exam_board_id: 2)
+particles = Category.create!(name: "Particles", year: "A2", exam_board_id: 3)
+waves = Category.create!(name: "Waves", year: "AS", exam_board_id: 2)
 
 school = ocr.schools.create(name: "Rickmansworth School")
 school.students.create!(email: "student@example.com", password: "password", first_name: "Harry", last_name: "Potter", birthday: "1981/7/31".to_date, exam_board_id: 1)
@@ -135,68 +135,71 @@ over the ground?
 year_groups = YearGroup.all.to_a
 categories = Category.real.to_a
 exam_boards = ExamBoard.all.to_a
+rand_level = -> { rand(5) + 1 }
 
-# 20.times do ||
-#   Question.create!(
-#     category_id: categories.sample.id,
-#     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
-#     description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
-#     hint: "bla bla bla",
-#     question_parts_attributes: [
-#       {
-#         description: "has zero charge,",
-#         marks: rand(1..2),
-#         answer_type: "multiple bool",
-#         correct_answer_attributes: {
-#           content: "neutron OR n"
-#         }
-#       },
-#       {
-#         description: "has the largest specific charge,",
-#         marks: rand(1..2),
-#         answer_type: "multiple bool",
-#         correct_answer_attributes: {
-#           content: "electron OR e-"
-#         }
-#       },
-#       {
-#         description: "when removed leaves a different isotope of the element.",
-#         marks: rand(1..2),
-#         answer_type: "multiple bool",
-#         correct_answer_attributes: {
-#           content: "neutron OR n"
-#         }
-#       }
-#     ]
-#   )
-# end
+20.times do ||
+  Question.create!(
+    category_id: categories.sample.id,
+    exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
+    level: rand_level.call,
+    description: "(UID:#{rand(1000)}) Name the constituent of an atom which",
+    hint: "bla bla bla",
+    question_parts_attributes: [
+      {
+        description: "has zero charge,",
+        marks: rand(1..2),
+        answer_type: "multiple bool",
+        correct_answer_attributes: {
+          content: "neutron OR n"
+        }
+      },
+      {
+        description: "has the largest specific charge,",
+        marks: rand(1..2),
+        answer_type: "multiple bool",
+        correct_answer_attributes: {
+          content: "electron OR e-"
+        }
+      },
+      {
+        description: "when removed leaves a different isotope of the element.",
+        marks: rand(1..2),
+        answer_type: "multiple bool",
+        correct_answer_attributes: {
+          content: "neutron OR n"
+        }
+      }
+    ]
+  )
+end
 
-# math = Category.create!(name: "Super simple math", year: "AS")
-#
-# 20.times do ||
-#   a = (1..10).to_a.sample(4)
-#   Question.create!(
-#     category_id: math.id,
-#     exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
-#     description: "(UID:#{rand(1000)}) Simple math question",
-#     hint: "bla bla bla",
-#     question_parts_attributes: [
-#       {
-#         description: "#{a[0]} + #{a[1]}",
-#         marks: 1,
-#         answer_type: "integer",
-#         correct_answer_attributes: {
-#           content: "#{a[0] + a[1]}"
-#         }
-#       },
-#       {
-#         description: "#{a[2]} + #{a[3]}",
-#         marks: rand(1..2),
-#         answer_type: "integer",
-#         correct_answer_attributes: {
-#           content: "#{a[2] + a[3]}"
-#         }
-#       }
-#     ]
-#   )
-# end
+math = Category.create!(name: "Super simple math", year: "AS")
+
+20.times do ||
+  a = (1..10).to_a.sample(4)
+  Question.create!(
+    category_id: math.id,
+    exam_board_ids: exam_boards.sample(rand(1..2)).map(&:id),
+    level: rand_level.call,
+    description: "(UID:#{rand(1000)}) Simple math question",
+    hint: "bla bla bla",
+    question_parts_attributes: [
+      {
+        description: "#{a[0]} + #{a[1]}",
+        marks: 1,
+        answer_type: "integer",
+        correct_answer_attributes: {
+          content: "#{a[0] + a[1]}"
+        }
+      },
+      {
+        description: "#{a[2]} + #{a[3]}",
+        marks: rand(1..2),
+        answer_type: "integer",
+        correct_answer_attributes: {
+          content: "#{a[2] + a[3]}"
+        }
+      }
+    ]
+  )
+end

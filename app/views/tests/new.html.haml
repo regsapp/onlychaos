@@ -30,9 +30,11 @@
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      -# .form-object
-      -#   .col-sm-12
-      -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control'
+
+      .form-object
+        .col-sm-12
+          = f.label :level, :class => 'form-label'
+          = f.collection_select :level, 1..5, :to_i, :to_i, :class => 'col-sm-2 control-label'
 
 
       .form-object
@@ -89,9 +91,11 @@
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      -# .form-object
-      -#   .col-sm-12
-      -#     = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: true }, :class => 'form-control'
+
+      .form-object
+        .col-sm-12
+          = f.label :level, :class => 'form-label'
+          = f.collection_select :level, 1..5, :to_i, :to_i, :class => 'col-sm-2 control-label'
 
       .form-object
         .col-sm-7.range

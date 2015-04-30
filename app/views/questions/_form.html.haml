@@ -55,7 +55,7 @@
   .form-group
     = f.label :level, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select :level, (1..5).to_a, :to_i, :to_i, { prompt: true }, :class => 'form-control'
+      = f.collection_select :level, 1..5, :to_i, :to_i, { prompt: true }, :class => 'form-control'
   .form-group
     = f.label :exam_boards, :class => 'col-sm-2 control-label'
     .col-sm-10

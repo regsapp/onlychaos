@@ -9,6 +9,7 @@
     %thead
       %tr
         %th Categories
+        %th Level
         %th Duration
         %th User
         %th
@@ -18,6 +19,7 @@
       - @tests.each do |test|
         %tr
           %td= test.category_names
+          %td= test.level
           %td= test.duration
           %td= test.user.email
           %td= link_to 'Show', test
