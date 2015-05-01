@@ -31,10 +31,10 @@
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      %p.questions Level:
+      %p.questions.level Level:
       .form-object
         .col-sm-12
-          = f.collection_select :level, 1..5, :to_i, :to_i, :class => 'col-sm-2 control-label'
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
 
 
       .form-object
@@ -91,10 +91,10 @@
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
 
-      %p.questions Level:
+      %p.questions.level Level:
       .form-object
         .col-sm-12
-          = f.collection_select :level, 1..5, :to_i, :to_i, :class => 'col-sm-2 control-label'
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
 
 
       .form-object
