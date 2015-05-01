@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   has_many :questions
   has_many :test_questions, through: :questions
   has_and_belongs_to_many :tests
+  belongs_to :units
 
   has_and_belongs_to_many :exam_boards
 

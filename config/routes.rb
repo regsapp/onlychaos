@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :units
+
   resources :year_groups
 
   resources :schools do

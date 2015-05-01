@@ -1,0 +1,18 @@
+= form_for @unit, :html => { :class => "form-horizontal" } do |f|
+  -if @unit.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@unit.errors.count, "error")} prohibited this category from being saved:"
+
+      %ul
+        - @unit.errors.full_messages.each do |msg|
+          %li.alerts= msg
+
+  .form-group
+    = f.label :name, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, :class => 'form-control'
+  
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => 'normal button'

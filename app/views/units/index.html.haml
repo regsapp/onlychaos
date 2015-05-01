@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_unit_path, :class => 'normal button' do
+    %span.glyphicon.glyphicon-plus
+    New Unit
+  %h1 Listing units
+
+.table-responsive
+  %table.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @units.each do |unit|
+        %tr
+          %td= unit.name
+          %td= link_to 'Show', unit
+          %td= link_to 'Edit', edit_unit_path(unit)
+          %td= link_to 'Destroy', unit, :data => { confirm: 'Are you sure?' }, :method => :delete

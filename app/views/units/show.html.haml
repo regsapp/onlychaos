@@ -1,0 +1,12 @@
+.page-header
+  = link_to units_path, :class => 'normal button' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_unit_path(@unit), :class => 'normal button' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show unit
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @unit.name

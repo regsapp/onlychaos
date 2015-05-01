@@ -1,6 +1,9 @@
 require 'factory_girl_rails'
 
-FactoryGirl.define do
+FactoryGirl.define do  factory :unit do
+    name "MyString"
+  end
+
   factory :message do
     email "email"
     first_name "first_name"

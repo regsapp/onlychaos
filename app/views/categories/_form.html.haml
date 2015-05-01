@@ -19,7 +19,10 @@
   .form-object
     .col-sm-12
       = f.collection_select :exam_board_id, ExamBoard.all, :id, :name, { prompt: "Exam Board" }, :class => 'form-control'
-
+  .form-object
+    .col-sm-12
+      = f.collection_select :unit_id, Unit.all, :id, :name, { prompt: "Unit" }, :class => "form-control"
+      
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'normal button'

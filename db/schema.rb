@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150430105638) do
-
+ActiveRecord::Schema.define(version: 20150501100202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +36,11 @@ ActiveRecord::Schema.define(version: 20150430105638) do
     t.text     "year"
     t.boolean  "tutorial",      default: false
     t.integer  "exam_board_id"
+    t.integer  "unit_id"
   end
 
   add_index "categories", ["exam_board_id"], name: "index_categories_on_exam_board_id", using: :btree
+  add_index "categories", ["unit_id"], name: "index_categories_on_unit_id", using: :btree
 
   create_table "categories_tests", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
@@ -176,6 +176,9 @@ ActiveRecord::Schema.define(version: 20150430105638) do
   add_index "tests", ["user_id"], name: "index_tests_on_user_id", using: :btree
   add_index "tests", ["year_group_id"], name: "index_tests_on_year_group_id", using: :btree
 
+  create_table "tests_units", force: :cascade do |t|
+  end
+
   create_table "testsessions", force: :cascade do |t|
     t.string   "answer"
     t.datetime "created_at",  null: false
@@ -188,6 +191,12 @@ ActiveRecord::Schema.define(version: 20150430105638) do
   add_index "testsessions", ["question_id"], name: "index_testsessions_on_question_id", using: :btree
   add_index "testsessions", ["test_id"], name: "index_testsessions_on_test_id", using: :btree
   add_index "testsessions", ["user_id"], name: "index_testsessions_on_user_id", using: :btree
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",        null: false
@@ -241,6 +250,7 @@ ActiveRecord::Schema.define(version: 20150430105638) do
   add_foreign_key "answers", "question_parts"
   add_foreign_key "answers", "tests"
   add_foreign_key "categories", "exam_boards"
+  add_foreign_key "categories", "units"
   add_foreign_key "question_parts", "questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "year_groups"
