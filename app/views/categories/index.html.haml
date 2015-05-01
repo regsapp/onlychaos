@@ -12,6 +12,7 @@
       %tr
         %th Name
         %th Exam Board
+        %th Year
         %th No. of Questions
         %th
         %th
@@ -22,6 +23,7 @@
         %tr
           %td= category.name
           %td= category.exam_board_id
+          %td= category.year
           %td= category.questions.count
           %td= link_to 'Show', category
           %td= link_to 'Edit', edit_category_path(category)
