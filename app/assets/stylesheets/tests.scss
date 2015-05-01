@@ -57,11 +57,12 @@ li {
 li a a:focus {
   padding: 0 1em;
   text-decoration: none;
+  // color: #000;
 }
 
 .active {
-  background-color: white;
-  color: gray;
+  background-color: #fff;
+  color: #000;
 }
 
 p.questions {
@@ -102,8 +103,12 @@ ul.tabs-exams li a a:focus {
 }
 
 ul.tabs-exams .active {
-  background-color: #fff;
-  color: gray;
+  background-color: gray;
+  color: #000;
+}
+
+ul.tabs .active {
+  background-color: gray;
 }
 
 .AS-link {

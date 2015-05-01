@@ -25,19 +25,20 @@
       %p.questions Questions in the style of:
       .col-sm-12
       %ul.tabs-exams
-        %li.tab-OCR.active
+        %li.tab-OCR
           %a.OCR-link{"data-toggle" => "tab", :href => "#"} OCR
         %li.tab-Edexcel
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
       %p.questions.level Level:
-      .form-object
+      .form-object.level
         .col-sm-12
           = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
 
+      %p.questions Duration:
 
-      .form-object
+      .form-object.level
         .col-sm-7.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
         %div.duration
@@ -92,12 +93,11 @@
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
 
       %p.questions.level Level:
-      .form-object
+      .form-object.level
         .col-sm-12
           = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
-
-
-      .form-object
+      %p.questions Duration:
+      .form-object.level
         .col-sm-8.range
           = f.range_field :duration, :class => 'slider', in: 1...101, value: 5, :onchange => 'showNewValue(this.value)'
         %div.duration
