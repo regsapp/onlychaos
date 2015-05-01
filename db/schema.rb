@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501100202) do
+ActiveRecord::Schema.define(version: 20150501103028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,7 +176,9 @@ ActiveRecord::Schema.define(version: 20150501100202) do
   add_index "tests", ["user_id"], name: "index_tests_on_user_id", using: :btree
   add_index "tests", ["year_group_id"], name: "index_tests_on_year_group_id", using: :btree
 
-  create_table "tests_units", force: :cascade do |t|
+  create_table "tests_units", id: false, force: :cascade do |t|
+    t.integer "unit_id", null: false
+    t.integer "test_id", null: false
   end
 
   create_table "testsessions", force: :cascade do |t|

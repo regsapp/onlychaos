@@ -49,11 +49,16 @@
       .OCR
         .form-object
           .col-sm-12.category_to_fix
-            - Category.real.each do |category|
-              -if category.year == "AS" && category.exam_board_id == 1
-                .category-label
-                  = label_tag dom_id(category), category.name
-                  = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
+            - Unit.all.each do |unit|
+              = display_ocr_as_units(unit)
+              .category-label
+                = label_tag dom_id(unit), unit.name
+                = check_box_tag "test[unit_ids][]", unit.id, @test.unit_ids.include?(unit.id), id:dom_id(unit)
+            -# - Category.real.each do |category|
+            -#   -if category.year == "AS" && category.exam_board_id == 1
+            -#     .category-label
+            -#       = label_tag dom_id(category), category.name
+            -#       = check_box_tag "test[category_ids][]", category.id, @test.category_ids.include?(category.id), id: dom_id(category)
 
       .Edexcel
         .form-object

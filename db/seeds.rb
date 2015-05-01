@@ -131,7 +131,7 @@ over the ground?
 #     }
 #   ]
 # )
-
+units = Unit.all.to_all
 year_groups = YearGroup.all.to_a
 categories = Category.real.to_a
 exam_boards = ExamBoard.all.to_a

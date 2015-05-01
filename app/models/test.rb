@@ -4,6 +4,7 @@ class Test < ActiveRecord::Base
   belongs_to :year_group
   belongs_to :student, :class_name => "Student", :foreign_key => "user_id"
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :units
   has_many :test_questions, dependent: :destroy
   has_many :questions, through: :test_questions
   has_many :answers
@@ -13,7 +14,8 @@ class Test < ActiveRecord::Base
   validates :duration, inclusion: { in: 1..100 , unless: :tutorial? }
   validates :level, presence: true, numericality: { greater_or_equal_to: 1, less_or_equal_to: 5 }
 
-  validate :must_have_categories
+  validate :must_have_units
+  # validate :must_have_categories
   validate :must_have_selected_questions
 
 
@@ -34,7 +36,9 @@ class Test < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc).limit(RECENT_LIMIT) }
 
-
+  def unit_names
+    units.map(&:name).join(", ")
+  end
 
   def category_names
     categories.map(&:name).join(", ")
@@ -66,6 +70,20 @@ class Test < ActiveRecord::Base
     probabilities
   end
 
+  def unit_probabilities
+    probabilities = {}
+    total = unit_incorrect_percentages.values.sum
+    units.each do |unit|
+      probabilities[unit] = unit_incorrect_percentages[unit].to_f / total
+    end
+    probabilities
+  end
+
+  def pick_unit
+    rand_number = rand
+    unit_ranges.to_a.find { |a| rand_number.in? a[1] }.to_a[0]
+  end
+
   def pick_category
     rand_number = rand
     category_ranges.to_a.find{ |a| rand_number.in? a[1] }.to_a[0]
@@ -75,6 +93,10 @@ class Test < ActiveRecord::Base
 
   def must_have_categories
     errors.add(:categories, 'must have at least one selected') unless categories.any?
+  end
+
+  def must_have_units
+    errors.add(:units, 'must select as least one unit') unless units.any?
   end
 
   def must_have_selected_questions
@@ -100,12 +122,31 @@ class Test < ActiveRecord::Base
     percentages
   end
 
+  def unit_incorrect_percentages
+    percentages = {}
+    units.each do |unit|
+      percentages[unit] = student.incorrect_percentage(unit.name)
+    end
+    percentages
+  end
+
   def category_ranges
     ranges = {}
     from = 0.0
     categories.each do |category|
       to = from + category_probabilities[category]
       ranges[category] = from..to
+      from = to
+    end
+    ranges
+  end
+
+  def unit_ranges
+    ranges = {}
+    from = 0.0
+    units.each do |unit|
+      to = from + unit_probabilities[unit]
+      ranges[unit] = from..to
       from = to
     end
     ranges
