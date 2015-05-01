@@ -74,11 +74,11 @@ class Test < ActiveRecord::Base
   private
 
   def must_have_categories
-    errors.add(:categories, 'must have at least one selected') unless categories.any?
+    errors.add(:categories, '- you must select at least one category') unless categories.any?
   end
 
   def must_have_selected_questions
-    errors.add(:selection, 'must have at least one question') unless selected_questions.any?
+    errors.add(:selection, ' - Sorry, there might not be enough questions in the categories you have chosen') unless selected_questions.any?
   end
 
   def selected_questions
