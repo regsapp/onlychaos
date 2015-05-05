@@ -24,21 +24,22 @@
 
     %tbody
       - @users.each do |user|
-        %tr
-          %td= user.email
-          %td= user.first_name
-          %td= user.last_name
-          - if user.is_a? Student
-            %td= user.school_name
-          - else
-            %td
-            %td
-          %td= user.sign_in_count
-          %td= user.current_sign_in_at.to_date
-          %td= user.last_sign_in_at.to_date
-          %td= user.type
-          %td= user.total_answers
-          %td= user.percentages.to_i
-          %td= link_to 'Show', user_path(user)
-          %td= link_to 'Edit', edit_user_path(user)
-          %td= link_to 'Destroy', user_path(user), :data => { confirm: 'Are you sure?' }, :method => :delete
+        - if user.is_a? Student
+          %tr
+            %td= user.email
+            %td= user.first_name
+            %td= user.last_name
+            - if user.is_a? Student
+              %td= user.school_name
+            - else
+              %td
+              %td
+            %td= user.sign_in_count
+            %td= user.current_sign_in_at.to_date
+            %td= user.last_sign_in_at.to_date
+            %td= user.type
+            %td= user.total_answers
+            %td= user.percentages.to_i
+            %td= link_to 'Show', user_path(user)
+            %td= link_to 'Edit', edit_user_path(user)
+            %td= link_to 'Destroy', user_path(user), :data => { confirm: 'Are you sure?' }, :method => :delete
