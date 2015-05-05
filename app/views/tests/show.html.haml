@@ -60,10 +60,6 @@
   =link_to "TAKE ANOTHER TEST", new_test_path, :class => "normal button"
 
 :javascript
-  mixpanel.track("Finished test",
-  {"Grade": @test.grade,
-  "Questions Correct": @test.correct_answers_count,
-  "Questions wrong": @test.incorrect_answers_count,
-  "Total Questions": @test.total_answers_count,
-  "Percentage": @test.percentage}
-);
+  mixpanel.track(
+  "Finished test"
+  );
