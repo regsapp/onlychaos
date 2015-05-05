@@ -13,6 +13,9 @@
 
 - if @user.tutorial_completed?
 
+  %div
+    =link_to "TAKE A TEST", new_test_path, :class => "big button"
+
   %div.results
 
     %div.charts
