@@ -21,7 +21,12 @@
 .AS
   .section.form
     = form_for @test, :html => { :id => "test-options-AS" } do |f|
-      %br
+      
+      %p.questions.level Test Difficulty:
+      .form-object.level
+        .col-sm-12
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
+
       %p.questions Questions in the style of:
       .col-sm-12
       %ul.tabs-exams
@@ -31,10 +36,6 @@
           %a.Edexcel-link{"data-toggle" => "tab", :href => "#"} Edexcel
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
-      %p.questions.level Level:
-      .form-object.level
-        .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
 
       %p.questions Duration:
 
@@ -82,7 +83,12 @@
 .A2
   .section.form
     = form_for @test, :html => { :id => "test-options-A2" } do |f|
-      %br
+
+      %p.questions.level Test Difficulty:
+      .form-object.level
+        .col-sm-12
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
+
       %p.questions Questions in the style of:
       %ul.tabs-exams
         %li.tab-OCR
@@ -92,10 +98,6 @@
         %li.tab-AQA
           %a.AQA-link{"data-toggle" => "tab", :href => "#"} AQA
 
-      %p.questions.level Level:
-      .form-object.level
-        .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
       %p.questions Duration:
       .form-object.level
         .col-sm-8.range
