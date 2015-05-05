@@ -56,7 +56,7 @@ class TestQuestionsController < ApplicationController
         elsif @test_question.tutorial?
           current_user.tutorial_completed = true
           current_user.save!
-          format.html { redirect_to dashboard_path(@test_question.test), notice: "Well done! Now do some real stuff" }
+          format.html { redirect_to dashboard_path(@test_question.test), notice: "Well done! Now do some real stuff. Click 'Take a Test' below to get started" }
         else
           format.html { redirect_to test_path(@test_question.test) , alert: alert, notice: notice }
         end
