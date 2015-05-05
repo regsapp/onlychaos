@@ -10,7 +10,7 @@ class Test < ActiveRecord::Base
 
   accepts_nested_attributes_for :test_questions
 
-  validates :duration, inclusion: { in: 1..100 , unless: :tutorial? }
+  validates :duration, inclusion: { in: 1..10 , unless: :tutorial? }
   validates :level, presence: true, numericality: { greater_or_equal_to: 1, less_or_equal_to: 5 }
 
   validate :must_have_categories

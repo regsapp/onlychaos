@@ -40,7 +40,7 @@
 
       .form-object.level
         .col-sm-7.range
-          = f.range_field :duration, :class => 'slider', in: 1...101, value: 60, :onchange => 'showValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showValue(this.value)'
         %div.duration
           = succeed ' minutes' do
             %span#time 5
@@ -99,7 +99,7 @@
       %p.questions Duration:
       .form-object.level
         .col-sm-8.range
-          = f.range_field :duration, :class => 'slider', in: 1...101, value: 5, :onchange => 'showNewValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showNewValue(this.value)'
         %div.duration
           = succeed ' minutes' do
             %span#A2time 5
