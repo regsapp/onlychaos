@@ -15,10 +15,10 @@
       %h1 TEST RESULTS
 
     %div.charts
-      .chart{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
-      .chart{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
-      .chart{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
-      .chart{"data-percent" => "65"} #{@test.grade} PREDICTED
+      .chart#percentage{"data-percent" => "#{@test.percentage}"} #{number_to_percentage @test.percentage, precision: 0} PERCENT
+      .chart#correct{"data-percent" => "#{correct_percent(@test)}"} #{@test.correct_answers_count} CORRECT
+      .chart#incorrect{"data-percent" => "#{incorrect_percent(@test)}"} #{@test.incorrect_answers_count} INCORRECT
+      .chart#grade{"data-percent" => "65"} #{@test.grade} PREDICTED
 
     %div.dashboard
       =link_to "To Dashboard", root_path, class: "normal button"
@@ -60,6 +60,15 @@
   =link_to "TAKE ANOTHER TEST", new_test_path, :class => "normal button"
 
 :javascript
+  var grade = $("#grade").text().replace('PREDICTED', '');
+  var percent = $("#percentage").text().replace('% PERCENT', '');
+  var correct = $("#correct").text().replace('CORRECT', '');
+  var incorrect = $("#incorrect").text().replace('INCORRECT', '');
   mixpanel.track(
-  "Finished test"
+  "Finished test",
+  {"Grade": grade,
+  "Percentage": percent,
+  "Correct": correct,
+  "Incorrect": incorrect
+  }
   );

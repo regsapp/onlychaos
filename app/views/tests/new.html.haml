@@ -21,7 +21,7 @@
 .AS
   .section.form
     = form_for @test, :html => { :id => "test-options-AS" } do |f|
-      
+
       %p.questions.level Test Difficulty:
       .form-object.level
         .col-sm-12
@@ -41,7 +41,7 @@
 
       .form-object.level
         .col-sm-7.range
-          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showValue(this.value)', :id => "AS-duration"
         %div.duration
           = succeed ' minutes' do
             %span#time 5
