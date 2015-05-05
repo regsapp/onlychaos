@@ -12,7 +12,7 @@
         %th Level
         %th Duration
         %th User
-        %th No. of questions
+        %th No. of available marks
         %th No. correct
         %th
 
@@ -26,6 +26,6 @@
             %td
           %td= test.duration
           %td= test.student.email
-          %td= test.questions.count
+          %td= total_marks_available(test)
           %td= test.correct_answers_count
           %td= link_to 'Show', test
