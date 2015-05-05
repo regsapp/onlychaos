@@ -20,7 +20,7 @@
 
 .AS
   .section.form
-    = form_for @test do |f|
+    = form_for @test, :html => { :id => "test-options-AS" } do |f|
       %br
       %p.questions Questions in the style of:
       .col-sm-12
@@ -81,7 +81,7 @@
 
 .A2
   .section.form
-    = form_for @test do |f|
+    = form_for @test, :html => { :id => "test-options-A2" } do |f|
       %br
       %p.questions Questions in the style of:
       %ul.tabs-exams
@@ -149,4 +149,6 @@
   }
 
 :javascript
-  mixpanel.track("Started Test");
+  mixpanel.track("Opened New Test Page");
+  mixpanel.track_forms("#test-options-AS", "Started AS Test");
+  mixpanel.track_forms("#test-options-A2", "Started A2 Test");
