@@ -9,7 +9,10 @@
 
 %dl.dl-horizontal
   %dt STATUS
-  %dd= @question.status.upcase
+  - if @question.status.nil?
+    %dd
+  - else
+    %dd= @question.status.upcase
   %br
   %dt Category:
   %dd= @question.category.name

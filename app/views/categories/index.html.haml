@@ -4,8 +4,6 @@
     New Category
   %h1 Listing categories
 
-  %p 1 = OCR, 2 = AQA, 3 = Edexcel
-
 .table-responsive
   %table.table.table-bordered.table-hover
     %thead
@@ -22,7 +20,13 @@
       - @categories.each do |category|
         %tr
           %td= category.name
-          %td= category.exam_board_id
+          - if category.exam_board_id == 1
+            %td OCR
+          - elsif category.exam_board_id == 2
+            %td AQA
+          - else
+            %td Edexcel
+          -# %td= category.exam_board_id
           %td= category.year
           %td= category.questions.count
           %td= link_to 'Show', category
