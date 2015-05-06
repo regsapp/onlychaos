@@ -25,7 +25,7 @@
       %p.questions.level Test Difficulty:
       .form-object.level
         .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label', id: "level-AS"
 
       %p.questions Questions in the style of:
       .col-sm-12
@@ -41,7 +41,7 @@
 
       .form-object.level
         .col-sm-7.range
-          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showValue(this.value)', :id => "AS-duration"
+          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showValue(this.value)', :id => "duration-AS"
         %div.duration
           = succeed ' minutes' do
             %span#time 5
@@ -87,7 +87,7 @@
       %p.questions.level Test Difficulty:
       .form-object.level
         .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label'
+          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label', id: "level-A2"
 
       %p.questions Questions in the style of:
       %ul.tabs-exams
@@ -101,7 +101,7 @@
       %p.questions Duration:
       .form-object.level
         .col-sm-8.range
-          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showNewValue(this.value)'
+          = f.range_field :duration, :class => 'slider', in: 1...11, value: 5, :onchange => 'showNewValue(this.value)', id: "duration-A2"
         %div.duration
           = succeed ' minutes' do
             %span#A2time 5
@@ -151,8 +151,13 @@
   }
 
 :javascript
+  var duration-AS = $('#duration-AS').val();
+  // var level-AS = $('#level-AS');
+  var duration-A2 = $('#duration-A2').val();
   mixpanel.track("Opened New Test Page");
   mixpanel.track_forms("#test-options-AS", "Started a Test",
-  {"Year": "AS"});
+  {"Year": "AS",
+  "Duration": duration-AS});
   mixpanel.track_forms("#test-options-A2", "Started a Test",
-  {"Year": "A2"});
+  {"Year": "A2",
+  "Duration": duration-A2});

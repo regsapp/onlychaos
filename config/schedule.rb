@@ -19,13 +19,13 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :friday, :at => '12pm' do
+every :day, :at => '12pm' do
   runner "Student.update_grades"
   runner "Student.update_percentages"
   runner "Student.update_total_answers"
   runner "Student.update_correct_answers"
 end
 
-every :friday, :at => '5pm' do
-  runner "Student.weekly_update"
-end
+# every :friday, :at => '5pm' do
+#   runner "Student.weekly_update"
+# end
