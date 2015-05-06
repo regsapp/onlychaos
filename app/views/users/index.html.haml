@@ -12,6 +12,7 @@
         %th First name
         %th Last name
         %th School
+        %th Tutorial?
         %th Sign in count
         -# %th Current sign in at
         %th Last sign in at
@@ -35,6 +36,10 @@
             - else
               %td
               -# %td
+            - if user.tutorial_completed? == true
+              %td Y
+            - else
+              %td N
             %td= user.sign_in_count
             -# %td= user.current_sign_in_at.to_date
             %td= user.last_sign_in_at.to_date

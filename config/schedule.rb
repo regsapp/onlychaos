@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :hour do
+every 24.hours do
   runner "Student.update_grades"
   runner "Student.update_percentages"
   runner "Student.update_total_answers"
