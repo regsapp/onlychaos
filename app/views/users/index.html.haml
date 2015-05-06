@@ -13,11 +13,12 @@
         %th Last name
         %th School
         %th Sign in count
-        %th Current sign in at
+        -# %th Current sign in at
         %th Last sign in at
-        %th Type
+        -# %th Type
         %th No. Q
         %th Percent
+        %th Grade
         %th
         %th
         %th
@@ -35,11 +36,12 @@
               %td
               %td
             %td= user.sign_in_count
-            %td= user.current_sign_in_at.to_date
+            -# %td= user.current_sign_in_at.to_date
             %td= user.last_sign_in_at.to_date
-            %td= user.type
+            -# %td= user.type
             %td= user.total_answers
             %td= user.percentages.to_i
+            %td= user.grade
             %td= link_to 'Show', user_path(user)
             %td= link_to 'Edit', edit_user_path(user)
             %td= link_to 'Destroy', user_path(user), :data => { confirm: 'Are you sure?' }, :method => :delete
