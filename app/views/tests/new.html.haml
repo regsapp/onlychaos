@@ -25,7 +25,7 @@
       %p.questions.level Test Difficulty:
       .form-object.level
         .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label', id: "level-AS"
+          = f.select(:level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], {}, id: "level-AS")
 
       %p.questions Questions in the style of:
       .col-sm-12
@@ -87,7 +87,7 @@
       %p.questions.level Test Difficulty:
       .form-object.level
         .col-sm-12
-          = f.select :level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], :class => 'col-sm-2 control-label', id: "level-A2"
+          = f.select(:level, [["L1 - Super easy", 1], ["L2 - Warm-up", 2], ["L3 - Easy exam questions", 3], ["L4 - Moderate exam questions", 4], ["L5 - Difficult exam questions", 5]], {}, id: "level-A2")
 
       %p.questions Questions in the style of:
       %ul.tabs-exams
@@ -151,13 +151,12 @@
   }
 
 :javascript
-  var duration-AS = $('#duration-AS').val();
-  // var level-AS = $('#level-AS');
-  var duration-A2 = $('#duration-A2').val();
+  var durationAS = $('#duration-AS').val();
+  var levelAS = $('#level-AS').val();
+  var durationA2 = $('#duration-A2').val();
+  var levelA2 = $('#level-A2').val();
   mixpanel.track("Opened New Test Page");
-  mixpanel.track_forms("#test-options-AS", "Started a Test",
-  {"Year": "AS",
-  "Duration": duration-AS});
-  mixpanel.track_forms("#test-options-A2", "Started a Test",
-  {"Year": "A2",
-  "Duration": duration-A2});
+  mixpanel.track_forms("#test-options-AS", "Started Test",
+  {"Year": "AS", "Duration": durationAS, "Difficulty": levelAS});
+  mixpanel.track_forms("#test-options-A2", "Started Test",
+  {"Year": "A2", "Duration": durationA2, "Difficulty": levelA2});
