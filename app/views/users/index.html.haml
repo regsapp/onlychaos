@@ -17,6 +17,7 @@
         -# %th Current sign in at
         %th Last sign in at
         -# %th Type
+        %th Tests started
         %th No. Q
         %th Percent
         %th Grade
@@ -44,6 +45,7 @@
             -# %td= user.current_sign_in_at.to_date
             %td= user.last_sign_in_at.to_date
             -# %td= user.type
+            %td= user.tests.count
             %td= user.total_answers_count
             %td= user.percentage.to_i
             %td= user.grade
