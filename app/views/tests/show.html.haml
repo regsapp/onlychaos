@@ -72,3 +72,6 @@
   "Incorrect": incorrect
   }
   );
+  mixpanel.identify('#{@current_user.email}');
+  mixpanel.people.set({"Last test grade": grade,
+  "Last test percent": percent});
