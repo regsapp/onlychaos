@@ -25,7 +25,7 @@
 
       .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
 
-      .chart{"data-percent" => "55"} #{@user.grade} PREDICTED
+      .chart#grade{"data-percent" => "55"} #{@user.grade} PREDICTED
 
     %div.questions
 
@@ -64,4 +64,8 @@
       %h2 3. Get estimated grades for each topic
 
 :javascript
-  mixpanel.track("Looked at dashboard")
+  var grade = $("#grade").text().replace('PREDICTED', '');
+  mixpanel.track("Looked at dashboard");
+  mixpanel.identify('#{@user.email}');
+  mixpanel.people.set({"Grade": grade,
+  "Percentage": '#{@user.percentages.to_i}'});
