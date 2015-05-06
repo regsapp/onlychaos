@@ -152,5 +152,7 @@
 
 :javascript
   mixpanel.track("Opened New Test Page");
-  mixpanel.track_forms("#test-options-AS", "Started AS Test");
-  mixpanel.track_forms("#test-options-A2", "Started A2 Test");
+  mixpanel.track_forms("#test-options-AS", "Started a Test",
+  {"Year": "AS"});
+  mixpanel.track_forms("#test-options-A2", "Started a Test",
+  {"Year": "A2"});
