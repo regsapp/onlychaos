@@ -1,5 +1,6 @@
 class LeaderboardController < ApplicationController
   before_action :query_options
+  # before_action :paginate
 
   def show
     @lb = Boards.default_leaderboard
