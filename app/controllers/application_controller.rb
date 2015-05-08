@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     current_user.student? ? dashboard_path : questions_path
   end
+
+  def percentage_lb
+    percentage_lb = Leaderboard.new('percentages')
+  end
 end

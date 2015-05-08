@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index'
 
+  get '/leaderboard' => 'leaderboard#show'
+
   resources :categories
 
   resources :year_groups

@@ -24,6 +24,7 @@ every 24.hours do
   runner "Student.update_percentages"
   runner "Student.update_total_answers"
   runner "Student.update_correct_answers"
+  runner "Student.update_leaderboard"
 end
 
 # every :friday, :at => '5pm' do

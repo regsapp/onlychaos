@@ -1,0 +1,12 @@
+%table.table.table-bordered.table-hover
+  %tr
+    %th Rank
+    %th Name
+    %th Score
+  - @entries.each do |entry|
+    %tr
+      %td= entry[:rank]
+      %td= entry[:member]
+      %td= entry[:score].to_i
+
+= paginate @page_array

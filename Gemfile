@@ -46,6 +46,11 @@ gem 'whenever', :require => false
 
 gem 'newrelic_rpm'
 
+gem 'redis'
+
+gem 'leaderboard'
+
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

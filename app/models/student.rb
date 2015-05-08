@@ -12,6 +12,11 @@ class Student < User
   # temporarily (while we don't have exam boards per school)
   belongs_to :exam_board
 
+  after_create :update_rank
+
+  after_update :update_rank
+
+
   # # one day (when we have exam boards per school)
   # validates :school_id, presence: true
   # def exam_board
@@ -26,6 +31,20 @@ class Student < User
 
   def answers
     recent_test_questions.map{ |tq| tq.answers.to_a }.flatten
+  end
+
+  def update_rank
+    update = Boards::UpdateService.new
+    update.execute(self)
+  end
+
+  def self.update_leaderboard
+    update = Boards::UpdateService.new
+    transaction do
+      all.each do |student|
+        update.execute(student)
+      end
+    end
   end
 
   def self.update_grades
