@@ -11,7 +11,7 @@ module Boards
 
   def self.default_options
     Leaderboard::DEFAULT_OPTIONS.merge(
-    page_size: 3
+    page_size: 25
     )
   end
 

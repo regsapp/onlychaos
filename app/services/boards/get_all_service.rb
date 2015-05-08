@@ -14,7 +14,7 @@ module Boards
     end
 
     def page_size(options)
-      options[:page_size] || 3
+      options[:page_size] || 25
     end
   end
 end
