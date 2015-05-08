@@ -1,12 +1,15 @@
-%table.table.table-bordered.table-hover
+.page-header
+  %h1 Leaderboard
+
+%table.table-hover.leaderboard
   %tr
-    %th Rank
-    %th Name
-    %th Score
+    %th.lb Rank
+    %th.lb Name
+    %th.lb Score
   - @entries.each do |entry|
     %tr
-      %td= entry[:rank]
-      %td= entry[:member]
-      %td= entry[:score].to_i
+      %td.ld= entry[:rank]
+      %td.ld= entry[:member]
+      %td.ld= entry[:score].to_i
 
 = paginate @page_array

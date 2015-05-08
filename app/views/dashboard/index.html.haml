@@ -13,7 +13,8 @@
 
 - if @user.tutorial_completed?
 
-  %div
+
+  %div.test-link
     =link_to "TAKE A TEST", new_test_path, :class => "big button"
 
   %div.results
@@ -26,6 +27,9 @@
       .chart{"data-percent" => "#{incorrect_percent(@user)}"} #{@user.incorrect_answers_count} INCORRECT
 
       .chart#grade{"data-percent" => "55"} #{@user.grade} PREDICTED
+
+    %div.dashboard
+      =link_to "SEE LEADERBOARD", leaderboard_path, :class => 'normal button'
 
     %div.questions
 
