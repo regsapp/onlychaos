@@ -5,7 +5,7 @@ module Boards
     TieRankingLeaderboard.new(
     DEFAULT_BOARD,
     default_options,
-    redis_connnection: REDIS
+    redis_connnection: Redis.current
     )
   end
 
