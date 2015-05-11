@@ -1,0 +1,16 @@
+defaults: &defaults
+  host: localhost
+  port: 6379
+
+development:
+  <<: *defaults
+  database: 0
+
+test:
+  <<: *defaults
+  database: 1
+
+production:
+  host: app.gradezilla.io
+  port: 6379
+  database: 1
