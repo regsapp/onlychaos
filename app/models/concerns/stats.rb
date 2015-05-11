@@ -45,17 +45,17 @@ module Stats
 
   def grade(aggregation=:all)
     case percentage(aggregation)
-    when 85..100
+    when 65..100
       "A"
-    when 75...85
-      "B"
-    when 65...75
-      "C"
     when 55...65
-      "D"
+      "B"
     when 45...55
+      "C"
+    when 35...45
+      "D"
+    when 25...35
       "E"
-    when 0...45
+    when 0...25
       "F"
     else
       nil
