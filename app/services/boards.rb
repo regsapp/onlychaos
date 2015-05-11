@@ -5,13 +5,13 @@ module Boards
     TieRankingLeaderboard.new(
     DEFAULT_BOARD,
     default_options,
-    redis_connnection: Redis.current
+    redis_connnection: Redis.new(:url => ENV["REDISTOGO_URL"])
     )
   end
 
   def self.default_options
     Leaderboard::DEFAULT_OPTIONS.merge(
-    page_size: 150
+    page_size: 100
     )
   end
 
