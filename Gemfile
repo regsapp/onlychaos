@@ -41,6 +41,8 @@ gem 'jquery-ui-rails'
 
 gem 'airbrake'
 
+gem 'rails_12factor'
+
 
 gem 'paper_trail', '~> 4.0.0.beta'
 gem 'whenever', :require => false
