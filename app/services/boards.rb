@@ -2,7 +2,7 @@ module Boards
   DEFAULT_BOARD = 'percentage_lb'
 
   def self.default_leaderboard
-    TieRankingLeaderboard.new(
+    Leaderboard.new(
     DEFAULT_BOARD,
     default_options,
     :redis_connnection => Redis.new(:url => ENV[ENV["REDIS_PROVIDER"]])
