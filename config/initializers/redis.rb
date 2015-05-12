@@ -1,5 +1,5 @@
 if Rails.env.production?
-  uri = ENV[ENV["REDISTOGO_URL"]]
+  uri = ENV[ENV["REDIS_PROVIDER"]]
 else
   uri = "redis://localhost:6379"
 end
