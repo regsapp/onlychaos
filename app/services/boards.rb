@@ -5,7 +5,7 @@ module Boards
     TieRankingLeaderboard.new(
     DEFAULT_BOARD,
     default_options,
-    :redis_connnection => Redis.current
+    :redis_connnection => Redis.new(:url => ENV[ENV["REDIS_PROVIDER"]])
     )
   end
 
