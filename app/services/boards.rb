@@ -1,11 +1,11 @@
 module Boards
-  DEFAULT_BOARD = 'percentage_lb'
+  # DEFAULT_BOARD = 'percentage_lb'
 
-  def self.default_leaderboard
+  def self.students_leaderboard
     TieRankingLeaderboard.new(
-    'percentage_lb',
-    Leaderboard::DEFAULT_OPTIONS.merge(page_size: 100),
-    :redis_connnection => Redis.current
+      'percentage_lb',
+      Leaderboard::DEFAULT_OPTIONS.merge(page_size: 100),
+      redis_connnection: Redis.current
     )
   end
 
