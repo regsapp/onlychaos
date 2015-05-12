@@ -1,9 +1,9 @@
-# if Rails.env.production?
-#   uri = ENV["REDISTOGO_URL"]
-# else
-#   uri = "redis://localhost:6379"
-# end
-uri=ENV[ENV["REDIS_PROVIDER"]]
+if Rails.env.production?
+  uri = ENV[ENV["REDISTOGO_URL"]]
+else
+  uri = "redis://localhost:6379"
+end
+# uri= ENV[ENV["REDIS_PROVIDER"]] || "redis://localhost:6379"
 Redis.current = Redis.new(:url => uri)
 
 # REDIS_CONFIG = YAML.load_file(Rails.root.join('config', 'redis.yml'))[Rails.env]
