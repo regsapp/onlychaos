@@ -1,8 +1,12 @@
 module Boards
   # DEFAULT_BOARD = 'percentage_lb'
 
+  def connection
+    redis_connection: Redis.current
+  end
+
   def self.students_leaderboard
-    TieRankingLeaderboard.new('students_lb', Leaderboard::DEFAULT_OPTIONS.merge(page_size: 100), redis_connnection: Redis.current)
+    TieRankingLeaderboard.new('students_lb', Leaderboard::DEFAULT_OPTIONS.merge(page_size: 100), connection)
   end
 
   class Base
