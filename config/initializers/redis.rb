@@ -3,7 +3,7 @@
 # else
 #   uri = "redis://localhost:6379"
 # end
-uri = ENV["REDISTOGO_URL"]
+uri = ENV["REDISCLOUD_URL"]
 Redis.current = Redis.new(:url => uri)
 
 # REDIS_CONFIG = YAML.load_file(Rails.root.join('config', 'redis.yml'))[Rails.env]
