@@ -3,7 +3,7 @@ class LeaderboardController < ApplicationController
   # before_action :paginate
 
   def show
-    @lb = Boards.default_leaderboard
+    @lb = Boards.students_leaderboard
     @entries = entry_service.execute(query_options)
     respond_to do |format|
       format.html do

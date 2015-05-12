@@ -7,7 +7,7 @@ module Boards
 
   class Base
     def leaderboard
-      @leaderboard ||= Boards.default_leaderboard
+      @leaderboard ||= Boards.students_leaderboard
     end
 
     def member_exists?(name)
