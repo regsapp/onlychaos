@@ -26,7 +26,7 @@ every 24.hours do
   runner "Student.update_correct_answers"
 end
 
-every 5.minutes do
+every 24.hours do
   runner "Student.update_leaderboard"
 end
 

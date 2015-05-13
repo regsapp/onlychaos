@@ -42,7 +42,11 @@ class Student < User
     update = Boards::UpdateService.new
     transaction do
       all.each do |student|
-        update.execute(student)
+        if !student.tests.empty? && student.tests.last.updated_at > Date.today - 14
+          update.execute(student)
+        else
+          Boards.students_leaderboard.remove_member(student.first_name.to_s)
+        end
       end
     end
   end
@@ -86,5 +90,23 @@ class Student < User
       end
     end
   end
+
+  # def self.took_recent_test
+  #   past_fortnight = []
+  #   # not_past_fortnight = []
+  #   all.each do |student|
+  #     # if !student.tests.empty?
+  #       if !student.tests.empty? && student.tests.last.updated_at > Date.today - 14
+  #         past_fortnight << student
+  #       # else
+  #         # not_past_fortnight << student
+  #       end
+  #     # else
+  #       # not_past_fortnight << student
+  #     # end
+  #   end
+  #   past_fortnight
+  #   # not_past_fortnight
+  # end
 
 end
