@@ -4,6 +4,11 @@
   margin-right: auto;
 }
 
+.table-hover tbody tr:hover td {
+    color: #292929;
+}
+
+
 th.lb {
   text-align: center;
   font-size: 1.5em;
